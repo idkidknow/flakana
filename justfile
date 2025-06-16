@@ -1,14 +1,14 @@
 os:
-    nh os switch ../flakana-local
+    nh os switch .
 
 home:
-    nh home switch ../flakana-local
+    nh home switch .
 
 gc:
     sudo nix-collect-garbage
 
 tomori:
-    deploy ../flakana-local#tomori
+    deploy .#tomori
 
 uika:
-    deploy ../flakana-local#uika -- --impure
+    deploy .#uika -- --impure
