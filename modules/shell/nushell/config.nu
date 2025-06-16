@@ -55,7 +55,7 @@ $env.PATH = $env.PATH
 $env.EDITOR = $env.config.buffer_editor
 
 alias l = eza -Hgh --time-style=iso --icons always
-alias ll = l -l
+alias ll = l -la
 
 use std/dirs
 
