@@ -42,9 +42,9 @@ if ($options.is_wsl) {
   # Avoid to use Windows Path unintentionally
   # ArchWSL: Arch.exe config --append-path false
   # NixOS-WSL: wsl.interop.includePath = false;
-  let windows_path = $env.PATH | filter { $in =~ "^/mnt/[a-z]/" }
+  let windows_path = $env.PATH | where {$in =~ "^/mnt/[a-z]/"}
   $env.PATH = $env.PATH
-    | filter { $in !~ "^/mnt/[a-z]/" }
+    | where {$in !~ "^/mnt/[a-z]/"}
     | prepend ("/mnt/c/Users/ifidk/AppData/Local/Programs/Microsoft VS Code/bin")
 }
 
