@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.modules.homeManager."idkana@mutsumi" =
+  flake.modules.homeManager.common =
     { ... }:
     {
       programs.jujutsu = {
