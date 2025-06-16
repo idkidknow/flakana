@@ -16,6 +16,7 @@
             key = "~/.ssh/id_ed25519.pub";
           };
           git.sign-on-push = true;
+          ui.default-command = "log";
         };
       };
     };
