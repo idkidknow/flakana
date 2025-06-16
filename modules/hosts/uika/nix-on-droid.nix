@@ -55,5 +55,8 @@
       imports = [ config.flake.modules.homeManager.common ];
 
       home.stateVersion = "25.05";
+
+      home.username = "idkana";
+      home.homeDirectory = "/data/data/com.termux.nix/files/home";
     };
 }
