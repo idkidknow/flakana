@@ -48,6 +48,7 @@
         tldr
         nix-output-monitor
         nh
+        nvfetcher
       ];
 
       nushell.isWSL = true;
