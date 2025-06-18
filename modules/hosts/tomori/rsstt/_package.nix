@@ -30,7 +30,7 @@ let
     '';
   };
 
-  workspace = uv2nix.lib.workspace.loadWorkspace { workspaceRoot = "${patched}"; };
+  workspace = uv2nix.lib.workspace.loadWorkspace { workspaceRoot = "${patched}"; }; # IFD
 
   overlay = workspace.mkPyprojectOverlay {
     sourcePreference = "wheel";
