@@ -42,7 +42,7 @@
         nativeBuildInputs = [ pkgs.pkg-config ];
         buildInputs = [ pkgs.openssl ];
 
-        cargoHash = "sha256-to+3CJc0em/sEhHj3j4tT8ucqxypz0/JOohpzraJREg=";
+        cargoHash = "sha256-d72KCMR8KJ0pbVWqn8sHmDgT5DFTyIv40rF51yLLsnY=";
 
         meta.mainProgram = "starship-jj";
       });
