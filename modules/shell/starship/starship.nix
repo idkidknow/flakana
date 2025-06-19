@@ -15,10 +15,12 @@
         ./starship.toml
         (pkgs.writeText "starship-custom-jj.toml" ''
           [custom.jj]
-          command = "${lib.getExe starship-jj} --ignore-working-copy starship prompt"
-          format = "[$symbol](blue bold) $output "
-          symbol = "󱗆 "
-          when = "${lib.getExe pkgs.jujutsu} root --ignore-working-copy"
+          command = "prompt"
+          shell = ["${lib.getExe starship-jj}", "--ignore-working-copy", "starship"]
+          ignore_timeout = true
+          format = "$output"
+          use_stdin = false
+          when = true
         '')
       ];
       xdg.configFile."starship-jj/starship-jj.toml".source = ./starship-jj.toml;
@@ -29,12 +31,12 @@
     {
       packages.starship-jj = pkgs.rustPlatform.buildRustPackage (finalAttrs: {
         pname = "starship-jj";
-        version = "0.3.2";
+        version = "0.4.0";
         src = pkgs.fetchFromGitLab {
           owner = "lanastara_foss";
           repo = "starship-jj";
           tag = finalAttrs.version;
-          hash = "sha256-+wATQ3uXxUFFQt/Fz8PKZ7NmPzaNPfjWH/gfMXHryO4=";
+          hash = "sha256-LVTFgYfbqqdqrr2LpzX7dJwWsXfB74wW22jm1Ok57gs=";
         };
 
         nativeBuildInputs = [ pkgs.pkg-config ];
