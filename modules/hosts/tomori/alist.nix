@@ -14,10 +14,10 @@ in
     {
       "${system}".openlist = pkgs.stdenvNoCC.mkDerivation {
         pname = "openlist";
-        version = "0-unstable-2025-06-18";
+        version = "0-unstable-2025-06-19";
         src = pkgs.fetchzip {
           url = "https://github.com/OpenListTeam/OpenList/releases/download/beta/openlist-linux-musl-amd64.tar.gz";
-          hash = "sha256-No9Rj41lrbf9yMlQHfw+cYLRU2Ki3K69ZRPNP6f5tNs=";
+          hash = "sha256-+vnskfLH2KM2Djiysp2LZYApcj13LQhWVsZs4H3Eksc=";
         };
 
         installPhase = ''
