@@ -1,8 +1,15 @@
+"$schema" = "https://gitlab.com/lanastara_foss/starship-jj/-/raw/0.4.0/schema.json?ref_type=tags"
+
 module_separator = " "
 
 [bookmarks]
 search_depth = 100
 exclude = []
+
+[[module]]
+type = "Symbol"
+symbol = "󱗆 "
+color = "Blue"
 
 [[module]]
 type = "Bookmarks"
@@ -62,4 +69,3 @@ color = "Green"
 prefix = "-"
 suffix = ""
 color = "Red"
-
