@@ -49,6 +49,7 @@
         nix-output-monitor
         nh
         nvfetcher
+        taplo-cli
       ];
 
       nushell.isWSL = true;
