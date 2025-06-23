@@ -1,35 +1,14 @@
-{
-  inputs,
-  self,
-  withSystem,
-  ...
-}:
+{ inputs, self, ... }:
 let
   priv = inputs.priv;
   inherit (priv) domain;
 in
 {
-  flake.packages = withSystem "x86_64-linux" (
-    { pkgs, system, ... }:
+  perSystem =
+    { system, ... }:
     {
-      "${system}".openlist = pkgs.stdenvNoCC.mkDerivation {
-        pname = "openlist";
-        version = "0-unstable-2025-06-19";
-        src = pkgs.fetchzip {
-          url = "https://github.com/OpenListTeam/OpenList/releases/download/beta/openlist-linux-musl-amd64.tar.gz";
-          hash = "sha256-+vnskfLH2KM2Djiysp2LZYApcj13LQhWVsZs4H3Eksc=";
-        };
-
-        installPhase = ''
-          mkdir -p $out/bin
-          cp openlist $out/bin/
-        '';
-
-        meta.mainProgram = "openlist";
-      };
-
-    }
-  );
+      packages.openlist = inputs.nixpkgs-master.legacyPackages.${system}.openlist;
+    };
 
   flake.modules.nixos."hosts/tomori" =
     {
@@ -38,7 +17,7 @@ in
       ...
     }:
     let
-      package = self.packages."x86_64-linux".openlist;
+      package = self.packages.x86_64-linux.openlist;
       wd = "/var/lib/alist";
       cert-path = config.security.acme.certs."${domain.root}".directory;
     in
