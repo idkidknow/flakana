@@ -16,7 +16,7 @@ in
         name = lib.removePrefix prefix name;
         value = lib.nixosSystem {
           modules = [ module ];
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs; }; # for vaultix
         };
       }
     );
