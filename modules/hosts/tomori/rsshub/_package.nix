@@ -3,22 +3,22 @@
   fetchFromGitHub,
   makeBinaryWrapper,
   nodejs,
-  pnpm_9,
+  pnpm_10,
   replaceVars,
   stdenv,
 }:
 let
-  pnpm = pnpm_9;
+  pnpm = pnpm_10;
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "rsshub";
-  version = "0-unstable-2025-06-01";
+  version = "0-unstable-2025-06-23";
 
   src = fetchFromGitHub {
     owner = "DIYgod";
     repo = "RSSHub";
-    rev = "6b0c1abf5ce4b19a6808667b2fa0b298348899a4";
-    hash = "sha256-lpWIJ4FxhZqUT+GToiYGuRROGV3cZTaTq0+ktmRWJsk=";
+    rev = "18c34093226d9109095764a9d3da4461be043560";
+    hash = "sha256-JRu4eJl10TnhaQ1RJmwnqwbwdLTpRTvi257ac1ZnXVw=";
   };
 
   patches = [
@@ -30,7 +30,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   pnpmDeps = pnpm.fetchDeps {
     inherit (finalAttrs) pname version src;
-    hash = "sha256-7qh6YZbIH/kHVssDZxHY7X8bytrnMcUq0MiJzWZYItc=";
+    hash = "sha256-3bICKJ7IxVxxbRQm0QBnDVnc2CH/getClYKxAqqiMf0=";
   };
 
   nativeBuildInputs = [

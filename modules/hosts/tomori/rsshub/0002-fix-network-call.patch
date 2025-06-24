@@ -1,8 +1,8 @@
 diff --git a/scripts/workflow/build-routes.ts b/scripts/workflow/build-routes.ts
-index 9807cfc..b9dcfb9 100644
+index ed28809..9fa0c01 100644
 --- a/scripts/workflow/build-routes.ts
 +++ b/scripts/workflow/build-routes.ts
-@@ -4,6 +4,7 @@ import { parse } from 'tldts';
+@@ -4,22 +4,11 @@ import { parse } from 'tldts';
  import fs from 'node:fs';
  import path from 'node:path';
  import toSource from 'tosource';
@@ -10,7 +10,33 @@ index 9807cfc..b9dcfb9 100644
 
  import { getCurrentPath } from '../../lib/utils/helpers';
  const __dirname = getCurrentPath(import.meta.url);
-@@ -73,3 +74,5 @@ fs.writeFileSync(path.join(__dirname, '../../assets/build/radar-rules.js'), `(${
+
+-const foloAnalysis = await (
+-    await fetch('https://api.follow.is/discover/rsshub-analytics', {
+-        headers: {
+-            'user-agent': 'RSSHub',
+-        },
+-    })
+-).json();
+-const foloAnalysisResult = foloAnalysis.data as Record<string, { subscriptionCount: number; topFeeds: any[] }>;
+-const foloAnalysisTop100 = Object.entries(foloAnalysisResult)
+-    .sort((a, b) => b[1].subscriptionCount - a[1].subscriptionCount)
+-    .slice(0, 150);
+-
+ const maintainers: Record<string, string[]> = {};
+ const radar: {
+     [domain: string]: {
+@@ -45,9 +34,6 @@ for (const namespace in namespaces) {
+         const realPath = `/${namespace}${path}`;
+         const data = namespaces[namespace].routes[path];
+         const categories = data.categories || namespaces[namespace].categories || [defaultCategory];
+-        if (foloAnalysisTop100.some(([path]) => path === realPath)) {
+-            categories.push('popular');
+-        }
+         // maintainers
+         if (data.maintainers) {
+             maintainers[realPath] = data.maintainers;
+@@ -92,3 +78,5 @@ fs.writeFileSync(path.join(__dirname, '../../assets/build/radar-rules.js'), `(${
  fs.writeFileSync(path.join(__dirname, '../../assets/build/maintainers.json'), JSON.stringify(maintainers, null, 2));
  fs.writeFileSync(path.join(__dirname, '../../assets/build/routes.json'), JSON.stringify(namespaces, null, 2));
  fs.writeFileSync(path.join(__dirname, '../../assets/build/routes.js'), `export default ${JSON.stringify(namespaces, null, 2)}`.replaceAll(/"module": "(.*)"\n/g, `"module": $1\n`));
