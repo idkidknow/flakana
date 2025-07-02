@@ -1,23 +1,18 @@
-{ inputs, self, ... }:
+{ inputs, ... }:
 let
   priv = inputs.priv;
   inherit (priv) domain;
 in
 {
-  perSystem =
-    { system, ... }:
-    {
-      packages.openlist = inputs.nixpkgs-master.legacyPackages.${system}.openlist;
-    };
-
   flake.modules.nixos."hosts/tomori" =
     {
+      pkgs,
       lib,
       config,
       ...
     }:
     let
-      package = self.packages.x86_64-linux.openlist;
+      package = pkgs.openlist;
       wd = "/var/lib/alist";
       cert-path = config.security.acme.certs."${domain.root}".directory;
     in
