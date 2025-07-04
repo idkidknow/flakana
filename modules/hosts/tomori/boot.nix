@@ -14,7 +14,7 @@
     swapDevices = [
       {
         device = "/swapfile";
-        size = 69;
+        size = 6 * 1024;
       }
     ];
     boot.kernelParams = [
