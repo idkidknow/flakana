@@ -7,6 +7,10 @@
           type = lib.types.bool;
           default = false;
         };
+        nix.sjtu = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+        };
         nix.garnix = lib.mkOption {
           type = lib.types.bool;
           default = false;
@@ -25,6 +29,7 @@
         nix.settings = {
           substituters = lib.mkMerge [
             (lib.mkIf config.nix.tuna [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ])
+            (lib.mkIf config.nix.sjtu [ "https://mirror.sjtu.edu.cn/nix-channels/store" ])
             (lib.mkIf config.nix.garnix [ "https://cache.garnix.io" ])
             (lib.mkIf config.nix.nix-on-droid-cache [ "https://nix-on-droid.cachix.org" ])
           ];
