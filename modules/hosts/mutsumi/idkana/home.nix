@@ -8,7 +8,6 @@
       home.stateVersion = "24.11";
       home.username = "idkana";
       home.homeDirectory = "/home/idkana";
-      programs.home-manager.enable = true;
 
       nixpkgs.overlays = [ (import inputs.rust-overlay) ];
 

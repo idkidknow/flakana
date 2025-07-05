@@ -9,6 +9,7 @@ let
       fd
       ripgrep
       bat
+      home-manager
     ];
 in
 {
