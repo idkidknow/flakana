@@ -1,4 +1,3 @@
-{ inputs, ... }:
 {
   flake.modules.nixos."hosts/tomori" =
     { config, ... }:
@@ -9,7 +8,6 @@
       };
 
       nix.access-tokens-file = config.vaultix.secrets.nix-access-tokens.path;
-      nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
       nix.garnix = true;
     };
 }

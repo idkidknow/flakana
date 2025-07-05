@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   flake.modules.nixos.common =
     { lib, config, ... }:
@@ -33,11 +34,15 @@
             (lib.mkIf config.nix.garnix [ "https://cache.garnix.io" ])
             (lib.mkIf config.nix.nix-on-droid-cache [ "https://nix-on-droid.cachix.org" ])
           ];
+
           experimental-features = [
             "nix-command"
             "flakes"
             "pipe-operators"
           ];
+
+          nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+
           trusted-public-keys = lib.mkIf config.nix.garnix [
             "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
             "nix-on-droid.cachix.org-1:56snoMJTXmDRC1Ei24CmKoUqvHJ9XCp+nidK7qkMQrU="
