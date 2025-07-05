@@ -27,6 +27,8 @@
       };
 
       config = {
+        nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+
         nix.settings = {
           substituters = lib.mkMerge [
             (lib.mkIf config.nix.tuna [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ])
@@ -40,8 +42,6 @@
             "flakes"
             "pipe-operators"
           ];
-
-          nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
           trusted-public-keys = lib.mkIf config.nix.garnix [
             "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
