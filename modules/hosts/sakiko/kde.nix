@@ -18,6 +18,7 @@
           fcitx5-gtk
           kdePackages.fcitx5-qt
           fcitx5-mozc
+          fcitx5-mellow-themes
         ];
       };
     };
