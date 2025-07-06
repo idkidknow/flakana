@@ -22,7 +22,7 @@ in
       services.userborn.enable = true;
 
       vaultix.settings = {
-        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBZh+8bIh8+cR6ajsPDFUTCiGmC+vd8S9N9nioypSoXl";
+        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFBCz34hfUy6AiB79MP0GJC2+ef61kjXqHvvHmFd62Gz";
       };
 
       environment.systemPackages = with pkgs; [
