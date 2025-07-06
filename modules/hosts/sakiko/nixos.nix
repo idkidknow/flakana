@@ -31,7 +31,6 @@ in
         nixd
         uutils-coreutils-noprefix
         inputs.deploy-rs.packages.x86_64-linux.deploy-rs
-        alacritty
         gh
         emacs
         clash-verge-rev
