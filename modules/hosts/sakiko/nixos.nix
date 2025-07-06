@@ -32,7 +32,6 @@ in
         uutils-coreutils-noprefix
         inputs.deploy-rs.packages.x86_64-linux.deploy-rs
         alacritty
-        firefox
         gh
         emacs
         clash-verge-rev

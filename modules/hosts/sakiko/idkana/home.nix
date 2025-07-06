@@ -3,7 +3,10 @@
   flake.modules.homeManager."idkana@sakiko" =
     { pkgs, ... }:
     {
-      imports = [ config.flake.modules.homeManager.common ];
+      imports = [
+        config.flake.modules.homeManager.common
+        config.flake.modules.homeManager.common-gui
+      ];
 
       home.stateVersion = "25.05";
       home.username = "idkana";
