@@ -22,6 +22,8 @@
         tldr
         nix-output-monitor
         nh
+        hmcl
+        google-chrome
       ];
     };
 }
