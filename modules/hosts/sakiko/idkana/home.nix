@@ -1,4 +1,4 @@
-{ config, ... }:
+{ inputs, config, ... }:
 {
   flake.modules.homeManager."idkana@sakiko" =
     { pkgs, ... }:
@@ -25,7 +25,9 @@
         tldr
         nix-output-monitor
         nh
-        hmcl
+        (inputs.nixpkgs-master.legacyPackages.x86_64-linux.hmcl.override {
+          hmclJdk = jdk24;
+        })
         google-chrome
       ];
     };
