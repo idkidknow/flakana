@@ -29,6 +29,12 @@
           hmclJdk = jdk24;
         })
         google-chrome
+        wev
+        snipaste
+        pavucontrol
+        mission-center
+        cage
+        libnotify
       ];
     };
 }
