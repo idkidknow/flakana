@@ -19,6 +19,9 @@ in
 
       networking.networkmanager.enable = true;
 
+      networking.firewall.enable = true;
+      networking.nftables.enable = true;
+
       services.userborn.enable = true;
 
       vaultix.settings = {
