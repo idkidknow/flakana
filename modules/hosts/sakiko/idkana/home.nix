@@ -35,6 +35,8 @@
         mission-center
         cage
         libnotify
+        swayimg
+        zed-editor
       ];
     };
 }
