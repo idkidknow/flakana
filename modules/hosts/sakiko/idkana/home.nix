@@ -37,6 +37,8 @@
         libnotify
         swayimg
         zed-editor
+        kdePackages.dolphin
+        kdePackages.dolphin-plugins
       ];
     };
 }

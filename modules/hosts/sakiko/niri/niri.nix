@@ -2,6 +2,13 @@
   flake.modules.nixos."hosts/sakiko" =
     { ... }:
     {
+      services.displayManager.sddm = {
+        enable = true;
+        wayland = {
+          enable = true;
+          compositor = "weston";
+        };
+      };
       programs.niri.enable = true;
     };
 
