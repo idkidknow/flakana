@@ -22,7 +22,7 @@
         fzf
         dua
         just
-        tldr
+        tealdeer
         nix-output-monitor
         nh
         (inputs.nixpkgs-master.legacyPackages.x86_64-linux.hmcl.override {

@@ -44,7 +44,7 @@
         fzf
         dua
         just
-        tldr
+        tealdeer
         nix-output-monitor
         nh
         nvfetcher
