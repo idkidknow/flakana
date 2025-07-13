@@ -40,6 +40,8 @@ in
         clash-verge-rev
       ];
 
+      programs.nix-ld.enable = true;
+
       environment.variables.EDITOR = "micro";
     };
 }
