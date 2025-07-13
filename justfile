@@ -1,14 +1,18 @@
-os:
+update-stale:
+    jj st --no-pager
+    jj workspace update-stale --repository ../flakana-priv
+
+os: update-stale
     nh os switch ../flakana-priv
 
-home:
+home: update-stale
     nh home switch ../flakana-priv
 
 gc:
     nh clean all -k 2
 
-tomori:
+tomori: update-stale
     deploy ../flakana-priv\#tomori
 
-uika:
+uika: update-stale
     deploy ../flakana-priv\#uika -- --impure
