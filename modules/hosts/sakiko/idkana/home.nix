@@ -42,6 +42,7 @@
         maa-cli
         obsidian
         vesktop
+        vscode
       ];
     };
 }
