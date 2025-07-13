@@ -1,14 +1,14 @@
 os:
-    nh os switch .
+    nh os switch ../flakana-priv
 
 home:
-    nh home switch .
+    nh home switch ../flakana-priv
 
 gc:
-    sudo nix-collect-garbage
+    nh clean all -k 2
 
 tomori:
-    deploy .#tomori
+    deploy ../flakana-priv\#tomori
 
 uika:
-    deploy .#uika -- --impure
+    deploy ../flakana-priv\#uika -- --impure
