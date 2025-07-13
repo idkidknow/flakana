@@ -19,6 +19,7 @@
         xwayland-satellite
         swaynotificationcenter
         rofi-wayland
+        nautilus # https://github.com/YaLTeR/niri/issues/702
       ];
 
       programs.waybar = {
