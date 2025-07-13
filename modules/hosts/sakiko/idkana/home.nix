@@ -41,6 +41,7 @@
         kdePackages.dolphin-plugins
         maa-cli
         obsidian
+        vesktop
       ];
     };
 }
