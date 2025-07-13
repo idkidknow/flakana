@@ -40,6 +40,7 @@
         kdePackages.dolphin
         kdePackages.dolphin-plugins
         maa-cli
+        obsidian
       ];
     };
 }
