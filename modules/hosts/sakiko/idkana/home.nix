@@ -39,6 +39,7 @@
         zed-editor
         kdePackages.dolphin
         kdePackages.dolphin-plugins
+        maa-cli
       ];
     };
 }
