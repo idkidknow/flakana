@@ -5,7 +5,7 @@
     {
       imports = [
         config.flake.modules.homeManager.common
-        config.flake.modules.homeManager.common-gui
+        config.flake.modules.homeManager.common-desktop
       ];
 
       home.stateVersion = "25.05";

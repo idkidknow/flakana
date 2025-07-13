@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos."hosts/sakiko" =
+  flake.modules.nixos.common-desktop =
     { ... }:
     {
       security.rtkit.enable = true;
@@ -11,7 +11,7 @@
       };
     };
 
-  flake.modules.homeManager."idkana@sakiko" =
+  flake.modules.homeManager.common-desktop =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [

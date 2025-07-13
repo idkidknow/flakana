@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.common-gui =
+  flake.modules.homeManager.common-desktop =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [

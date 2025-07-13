@@ -10,6 +10,7 @@ in
       imports = [
         ./_hardware-configuration.nix
         config.flake.modules.nixos.common
+        config.flake.modules.nixos.common-desktop
       ];
       nixpkgs.hostPlatform = system;
       system.stateVersion = "25.05";
