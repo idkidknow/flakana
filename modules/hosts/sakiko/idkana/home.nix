@@ -47,6 +47,7 @@
           commandLineArgs = "--wayland-text-input-version=3";
         })
         jetbrains.idea-community-bin
+        isd
       ];
     };
 }
