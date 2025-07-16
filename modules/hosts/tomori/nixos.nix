@@ -33,7 +33,8 @@ in
       environment.systemPackages = with pkgs; [
         nushell
         uutils-coreutils-noprefix
-        systemctl-tui
+        isd
+        somo
       ];
 
       environment.variables.EDITOR = "micro";
