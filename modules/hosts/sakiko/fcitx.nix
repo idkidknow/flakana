@@ -15,5 +15,9 @@
           fcitx5-mellow-themes
         ];
       };
+
+      environment.variables = {
+        QT_IM_MODULE = "fcitx";
+      };
     };
 }
