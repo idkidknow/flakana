@@ -8,6 +8,7 @@
         enable = true;
         settings = {
           window.decorations = "None";
+          window.opacity = 0.9;
 
           font.normal = {
             family = "JetBrainsMono Nerd Font";

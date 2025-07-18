@@ -68,6 +68,8 @@ layout {
     border {
         off
     }
+
+    background-color "transparent"
 }
 
 screenshot-path "~/screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
@@ -108,6 +110,17 @@ window-rule {
     match app-id="^QQ$" title="^图片查看器$"
     match app-id="^QQ$" title="的聊天记录$"
     open-floating true
+}
+
+window-rule {
+    match app-id="^Alacritty$"
+    draw-border-with-background false
+}
+
+window-rule {
+    match app-id="^code$"
+    draw-border-with-background false
+    opacity 0.9
 }
 
 layer-rule {
