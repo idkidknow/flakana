@@ -25,9 +25,6 @@
         tealdeer
         nix-output-monitor
         nh
-        (inputs.nixpkgs-master.legacyPackages.x86_64-linux.hmcl.override {
-          hmclJdk = jdk24;
-        })
         google-chrome
         wev
         pavucontrol
@@ -47,6 +44,7 @@
         })
         jetbrains.idea-community-bin
         isd
+        peazip
       ];
     };
 }
