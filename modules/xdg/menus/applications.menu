@@ -1,0 +1,92 @@
+<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN" "http://www.freedesktop.org/standards/menu-spec/menu-1.0.dtd">
+
+<Menu>
+	<Name>Applications</Name>
+	<!-- Search the default locations -->
+	<DefaultAppDirs />
+	<DefaultDirectoryDirs />
+	<DefaultLayout>
+		<Merge type="menus" />
+		<Merge type="files" />
+	</DefaultLayout>
+
+	<Menu>
+		<Name>Applications</Name>
+		<OnlyUnallocated />
+	</Menu>
+	<Menu>
+		<Name>Development</Name>
+		<Include>
+			<Category>Development</Category>
+		</Include>
+	</Menu>
+	<Menu>
+		<Name>Science</Name>
+		<Include>
+			<And>
+				<Or>
+					<Category>Astronomy</Category>
+					<Category>Biology</Category>
+					<Category>Chemistry</Category>
+					<Category>Geology</Category>
+					<Category>MedicalSoftware</Category>
+					<Category>Physics</Category>
+					<Category>Math</Category>
+					<Category>Science</Category>
+				</Or>
+				<Not>
+					<Category>Education</Category>
+				</Not>
+			</And>
+		</Include>
+	</Menu>
+	<Menu>
+		<Name>Education</Name>
+		<Include>
+			<Category>Education</Category>
+		</Include>
+	</Menu>
+	<Menu>
+		<Name>Games</Name>
+		<Include>
+			<Category>Game</Category>
+		</Include>
+	</Menu>
+	<Menu>
+		<Name>Graphics</Name>
+		<Include>
+			<Category>Graphics</Category>
+		</Include>
+	</Menu>
+	<Menu>
+		<Name>Network</Name>
+		<Include>
+			<Category>Network</Category>
+		</Include>
+	</Menu>
+	<Menu>
+		<Name>Multimedia</Name>
+		<Include>
+			<Category>AudioVideo</Category>
+		</Include>
+	</Menu>
+	<Menu>
+		<Name>Office</Name>
+		<Include>
+			<Category>Office</Category>
+		</Include>
+	</Menu>
+	<Menu>
+		<Name>System</Name>
+		<Include>
+			<Category>System</Category>
+		</Include>
+	</Menu>
+	<Menu>
+		<Name>Utilities</Name>
+		<Include>
+			<Category>Utility</Category>
+		</Include>
+	</Menu>
+	<DefaultMergeDirs />
+</Menu>
