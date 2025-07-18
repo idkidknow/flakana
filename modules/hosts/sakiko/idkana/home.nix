@@ -57,6 +57,7 @@
         jetbrains.idea-community-bin
         isd
         peazip
+        kdePackages.okular
       ];
     };
 }
