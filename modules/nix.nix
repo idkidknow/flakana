@@ -43,9 +43,11 @@
             "pipe-operators"
           ];
 
-          trusted-public-keys = lib.mkIf config.nix.garnix [
-            "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-            "nix-on-droid.cachix.org-1:56snoMJTXmDRC1Ei24CmKoUqvHJ9XCp+nidK7qkMQrU="
+          trusted-public-keys = lib.mkMerge [
+            (lib.mkIf config.nix.garnix [ "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=" ])
+            (lib.mkIf config.nix.nix-on-droid-cache [
+              "nix-on-droid.cachix.org-1:56snoMJTXmDRC1Ei24CmKoUqvHJ9XCp+nidK7qkMQrU="
+            ])
           ];
         };
         nix.extraOptions = lib.mkIf (
