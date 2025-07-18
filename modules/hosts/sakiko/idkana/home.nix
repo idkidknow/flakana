@@ -18,7 +18,6 @@
         gitui
         git-lfs
         jujutsu
-        zellij
         fzf
         dua
         just
