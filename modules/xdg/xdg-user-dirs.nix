@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager."idkana@sakiko" =
+  flake.modules.homeManager.common-desktop =
     { ... }:
     {
       xdg.userDirs = {
