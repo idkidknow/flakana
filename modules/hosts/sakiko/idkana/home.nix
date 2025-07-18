@@ -30,12 +30,11 @@
         })
         google-chrome
         wev
-        snipaste
         pavucontrol
         mission-center
         cage
         libnotify
-        swayimg
+        qview
         zed-editor
         kdePackages.dolphin
         kdePackages.dolphin-plugins
