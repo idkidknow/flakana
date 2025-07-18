@@ -35,7 +35,19 @@
         zed-editor
         kdePackages.dolphin
         kdePackages.dolphin-plugins
-        maa-cli
+        (inputs.nixpkgs-master.legacyPackages.x86_64-linux.maa-cli.override {
+          maa-assistant-arknights =
+            inputs.nixpkgs-master.legacyPackages.x86_64-linux.maa-assistant-arknights.overrideAttrs
+              {
+                version = "5.20.0";
+                src = fetchFromGitHub {
+                  owner = "MaaAssistantArknights";
+                  repo = "MaaAssistantArknights";
+                  rev = "v5.20.0";
+                  hash = "sha256-XqzCxzmNJHG+aYBJoeAAryFx3XctrGBk6QqoonCbrWU=";
+                };
+              };
+        })
         obsidian
         vesktop
         (vscode.override {
