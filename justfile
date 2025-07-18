@@ -6,7 +6,7 @@ os: update-stale
     nh os switch ../flakana-priv
 
 home: update-stale
-    nh home switch ../flakana-priv
+    nh home switch ../flakana-priv -b bak
 
 gc:
     nh clean all -k 2
