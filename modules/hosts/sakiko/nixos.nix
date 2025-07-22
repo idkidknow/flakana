@@ -42,6 +42,11 @@ in
 
       programs.nix-ld.enable = true;
 
+      hardware.openrazer = {
+        enable = true;
+        users = [ "idkana" ];
+      };
+
       environment.variables.EDITOR = "micro";
     };
 }
