@@ -1,6 +1,6 @@
 { self, ... }:
 {
-  flake.modules.homeManager."idkana@mutsumi" =
+  flake.modules.homeManager.common =
     { pkgs, ... }:
     {
       programs.yazi = {
