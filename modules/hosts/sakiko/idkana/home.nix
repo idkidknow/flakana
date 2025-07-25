@@ -53,8 +53,8 @@
           # Fix the issue that the IME does not work when NIXOS_OZONE_WL=1
           commandLineArgs = "--wayland-text-input-version=3";
         })
-        jetbrains.idea-community-bin
-        isd
+        inputs.nixpkgs-master.legacyPackages.x86_64-linux.jetbrains.idea-community-bin
+        inputs.nixpkgs-9807714.legacyPackages.x86_64-linux.isd
         peazip
         kdePackages.okular
       ];
