@@ -28,6 +28,10 @@ input {
         accel-profile "flat"
         scroll-method "no-scroll"
     }
+
+    tablet {
+        map-to-output "DP-1"
+    }
 }
 
 output "eDP-1" {

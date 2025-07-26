@@ -57,6 +57,7 @@
         inputs.nixpkgs-9807714.legacyPackages.x86_64-linux.isd
         peazip
         kdePackages.okular
+        krita
       ];
     };
 }
