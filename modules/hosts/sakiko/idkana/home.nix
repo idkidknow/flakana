@@ -46,6 +46,7 @@
         peazip
         kdePackages.okular
         krita
+        xournalpp
       ];
     };
 }
