@@ -18,6 +18,7 @@
 
       environment.variables = {
         QT_IM_MODULE = "fcitx";
+        QT_IM_MODULES = "wayland;fcitx;ibus";
       };
     };
 }
