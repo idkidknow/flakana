@@ -15,7 +15,7 @@ in
         enable = true;
         package = pkgs.searxng;
         redisCreateLocally = true;
-        runInUwsgi = true;
+        configureUwsgi = true;
         uwsgiConfig = {
           socket = sock;
           chmod-socket = "660";
