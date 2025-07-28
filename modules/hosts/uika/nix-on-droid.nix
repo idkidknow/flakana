@@ -50,7 +50,7 @@
     };
 
   flake.modules.homeManager."idkana@uika" =
-    { ... }:
+    { pkgs, ... }:
     {
       imports = [ config.flake.modules.homeManager.common ];
 
@@ -58,5 +58,10 @@
 
       home.username = "idkana";
       home.homeDirectory = "/data/data/com.termux.nix/files/home";
+
+      home.packages = with pkgs; [
+        emacs
+        just
+      ];
     };
 }
