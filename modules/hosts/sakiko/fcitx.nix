@@ -6,6 +6,7 @@
         enable = true;
         type = "fcitx5";
         fcitx5.waylandFrontend = true;
+        fcitx5.plasma6Support = true;
         fcitx5.addons = with pkgs; [
           kdePackages.fcitx5-chinese-addons
           fcitx5-rime
