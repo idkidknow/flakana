@@ -47,6 +47,7 @@
         kdePackages.okular
         krita
         xournalpp
+        splayer
       ];
     };
 }
