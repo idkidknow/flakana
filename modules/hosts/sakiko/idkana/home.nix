@@ -42,7 +42,7 @@
           commandLineArgs = "--wayland-text-input-version=3";
         })
         inputs.nixpkgs-master.legacyPackages.x86_64-linux.jetbrains.idea-community-bin
-        inputs.nixpkgs-9807714.legacyPackages.x86_64-linux.isd
+        isd
         peazip
         kdePackages.okular
         krita

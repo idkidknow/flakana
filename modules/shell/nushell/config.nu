@@ -30,7 +30,7 @@ if ($options.is_arch) {
 }
 
 # direnv
-$env.config.hooks.env_change.PWD = $env.config.hooks.env_change | get --ignore-errors PWD | default [] | append {||
+$env.config.hooks.env_change.PWD = $env.config.hooks.env_change | get --optional PWD | default [] | append {||
     if (which direnv | is-empty) {
         return
     }

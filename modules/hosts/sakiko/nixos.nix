@@ -37,7 +37,6 @@ in
         inputs.deploy-rs.packages.x86_64-linux.deploy-rs
         gh
         emacs
-        clash-verge-rev
       ];
 
       programs.nix-ld.enable = true;

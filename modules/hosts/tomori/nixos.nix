@@ -1,4 +1,4 @@
-{ inputs, config, ... }:
+{ config, ... }:
 let
   system = "x86_64-linux";
 in
@@ -33,7 +33,7 @@ in
       environment.systemPackages = with pkgs; [
         nushell
         uutils-coreutils-noprefix
-        inputs.nixpkgs-9807714.legacyPackages.x86_64-linux.isd
+        isd
         somo
       ];
 

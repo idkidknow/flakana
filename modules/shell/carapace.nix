@@ -4,7 +4,8 @@
     {
       home.packages = [ pkgs.carapace ];
       xdg.dataFile."nushell/vendor/autoload/carapace.nu".source = "${pkgs.runCommand "carapace.nu" { } ''
-        ${lib.getExe pkgs.carapace} _carapace nushell > "$out"
+        str="$(${lib.getExe pkgs.carapace} _carapace nushell)"
+        echo "${"$"}{str//get -i/get -o}" > "$out"
       ''}";
     };
 }

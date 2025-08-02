@@ -10,8 +10,6 @@
 
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
 
-    nixpkgs-9807714.url = "github:NixOS/nixpkgs/9807714d6944a957c2e036f84b0ff8caf9930bc0";
-
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
