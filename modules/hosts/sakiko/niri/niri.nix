@@ -1,12 +1,13 @@
 {
   flake.modules.nixos."hosts/sakiko" =
-    { ... }:
+    { pkgs, ... }:
     {
-      services.displayManager.sddm = {
+      services.greetd = {
         enable = true;
-        wayland = {
-          enable = true;
-          compositor = "weston";
+        settings = {
+          default_session = {
+            command = "${pkgs.cage}/bin/cage -s -m last -- ${pkgs.greetd.regreet}/bin/regreet";
+          };
         };
       };
       programs.niri.enable = true;
