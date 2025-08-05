@@ -8,6 +8,8 @@
         serviceConfig = {
           ExecStart = "${pkgs.uutils-coreutils-noprefix}/bin/cat /dev/input/js0";
           StandardOutput = "null";
+          Restart = "on-failure";
+          RestartSec = "3s";
         };
       };
     };
