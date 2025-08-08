@@ -26,7 +26,7 @@
         nh
         google-chrome
         wev
-        pavucontrol
+        pwvucontrol
         mission-center
         cage
         libnotify
