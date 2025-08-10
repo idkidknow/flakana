@@ -1,3 +1,5 @@
+// todo: split this into home-manager modules
+
 spawn-at-startup "xwayland-satellite"
 environment {
     DISPLAY ":0"
@@ -144,7 +146,7 @@ binds {
     Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     Mod+D hotkey-overlay-title="rofi drun" { spawn "rofi" "-show" "drun"; }
     Mod+E hotkey-overlay-title="rofi window" { spawn "rofi" "-show" "window"; }
-    Super+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Mod+S hotkey-overlay-title="clipcat" { spawn "clipcat-menu"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02-"; }
