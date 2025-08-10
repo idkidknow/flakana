@@ -1,3 +1,4 @@
+{ self, ... }:
 {
   flake.modules.nixos."hosts/sakiko" =
     { ... }:
@@ -9,5 +10,15 @@
         dedicatedServer.openFirewall = true;
       };
       programs.gamemode.enable = true;
+    };
+
+  flake.modules.homeManager."idkana@sakiko" =
+    { pkgs, ... }:
+    {
+      programs.lutris = {
+        enable = true;
+        steamPackage = self.nixosConfigurations.sakiko.config.programs.steam.package;
+        protonPackages = [ pkgs.proton-ge-bin ];
+      };
     };
 }
