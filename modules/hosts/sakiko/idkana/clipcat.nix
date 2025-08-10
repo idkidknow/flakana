@@ -17,6 +17,7 @@
             enable_primary = true;
             capture_image = true;
           };
+          desktop_notification.enable = false;
         };
         ctlSettings = {
           server_endpoint = "/run/user/1000/clipcat/grpc.sock";
