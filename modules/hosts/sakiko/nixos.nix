@@ -46,6 +46,11 @@ in
         users = [ "idkana" ];
       };
 
+      services.printing = {
+        enable = true;
+        cups-pdf.enable = true;
+      };
+
       environment.variables.EDITOR = "micro";
     };
 }
