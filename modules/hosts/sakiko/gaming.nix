@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, inputs, ... }:
 {
   flake.modules.nixos."hosts/sakiko" =
     { ... }:
@@ -10,6 +10,8 @@
         dedicatedServer.openFirewall = true;
       };
       programs.gamemode.enable = true;
+
+      nix.nix-gaming-cache = true;
     };
 
   flake.modules.homeManager."idkana@sakiko" =
@@ -20,5 +22,7 @@
         steamPackage = self.nixosConfigurations.sakiko.config.programs.steam.package;
         protonPackages = [ pkgs.proton-ge-bin ];
       };
+
+      home.packages = [ inputs.nix-gaming.packages.x86_64-linux.osu-stable ];
     };
 }
