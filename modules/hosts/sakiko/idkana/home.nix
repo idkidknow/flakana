@@ -50,6 +50,7 @@
         krita
         xournalpp
         splayer
+        (element-desktop |> self.lib.electronFixIME |> self.lib.electronUseGnomeLibsecret)
       ];
     };
 }
