@@ -1,8 +1,8 @@
 {
   flake.lib.electronFixIME =
     pkg:
-    pkg.override {
+    pkg.override (prev: {
       # niri doesn't support v1
-      commandLineArgs = "--wayland-text-input-version=3";
-    };
+      commandLineArgs = "${prev.commandLineArgs or ""} --wayland-text-input-version=3";
+    });
 }
