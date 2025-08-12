@@ -1,4 +1,9 @@
-{ inputs, config, ... }:
+{
+  inputs,
+  config,
+  self,
+  ...
+}:
 {
   flake.modules.homeManager."idkana@sakiko" =
     { pkgs, ... }:
@@ -37,10 +42,7 @@
         maa-cli
         obsidian
         vesktop
-        (vscode.override {
-          # Fix the issue that the IME does not work when NIXOS_OZONE_WL=1
-          commandLineArgs = "--wayland-text-input-version=3";
-        })
+        (self.lib.electronFixIME vscode)
         inputs.nixpkgs-master.legacyPackages.x86_64-linux.jetbrains.idea-community-bin
         isd
         peazip
