@@ -17,6 +17,8 @@
         nautilus # https://github.com/YaLTeR/niri/issues/702
       ];
 
+      services.gnome-keyring.enable = true;
+
       systemd.user.services.polkit-mate-authentication-agent-1 = {
         Unit = {
           Description = "polkit-mate-authentication-agent-1";
