@@ -1,4 +1,4 @@
-{ self, inputs, ... }:
+{ inputs, ... }:
 {
   flake.modules.nixos."hosts/sakiko" =
     { ... }:
@@ -15,14 +15,8 @@
     };
 
   flake.modules.homeManager."idkana@sakiko" =
-    { pkgs, ... }:
+    { ... }:
     {
-      programs.lutris = {
-        enable = true;
-        steamPackage = self.nixosConfigurations.sakiko.config.programs.steam.package;
-        protonPackages = [ pkgs.proton-ge-bin ];
-      };
-
       home.packages = [ inputs.nix-gaming.packages.x86_64-linux.osu-stable ];
     };
 }
