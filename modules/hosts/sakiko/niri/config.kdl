@@ -128,6 +128,12 @@ window-rule {
 }
 
 window-rule {
+    match app-id="^Emacs$"
+    draw-border-with-background false
+    opacity 0.95
+}
+
+window-rule {
     match app-id="^steam$" title="^notificationtoast"
     default-floating-position x=0 y=0 relative-to="bottom-right"
     open-focused false
