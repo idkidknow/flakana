@@ -17,7 +17,7 @@
           enable = true;
           settings = {
             default_session = {
-              command = "${lib.getExe pkgs.cage} -s -m last -- ${lib.getExe pkgs.greetd.regreet} --config ${settingsToml}";
+              command = "${lib.getExe pkgs.cage} -s -m last -- ${lib.getExe pkgs.regreet} --config ${settingsToml}";
               user = "greeter";
             };
           };
