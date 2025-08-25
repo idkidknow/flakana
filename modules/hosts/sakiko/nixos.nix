@@ -51,6 +51,8 @@ in
         cups-pdf.enable = true;
       };
 
+      programs.localsend.enable = true;
+
       environment.variables.EDITOR = "micro";
     };
 }
