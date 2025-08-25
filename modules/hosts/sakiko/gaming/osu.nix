@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.modules.homeManager."idkana@sakiko" =
-    { ... }:
+    { pkgs, ... }:
     let
       inherit (inputs.steamux.packages.x86_64-linux) steamux;
     in
@@ -19,7 +19,7 @@
                     ${steamux}/bin/steamuxctl --socket-path $WINEPREFIX/steamux.sock run -p -- "$OSU" "$ARG1_COMPAT_PATH" "$@"
                 fi
             else
-                ${steamux}/bin/steamux umu --socket-path $WINEPREFIX/steamux.sock -- "$OSU" "$@"
+                ${pkgs.gamemode}/bin/gamemoderun ${steamux}/bin/steamux umu --socket-path $WINEPREFIX/steamux.sock -- "$OSU" "$@"
             fi
             exit
           '';
