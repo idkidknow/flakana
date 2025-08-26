@@ -19,7 +19,7 @@
     {
       home.packages = [
         (pkgs.writeShellScriptBin "my-wallpaper" ''
-          exec ${pkgs.lib.getExe layer-shell-cage} -l background -o "$1" -z -1 -- \
+          exec ${pkgs.lib.getExe layer-shell-cage} -l background -o "$1" -z -1 -n wallpaper -- \
             ${pkgs.lib.getExe pkgs.mpv} "$2" \
             --no-audio --loop-playlist --hwdec=auto --gpu-api=vulkan --fullscreen --no-config
         '')
