@@ -4,13 +4,12 @@ spawn-at-startup "xwayland-satellite"
 environment {
     DISPLAY ":0"
     NIXOS_OZONE_WL "1"
+    QT_FFMPEG_DECODING_HW_DEVICE_TYPES "cuda"
 }
 
 spawn-at-startup "swaync"
 spawn-at-startup "waybar"
-
-spawn-at-startup "my-wallpaper" "DP-1" "/home/idkana/wallpapers/1.m3u8"
-spawn-at-startup "my-wallpaper" "eDP-1" "/home/idkana/wallpapers/1.m3u8"
+spawn-at-startup "quickshell" "-c" "kana"
 
 input {
     keyboard {
