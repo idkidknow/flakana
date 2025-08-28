@@ -4,6 +4,10 @@
     { lib, config, ... }:
     {
       options = {
+        nix.nix-community-cache = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+        };
         nix.tuna = lib.mkOption {
           type = lib.types.bool;
           default = false;
@@ -35,6 +39,7 @@
 
         nix.settings = {
           substituters = lib.mkMerge [
+            (lib.mkIf config.nix.nix-community-cache [ "https://nix-community.cachix.org" ])
             (lib.mkIf config.nix.tuna [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ])
             (lib.mkIf config.nix.sjtu [ "https://mirror.sjtu.edu.cn/nix-channels/store" ])
             (lib.mkIf config.nix.garnix [ "https://cache.garnix.io" ])
@@ -49,6 +54,9 @@
           ];
 
           trusted-public-keys = lib.mkMerge [
+            (lib.mkIf config.nix.nix-community-cache [
+              "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+            ])
             (lib.mkIf config.nix.garnix [ "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=" ])
             (lib.mkIf config.nix.nix-on-droid-cache [
               "nix-on-droid.cachix.org-1:56snoMJTXmDRC1Ei24CmKoUqvHJ9XCp+nidK7qkMQrU="
