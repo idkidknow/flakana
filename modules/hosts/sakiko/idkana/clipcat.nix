@@ -1,9 +1,11 @@
+{ inputs, ... }:
 {
   flake.modules.homeManager."idkana@sakiko" =
     { ... }:
     {
       services.clipcat = {
         enable = true;
+        package = inputs.clipcat.packages.x86_64-linux.default;
         enableSystemdUnit = true;
         daemonSettings = {
           daemonize = true;

@@ -33,6 +33,8 @@
     vaultix = {
       url = "github:milieuim/vaultix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
+      inputs.crane.follows = "crane";
     };
 
     home-manager = {
@@ -83,11 +85,23 @@
       url = "github:idkidknow/steamux";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
+      inputs.crane.follows = "crane";
     };
 
     quickshell = {
       url = "github:quickshell-mirror/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    clipcat = {
+      url = "github:xrelkd/clipcat";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.crane.follows = "crane";
+    };
+
+    # follow
+    crane = {
+      url = "github:ipetkov/crane";
     };
   };
 
