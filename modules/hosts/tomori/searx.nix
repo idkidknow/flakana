@@ -5,7 +5,7 @@ let
 in
 {
   flake.modules.nixos."hosts/tomori" =
-    { config, ... }:
+    { pkgs, config, ... }:
     let
       cert-path = config.security.acme.certs."${domain.root}".directory;
       sock = "/run/searx/searx.sock";
@@ -13,7 +13,7 @@ in
     {
       services.searx = {
         enable = true;
-        package = inputs.nixpkgs-8eb28adf.legacyPackages.x86_64-linux.searxng; # track: https://github.com/NixOS/nixpkgs/issues/442264
+        package = pkgs.searxng;
         redisCreateLocally = true;
         configureUwsgi = true;
         uwsgiConfig = {
