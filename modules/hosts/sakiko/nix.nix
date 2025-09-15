@@ -8,9 +8,12 @@
       };
 
       nix.access-tokens-file = config.vaultix.secrets.nix-access-tokens.path;
-      nix.nix-community-cache = true;
-      nix.sjtu = true;
-      nix.garnix = true;
-      nix.nix-on-droid-cache = true;
+
+      nix.named-substituters = {
+        nix-community.enable = true;
+        sjtu.enable = true;
+        garnix.enable = true;
+        nix-on-droid.enable = true;
+      };
     };
 }
