@@ -13,7 +13,7 @@
       home.packages = with pkgs; [
         xwayland-satellite
         swaynotificationcenter
-        rofi-wayland
+        rofi
         nautilus # https://github.com/YaLTeR/niri/issues/702
       ];
 
