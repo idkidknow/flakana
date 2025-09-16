@@ -11,5 +11,7 @@
         "waybar/mocha.css".source = ./mocha.css;
         "waybar/style.css".source = ./style.css;
       };
+
+      programs.niri.settings.spawn-at-startup = [ { argv = [ "waybar" ]; } ];
     };
 }

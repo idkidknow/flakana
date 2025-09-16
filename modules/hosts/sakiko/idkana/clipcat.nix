@@ -37,5 +37,10 @@
           };
         };
       };
+
+      programs.niri.settings.binds."Mod+S" = {
+        action.spawn = "clipcat-menu";
+        hotkey-overlay.title = "clipcat";
+      };
     };
 }

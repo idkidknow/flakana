@@ -11,5 +11,22 @@
           ]
         ))
       ];
+
+      programs.niri.settings.spawn-at-startup = [
+        {
+          argv = [
+            "quickshell"
+            "-c"
+            "kana"
+          ];
+        }
+      ];
+
+      programs.niri.settings.layer-rules = [
+        {
+          matches = [ { namespace = "^wallpaper$"; } ];
+          place-within-backdrop = true;
+        }
+      ];
     };
 }

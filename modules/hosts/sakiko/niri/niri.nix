@@ -20,7 +20,6 @@
 
       home.packages = with pkgs; [
         xwayland-satellite
-        swaynotificationcenter
         rofi
         nautilus # https://github.com/YaLTeR/niri/issues/702
       ];
@@ -52,24 +51,8 @@
           QT_FFMPEG_DECODING_HW_DEVICE_TYPES = "cuda";
         };
 
-        spawn-at-startup = [
-          { argv = [ "swaync" ]; }
-          { argv = [ "waybar" ]; }
-          {
-            argv = [
-              "quickshell"
-              "-c"
-              "kana"
-            ];
-          }
-        ];
-
         binds = with config.lib.niri.actions; {
           "Mod+Shift+Slash".action = show-hotkey-overlay;
-          "Mod+T" = {
-            action = spawn "alacritty";
-            hotkey-overlay.title = "Open a Terminal: alacritty";
-          };
           "Mod+D" = {
             action = spawn "rofi" "-show" "drun";
             hotkey-overlay.title = "rofi drun";
@@ -77,10 +60,6 @@
           "Mod+E" = {
             action = spawn "rofi" "-show" "window";
             hotkey-overlay.title = "rofi window";
-          };
-          "Mod+S" = {
-            action = spawn "clipcat-menu";
-            hotkey-overlay.title = "clipcat";
           };
 
           "XF86AudioRaiseVolume" = {
@@ -302,45 +281,6 @@
           }
 
           {
-            matches = [ { app-id = "^Minecraft"; } ];
-            open-maximized = true;
-            variable-refresh-rate = true;
-          }
-
-          {
-            matches = [
-              {
-                app-id = "^org\.telegram\.desktop$";
-                title = "媒体查看器";
-              }
-            ];
-            open-floating = true;
-          }
-
-          {
-            matches = [
-              {
-                app-id = "^QQ$";
-                title = "^图片查看器$";
-              }
-              {
-                app-id = "^QQ$";
-                title = "的聊天记录$";
-              }
-            ];
-            open-floating = true;
-            default-column-width.fixed = 600;
-            default-window-height.fixed = 900;
-          }
-
-          {
-            matches = [
-              { app-id = "^Alacritty$"; }
-            ];
-            draw-border-with-background = false;
-          }
-
-          {
             matches = [
               { app-id = "^code$"; }
             ];
@@ -355,31 +295,12 @@
             draw-border-with-background = false;
             opacity = 0.95;
           }
-
-          {
-            matches = [
-              {
-                app-id = "^steam$";
-                title = "^notificationtoast";
-              }
-            ];
-            default-floating-position = {
-              relative-to = "top-right";
-              x = 0;
-              y = 0;
-            };
-          }
         ];
 
         layer-rules = [
           {
             matches = [ { namespace = "^rofi$"; } ];
             shadow.enable = true;
-          }
-
-          {
-            matches = [ { namespace = "^wallpaper$"; } ];
-            place-within-backdrop = true;
           }
         ];
       };

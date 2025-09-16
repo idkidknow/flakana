@@ -15,5 +15,13 @@
         })
         prismlauncher
       ];
+
+      programs.niri.settings.window-rules = [
+        {
+          matches = [ { app-id = "^Minecraft"; } ];
+          open-maximized = true;
+          variable-refresh-rate = true;
+        }
+      ];
     };
 }
