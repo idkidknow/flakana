@@ -11,9 +11,16 @@
     in
     {
       options = {
-        programs.alacritty.niri-flake-settings.enable = lib.mkOption {
-          type = lib.types.bool;
-          default = false;
+        programs.alacritty.niri-flake-settings = {
+          enable = lib.mkOption {
+            type = lib.types.bool;
+            default = false;
+          };
+
+          bind = lib.mkOption {
+            type = lib.types.str;
+            default = "Mod+T";
+          };
         };
       };
 
@@ -40,7 +47,7 @@
         }
 
         (lib.mkIf cfg.niri-flake-settings.enable {
-          programs.niri.settings.binds."Mod+T" = {
+          programs.niri.settings.binds.${cfg.niri-flake-settings.bind} = {
             action.spawn = "alacritty";
             hotkey-overlay.title = "Open a Terminal: alacritty";
           };
