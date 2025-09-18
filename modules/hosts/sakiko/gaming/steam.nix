@@ -31,6 +31,7 @@
             x = 0;
             y = 0;
           };
+          open-focused = false;
         }
       ];
     };
