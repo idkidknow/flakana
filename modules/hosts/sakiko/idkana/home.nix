@@ -25,6 +25,7 @@
         jujutsu
         fzf
         dua
+        duf
         just
         tealdeer
         nix-output-monitor
