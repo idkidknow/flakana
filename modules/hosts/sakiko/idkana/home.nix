@@ -40,7 +40,7 @@
         zed-editor
         kdePackages.dolphin
         kdePackages.dolphin-plugins
-        maa-cli
+        inputs.nixpkgs-master.legacyPackages.x86_64-linux.maa-cli
         obsidian
         vesktop
         (self.lib.electronFixIME vscode)
