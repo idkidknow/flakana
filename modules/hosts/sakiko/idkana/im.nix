@@ -35,6 +35,15 @@
           default-column-width.fixed = 600;
           default-window-height.fixed = 900;
         }
+        {
+          matches = [
+            {
+              app-id = "^QQ$";
+              title = "视频播放器";
+            }
+          ];
+          open-floating = true;
+        }
       ];
     };
 }
