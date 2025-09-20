@@ -44,7 +44,7 @@
         obsidian
         vesktop
         (self.lib.electronFixIME vscode)
-        inputs.nixpkgs-master.legacyPackages.x86_64-linux.jetbrains.idea-community-bin
+        jetbrains.idea-community-bin
         isd
         peazip
         kdePackages.okular
