@@ -53,6 +53,8 @@ in
 
       programs.localsend.enable = true;
 
+      programs.adb.enable = true;
+
       environment.variables.EDITOR = "micro";
     };
 }
