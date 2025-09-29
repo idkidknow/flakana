@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.modules.homeManager.common =
-    { ... }:
+    { pkgs, lib, ... }:
     {
       programs.jujutsu = {
         enable = true;
@@ -17,6 +17,12 @@
           };
           git.sign-on-push = true;
           ui.default-command = "log";
+          ui.diff-formatter = [
+            "${lib.getExe pkgs.difftastic}"
+            "--color=always"
+            "$left"
+            "$right"
+          ];
         };
       };
     };

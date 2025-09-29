@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.modules.homeManager.common =
-    { config, ... }:
+    { pkgs, lib, config, ... }:
     {
       programs.git = {
         enable = true;
@@ -10,6 +10,7 @@
           l = "log --graph --oneline --all";
           a = "add";
           c = "commit";
+          d = "-c diff.external=${lib.getExe pkgs.difftastic} diff";
         };
 
         userEmail = inputs.priv.email;
