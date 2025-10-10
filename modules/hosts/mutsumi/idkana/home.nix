@@ -32,7 +32,7 @@
           }
         ))
         elan
-        openjdk21
+        openjdk25
         python313
         python313Packages.ipython
         uv
