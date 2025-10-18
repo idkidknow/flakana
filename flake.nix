@@ -106,6 +106,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hexecute = {
+      url = "github:ThatOtherAndrew/Hexecute";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # follow
     crane = {
       url = "github:ipetkov/crane";
