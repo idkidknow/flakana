@@ -25,5 +25,9 @@
           ];
         };
       };
+
+      programs.jjui = {
+        enable = true;
+      };
     };
 }
