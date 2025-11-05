@@ -43,7 +43,7 @@ in
         zed-editor
         kdePackages.dolphin
         kdePackages.dolphin-plugins
-        pkgs-master.maa-cli
+        maa-cli
         obsidian
         vesktop
         (self.lib.electronFixIME vscode)

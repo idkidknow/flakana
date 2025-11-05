@@ -15,7 +15,7 @@
         "yazi/keymap.toml".source = ./keymap.toml;
         "yazi/init.lua".source = ./init.lua;
         "yazi/flavors/kanagawa.yazi".source = "${
-          self.packages.${pkgs.system}.yazi-flavor-kanagawa
+          self.packages.${pkgs.stdenv.hostPlatform.system}.yazi-flavor-kanagawa
         }/kanagawa.yazi";
       };
     };

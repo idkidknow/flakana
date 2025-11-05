@@ -26,6 +26,6 @@
   flake.modules.homeManager.common =
     { pkgs, ... }:
     {
-      home.packages = [ self.packages.${pkgs.system}.my-scripts ];
+      home.packages = [ self.packages.${pkgs.stdenv.hostPlatform.system}.my-scripts ];
     };
 }

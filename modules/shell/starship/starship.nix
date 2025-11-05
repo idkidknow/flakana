@@ -3,7 +3,7 @@
   flake.modules.homeManager.common =
     { pkgs, lib, ... }:
     let
-      starship-jj = self.packages.${pkgs.system}.starship-jj;
+      starship-jj = self.packages.${pkgs.stdenv.hostPlatform.system}.starship-jj;
     in
     {
       home.packages = [ pkgs.starship ];

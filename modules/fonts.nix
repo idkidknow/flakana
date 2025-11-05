@@ -27,7 +27,7 @@
       fonts = {
         packages = with pkgs; [
           open-sans
-          self.packages.${pkgs.system}.bookerly
+          self.packages.${pkgs.stdenv.hostPlatform.system}.bookerly
           jetbrains-mono
           nerd-fonts.jetbrains-mono
           nerd-fonts.symbols-only
