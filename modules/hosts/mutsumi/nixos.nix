@@ -11,7 +11,6 @@ in
         config.flake.modules.nixos.common
         inputs.nix-ld.nixosModules.nix-ld
       ];
-      nixpkgs.hostPlatform = system;
       system.stateVersion = "24.05";
       networking.hostName = "mutsumi";
       time.timeZone = "Asia/Shanghai";
