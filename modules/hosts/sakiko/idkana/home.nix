@@ -4,6 +4,9 @@
   self,
   ...
 }:
+let
+  pkgs-master = config.nixpkgsInstances.master-x86_64-linux;
+in
 {
   flake.modules.homeManager."idkana@sakiko" =
     { pkgs, ... }:
@@ -40,11 +43,11 @@
         zed-editor
         kdePackages.dolphin
         kdePackages.dolphin-plugins
-        inputs.nixpkgs-master.legacyPackages.x86_64-linux.maa-cli
+        pkgs-master.maa-cli
         obsidian
         vesktop
         (self.lib.electronFixIME vscode)
-        inputs.nixpkgs-master.legacyPackages.x86_64-linux.jetbrains.idea-community-bin
+        pkgs-master.jetbrains.idea-community-bin
         isd
         peazip
         kdePackages.okular

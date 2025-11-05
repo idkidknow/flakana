@@ -1,10 +1,13 @@
-{ inputs, ... }:
+{ config, ... }:
+let
+  pkgs-master = config.nixpkgsInstances.master-x86_64-linux;
+in
 {
   flake.modules.homeManager."idkana@sakiko" =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
-        (inputs.nixpkgs-master.legacyPackages.x86_64-linux.hmcl.override {
+        (pkgs-master.hmcl.override {
           hmclJdk = jdk25;
           minecraftJdks = [
             jdk8
