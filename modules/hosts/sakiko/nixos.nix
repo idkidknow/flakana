@@ -1,9 +1,5 @@
 { inputs, config, ... }:
-let
-  system = "x86_64-linux";
-in
 {
-  hosts.sakiko.system = system;
   flake.modules.nixos."hosts/sakiko" =
     { pkgs, ... }:
     {

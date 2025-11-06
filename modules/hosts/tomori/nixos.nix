@@ -1,9 +1,5 @@
 { config, ... }:
-let
-  system = "x86_64-linux";
-in
 {
-  hosts.tomori.system = system;
   flake.modules.nixos."hosts/tomori" =
     { pkgs, ... }:
     {

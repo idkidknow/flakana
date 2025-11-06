@@ -1,7 +1,5 @@
 { inputs, config, ... }:
 {
-  hosts.uika.system = "aarch64-linux";
-
   flake.modules.nixOnDroid."hosts/uika" =
     { pkgs, ... }:
     {

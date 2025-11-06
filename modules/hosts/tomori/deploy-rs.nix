@@ -1,11 +1,10 @@
 {
   self,
   inputs,
-  config,
   ...
 }:
 let
-  activate = inputs.deploy-rs.lib.${config.hosts.tomori.system}.activate;
+  activate = inputs.deploy-rs.lib."x86_64-linux".activate;
 in
 {
   flake.deploy.nodes.tomori = {

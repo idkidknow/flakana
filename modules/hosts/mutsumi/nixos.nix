@@ -1,9 +1,5 @@
 { inputs, config, ... }:
-let
-  system = "x86_64-linux";
-in
 {
-  hosts.mutsumi.system = system;
   flake.modules.nixos."hosts/mutsumi" =
     { pkgs, ... }:
     {
