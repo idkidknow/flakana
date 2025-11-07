@@ -64,7 +64,7 @@ in
             hash = "sha256-csAS0zOcQTIsIN5B3ohgkPbI258ocuk4qzE8wlrXCpw=";
           };
           nativeBuildInputs = (prev.nativeBuildInputs or []) ++ [ makeWrapper ];
-          # https://github.com/uutils/coreutils/issues/8608
+          # track: https://github.com/uutils/coreutils/issues/8608
           installPhase = prev.installPhase + ''
             wrapProgram $out/bin/amm --prefix PATH ":" ${lib.makeBinPath [coreutils]}
           '';
