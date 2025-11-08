@@ -57,18 +57,6 @@ in
         (element-desktop |> self.lib.electronFixIME |> self.lib.electronUseGnomeLibsecret)
         obs-studio
         kdePackages.kdenlive
-        (ammonite.overrideAttrs (prev: {
-          version = "3.0.4";
-          src = fetchurl {
-            url = "https://github.com/lihaoyi/Ammonite/releases/download/3.0.4/3.7-3.0.4";
-            hash = "sha256-csAS0zOcQTIsIN5B3ohgkPbI258ocuk4qzE8wlrXCpw=";
-          };
-          nativeBuildInputs = (prev.nativeBuildInputs or []) ++ [ makeWrapper ];
-          # track: https://github.com/uutils/coreutils/issues/8608
-          installPhase = prev.installPhase + ''
-            wrapProgram $out/bin/amm --prefix PATH ":" ${lib.makeBinPath [coreutils]}
-          '';
-        }))
       ];
     };
 }
