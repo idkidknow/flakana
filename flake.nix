@@ -95,12 +95,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    clipcat = {
-      url = "github:xrelkd/clipcat";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.crane.follows = "crane";
-    };
-
     niri-flake = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
