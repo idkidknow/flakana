@@ -57,10 +57,6 @@
             action = spawn "rofi" "-show" "drun";
             hotkey-overlay.title = "rofi drun";
           };
-          "Mod+E" = {
-            action = spawn "rofi" "-show" "window";
-            hotkey-overlay.title = "rofi window";
-          };
 
           "XF86AudioRaiseVolume" = {
             action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02+";
