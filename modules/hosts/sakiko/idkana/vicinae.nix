@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.modules.homeManager."idkana@sakiko" =
-    { pkgs, ... }:
+    { ... }:
     {
       imports = [ inputs.vicinae.homeManagerModules.default ];
 
@@ -10,6 +10,7 @@
         autoStart = true;
 
         settings = {
+          closeOnFocusLoss = true;
           faviconService = "twenty";
           font = {
             size = 12;
