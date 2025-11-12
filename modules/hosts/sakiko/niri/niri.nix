@@ -278,7 +278,7 @@
 
           {
             matches = [
-              { app-id = "^code$"; }
+              { app-id = "^(c|C)ode$"; }
             ];
             draw-border-with-background = false;
             opacity = 0.9;
