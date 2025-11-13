@@ -46,10 +46,6 @@
 
       programs.niri.package = pkgs.niri;
       programs.niri.settings = {
-        environment = {
-          NIXOS_OZONE_WL = "1";
-        };
-
         binds = with config.lib.niri.actions; {
           "Mod+Shift+Slash".action = show-hotkey-overlay;
           "Mod+D" = {

@@ -58,5 +58,9 @@ in
         obs-studio
         kdePackages.kdenlive
       ];
+
+      systemd.user.sessionVariables = {
+        NIXOS_OZONE_WL = "1";
+      };
     };
 }
