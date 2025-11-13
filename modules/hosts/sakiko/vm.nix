@@ -6,5 +6,6 @@
       virtualisation.libvirtd.enable = true;
       programs.virt-manager.enable = true;
       users.users.idkana.extraGroups = [ "libvirtd" ];
+      networking.firewall.trustedInterfaces = [ "virbr0" ];
     };
 }
