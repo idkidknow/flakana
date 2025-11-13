@@ -16,6 +16,9 @@
             size = 12;
           };
           keybinding = "emacs";
+          keybinds = {
+            "toggle-action-panel" = "alt+X";
+          };
           popToRootOnClose = true;
           rootSearch = {
             searchFiles = false;
