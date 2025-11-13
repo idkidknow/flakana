@@ -12,6 +12,7 @@
         ))
       ];
 
+      programs.niri.settings.environment.QT_FFMPEG_DECODING_HW_DEVICE_TYPES = "cuda";
       programs.niri.settings.spawn-at-startup = [
         {
           argv = [

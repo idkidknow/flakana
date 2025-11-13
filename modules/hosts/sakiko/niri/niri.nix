@@ -48,7 +48,6 @@
       programs.niri.settings = {
         environment = {
           NIXOS_OZONE_WL = "1";
-          QT_FFMPEG_DECODING_HW_DEVICE_TYPES = "cuda";
         };
 
         binds = with config.lib.niri.actions; {
