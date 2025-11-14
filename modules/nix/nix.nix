@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 {
   flake.modules.nixos.common =
     { lib, config, ... }:
@@ -11,7 +11,10 @@
       };
 
       config = {
-        nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+        nix.nixPath = [
+          "nixpkgs=${inputs.nixpkgs}"
+          "flakana=${self}"
+        ];
 
         nix.settings = {
           experimental-features = [
