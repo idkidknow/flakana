@@ -31,18 +31,18 @@
     {
       packages.starship-jj = pkgs.rustPlatform.buildRustPackage (finalAttrs: {
         pname = "starship-jj";
-        version = "0.4.0";
+        version = "0.6.1";
         src = pkgs.fetchFromGitLab {
           owner = "lanastara_foss";
           repo = "starship-jj";
           tag = finalAttrs.version;
-          hash = "sha256-LVTFgYfbqqdqrr2LpzX7dJwWsXfB74wW22jm1Ok57gs=";
+          hash = "sha256-KYNDutr+2UGATpQu9oVrer4hh+eF4FynbcIvc4hH5qQ=";
         };
 
         nativeBuildInputs = [ pkgs.pkg-config ];
         buildInputs = [ pkgs.openssl ];
 
-        cargoHash = "sha256-d72KCMR8KJ0pbVWqn8sHmDgT5DFTyIv40rF51yLLsnY=";
+        cargoHash = "sha256-vRgBnFMOgkc9FvLG/irraq+JSTu17lNuKpq9jNE9N7o=";
 
         meta.mainProgram = "starship-jj";
       });
