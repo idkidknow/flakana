@@ -282,6 +282,7 @@
           {
             matches = [
               { app-id = "^Emacs$"; }
+              { app-id = "^dev.zed.Zed$"; }
             ];
             draw-border-with-background = false;
             opacity = 0.95;
