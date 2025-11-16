@@ -13,11 +13,6 @@
       time.timeZone = "Asia/Shanghai";
       i18n.defaultLocale = "zh_CN.UTF-8";
 
-      networking.networkmanager.enable = true;
-
-      networking.firewall.enable = true;
-      networking.nftables.enable = true;
-
       services.userborn.enable = true;
 
       vaultix.settings = {
