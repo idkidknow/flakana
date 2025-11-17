@@ -57,6 +57,7 @@ in
         (element-desktop |> self.lib.electronFixIME |> self.lib.electronUseGnomeLibsecret)
         obs-studio
         kdePackages.kdenlive
+        wl-clipboard
       ];
 
       systemd.user.sessionVariables = {
