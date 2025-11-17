@@ -36,6 +36,8 @@
         users = [ "idkana" ];
       };
 
+      hardware.bluetooth.enable = true;
+
       services.printing = {
         enable = true;
         cups-pdf.enable = true;
