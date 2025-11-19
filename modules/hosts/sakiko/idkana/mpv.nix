@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager."idkana@sakiko" =
-    { ... }:
+    { pkgs, ... }:
     {
       programs.mpv = {
         enable = true;
@@ -15,5 +15,7 @@
           sub-auto = "fuzzy";
         };
       };
+
+      home.packages = [ pkgs.haruna ];
     };
 }
