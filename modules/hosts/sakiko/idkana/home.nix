@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   self,
   ...
@@ -58,6 +57,7 @@ in
         obs-studio
         kdePackages.kdenlive
         wl-clipboard
+        wakatime-cli
       ];
 
       systemd.user.sessionVariables = {
