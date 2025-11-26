@@ -7,6 +7,7 @@
     tieba-cloud-sign = "domain.tieba-cloud-sign";
     alist = "domain.alist";
     vaultwarden = "domain.vaultwarden";
+    static = "domain.static";
   };
   tomori-ipv6 = "tomori-ipv6";
 }
