@@ -74,10 +74,6 @@
             action = toggle-overview;
             repeat = false;
           };
-          "Alt+Tab" = {
-            action = focus-window-previous;
-            repeat = false;
-          };
 
           "Mod+Q".action = close-window;
 
