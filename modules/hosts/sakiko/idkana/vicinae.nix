@@ -44,6 +44,13 @@
         }
       ];
 
+      programs.niri.settings.layer-rules = [
+        {
+          matches = [ { namespace = "^vicinae$"; } ];
+          shadow.enable = true;
+        }
+      ];
+
       programs.niri.settings.binds = {
         "Alt+Space" = {
           repeat = false;
