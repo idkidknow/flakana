@@ -58,6 +58,7 @@ in
         kdePackages.kdenlive
         wl-clipboard
         wakatime-cli
+        anki
       ];
 
       systemd.user.sessionVariables = {
