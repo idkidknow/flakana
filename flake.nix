@@ -79,7 +79,8 @@
     };
 
     nix-gaming = {
-      url = "github:fufexan/nix-gaming?rev=faa39649d0ad7e11bfcb7887ccda478515e489e8";
+      url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     steamux = {
