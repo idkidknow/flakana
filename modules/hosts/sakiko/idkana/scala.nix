@@ -3,10 +3,10 @@
     { pkgs, lib, ... }:
     let
       ammonite = pkgs.ammonite.overrideAttrs (prev: {
-        version = "3.0.4";
+        version = "3.0.5";
         src = pkgs.fetchurl {
-          url = "https://github.com/lihaoyi/Ammonite/releases/download/3.0.4/3.7-3.0.4";
-          hash = "sha256-csAS0zOcQTIsIN5B3ohgkPbI258ocuk4qzE8wlrXCpw=";
+          url = "https://github.com/lihaoyi/Ammonite/releases/download/3.0.5/3.7-3.0.5";
+          hash = "sha256-BP0J7iA8Y2wSOhjHxEJf/E152Ow901gvUjGVdBHA9H8=";
         };
         nativeBuildInputs = (prev.nativeBuildInputs or [ ]) ++ [ pkgs.makeWrapper ];
         # track: https://github.com/uutils/coreutils/issues/8608
