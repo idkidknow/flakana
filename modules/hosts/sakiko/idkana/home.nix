@@ -59,6 +59,7 @@ in
         wl-clipboard
         wakatime-cli
         anki
+        thunderbird
       ];
 
       systemd.user.sessionVariables = {
