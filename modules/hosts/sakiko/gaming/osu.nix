@@ -24,6 +24,7 @@
             exit
           '';
         })
+        inputs.nix-gaming.packages.x86_64-linux.osu-lazer-bin
       ];
     };
 }
