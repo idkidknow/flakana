@@ -1,19 +1,14 @@
 {
   flake.modules.homeManager."idkana@sakiko" =
-    { pkgs, lib, ... }:
+    { pkgs, ... }:
     let
-      ammonite = pkgs.ammonite.overrideAttrs (prev: {
+      ammonite = pkgs.ammonite.overrideAttrs {
         version = "3.0.5";
         src = pkgs.fetchurl {
           url = "https://github.com/lihaoyi/Ammonite/releases/download/3.0.5/3.7-3.0.5";
           hash = "sha256-BP0J7iA8Y2wSOhjHxEJf/E152Ow901gvUjGVdBHA9H8=";
         };
-        nativeBuildInputs = (prev.nativeBuildInputs or [ ]) ++ [ pkgs.makeWrapper ];
-        # track: https://github.com/uutils/coreutils/issues/8608
-        installPhase = prev.installPhase + ''
-          wrapProgram $out/bin/amm --prefix PATH ":" ${lib.makeBinPath [ pkgs.coreutils ]}
-        '';
-      });
+      };
 
       scala-cli = pkgs.scala-cli;
       # scala-cli = pkgs.scala-cli.overrideAttrs (
