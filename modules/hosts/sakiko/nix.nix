@@ -15,5 +15,9 @@
         garnix.enable = true;
         nix-on-droid.enable = true;
       };
+
+      nix.settings = {
+        netrc-file = "/etc/nix/netrc";
+      };
     };
 }
