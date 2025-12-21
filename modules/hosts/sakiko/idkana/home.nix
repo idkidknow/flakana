@@ -46,7 +46,7 @@ in
         obsidian
         vesktop
         (self.lib.electronFixIME vscode)
-        pkgs-master.jetbrains.idea-community-bin
+        pkgs-master.jetbrains.idea
         isd
         peazip
         kdePackages.okular
