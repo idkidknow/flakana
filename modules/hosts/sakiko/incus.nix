@@ -7,6 +7,7 @@
       };
 
       networking.firewall.trustedInterfaces = [ "incusbr0" ];
+      daeLanInterfaces = [ "incusbr0" ];
 
       users.users.idkana.extraGroups = [ "incus-admin" ];
 
