@@ -60,6 +60,7 @@ in
         wakatime-cli
         anki
         thunderbird
+        elan
       ];
 
       systemd.user.sessionVariables = {
