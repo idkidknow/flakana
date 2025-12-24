@@ -7,30 +7,33 @@
 
       services.vicinae = {
         enable = true;
-        autoStart = true;
+
+        systemd = {
+          enable = true;
+          autoStart = true;
+        };
 
         settings = {
-          closeOnFocusLoss = true;
-          faviconService = "twenty";
+          close_on_focus_loss = true;
+          favicon_service = "twenty";
+          pop_to_root_on_close = true;
           font = {
-            size = 12;
+            normal.size = 12;
           };
           keybinding = "emacs";
           keybinds = {
             "toggle-action-panel" = "alt+X";
           };
-          popToRootOnClose = true;
-          rootSearch = {
-            searchFiles = false;
-          };
+          search_files_in_root = false;
           theme = {
-            iconTheme = "breeze-dark";
-            name = "catppuccin-mocha";
+            dark.name = "catppuccin-mocha";
+            dark.icon_theme = "Breeze Dark";
           };
-          window = {
-            csd = true;
+          launcher_window = {
+            client_side_decorations.enabled = true;
             opacity = 0.9;
             rounding = 10;
+            layer_shell.keyboard_interactivity = "on_demand";
           };
         };
       };
