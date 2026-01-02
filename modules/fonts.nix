@@ -13,8 +13,8 @@
         installPhase = ''
           runHook preInstall
 
-          install -Dm644 Bookerly/*.ttf -t $out/share/fonts/opentype
-          install -Dm644 'Bookerly Display'/*.ttf -t $out/share/fonts/opentype
+          install -Dm644 Bookerly/*.ttf -t $out/share/fonts/truetype
+          install -Dm644 'Bookerly Display'/*.ttf -t $out/share/fonts/truetype
 
           runHook postInstall
         '';
