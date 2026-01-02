@@ -19,6 +19,25 @@
           runHook postInstall
         '';
       };
+
+      packages.lxgw-neozhisong = pkgs.stdenvNoCC.mkDerivation rec {
+        pname = "lxgw-neozhisong";
+        version = "1.057";
+        src = pkgs.fetchurl {
+          url = "https://github.com/lxgw/LxgwNeoZhiSong/releases/download/v${version}/LXGWNeoZhiSong.ttf";
+          hash = "sha256-Db2RHQhy2WWg2rSRI/VYwfuVdaBNEzXi3TiJa/XZMEE=";
+        };
+
+        dontUnpack = true;
+
+        installPhase = ''
+          runHook preInstall
+
+          install -Dm644 $src $out/share/fonts/truetype/LXGWNeoZhiSong.ttf
+
+          runHook postInstall
+        '';
+      };
     };
 
   flake.modules.nixos.common-desktop =
@@ -33,6 +52,7 @@
           nerd-fonts.symbols-only
           lxgw-neoxihei
           lxgw-wenkai
+          self.packages.${pkgs.stdenv.hostPlatform.system}.lxgw-neozhisong
           hanazono
           noto-fonts
           noto-fonts-cjk-sans
