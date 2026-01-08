@@ -61,6 +61,7 @@ in
         anki
         thunderbird
         elan
+        android-tools
       ];
 
       systemd.user.sessionVariables = {
