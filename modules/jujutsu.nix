@@ -23,6 +23,17 @@
             "$left"
             "$right"
           ];
+
+          aliases = {
+            tug = [
+              "bookmark"
+              "move"
+              "--from"
+              "heads(::@- & bookmarks())"
+              "--to"
+              "@-"
+            ];
+          };
         };
       };
 
