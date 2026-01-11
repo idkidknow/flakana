@@ -13,4 +13,13 @@
         fallbackCursorThemes = [ "breeze_cursors" ];
       };
     };
+
+  flake.modules.homeManager."idkana@sakiko" =
+    { ... }:
+    {
+      qt = {
+        enable = true;
+        platformTheme.name = "qtct";
+      };
+    };
 }
