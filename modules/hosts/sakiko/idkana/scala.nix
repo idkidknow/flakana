@@ -3,10 +3,10 @@
     { pkgs, ... }:
     let
       ammonite = pkgs.ammonite.overrideAttrs {
-        version = "3.0.7";
+        version = "3.0.8";
         src = pkgs.fetchurl {
-          url = "https://github.com/lihaoyi/Ammonite/releases/download/3.0.7/3.8-3.0.7";
-          hash = "sha256-r+Wsu+FEDxe0QHwX9p/C2NZCAIId8NOoggMYQj3aUhY=";
+          url = "https://github.com/lihaoyi/Ammonite/releases/download/3.0.8/3.8-3.0.8";
+          hash = "sha256-bpqnAZuW1Oy+w8OGhP+BwDw6E/xruaAMlt0rv5z2pG0=";
         };
       };
 
