@@ -55,8 +55,7 @@ in
         splayer
         (element-desktop |> self.lib.electronFixIME |> self.lib.electronUseGnomeLibsecret)
         obs-studio
-        # track: https://github.com/NixOS/nixpkgs/issues/483540
-        # kdePackages.kdenlive
+        kdePackages.kdenlive
         wl-clipboard
         wakatime-cli
         anki
