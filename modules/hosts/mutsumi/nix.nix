@@ -10,9 +10,13 @@
       nix.access-tokens-file = config.vaultix.secrets.nix-access-tokens.path;
 
       nix.named-substituters = {
+        nix-community.enable = true;
         sjtu.enable = true;
         garnix.enable = true;
-        nix-on-droid.enable = true;
+      };
+
+      nix.settings = {
+        netrc-file = "/etc/nix/netrc";
       };
     };
 }

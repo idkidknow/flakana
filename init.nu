@@ -1,7 +1,7 @@
 #!/usr/bin/env nix-shell
 #!nix-shell -i nu -p nushell jujutsu
 print "path:"
-let path = (input --reedline)
+let path = (input)
 mkdir $path
 cd $path
 mkdir flakana

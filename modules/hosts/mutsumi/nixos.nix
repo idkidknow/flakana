@@ -7,21 +7,21 @@
         config.flake.modules.nixos.common
         inputs.nix-ld.nixosModules.nix-ld
       ];
-      system.stateVersion = "24.05";
+      system.stateVersion = "25.05";
       networking.hostName = "mutsumi";
       time.timeZone = "Asia/Shanghai";
 
       services.userborn.enable = true;
 
       vaultix.settings = {
-        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBZh+8bIh8+cR6ajsPDFUTCiGmC+vd8S9N9nioypSoXl";
+        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIID/DO+dFUjYAFXyHmaoJTmoAzcdLqt+9miWYeZ32WgD";
       };
 
       programs.nix-ld.dev.enable = true;
 
       environment.systemPackages = with pkgs; [
         nushell
-        nixfmt-rfc-style
+        nixfmt
         nixd
         uutils-coreutils-noprefix
         inputs.deploy-rs.packages.x86_64-linux.deploy-rs
