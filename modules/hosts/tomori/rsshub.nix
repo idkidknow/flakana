@@ -1,19 +1,13 @@
-{ inputs, ... }:
 {
-  perSystem =
-    { pkgs, ... }:
-    {
-      packages.rsshub = pkgs.callPackage ./_package.nix { };
-    };
-
   flake.modules.nixos."hosts/tomori" =
     {
+      pkgs,
       lib,
       config,
       ...
     }:
     let
-      package = inputs.self.packages.x86_64-linux.rsshub;
+      package = pkgs.rsshub;
     in
     {
       environment.systemPackages = [ package ];
