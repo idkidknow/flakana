@@ -20,7 +20,7 @@
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
-        helvum
+        crosspipe
         easyeffects
       ];
     };
