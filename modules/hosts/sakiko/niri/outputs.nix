@@ -11,9 +11,9 @@
         };
 
         "DP-1" = {
-          mode.width = 1920;
-          mode.height = 1080;
-          mode.refresh = 165.003;
+          mode.width = 2560;
+          mode.height = 1440;
+          mode.refresh = 300.001;
           focus-at-startup = true;
           position = {
             x = 0;
