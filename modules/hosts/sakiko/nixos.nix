@@ -21,7 +21,7 @@
 
       environment.systemPackages = with pkgs; [
         nushell
-        nixfmt-rfc-style
+        nixfmt
         nixd
         uutils-coreutils-noprefix
         inputs.deploy-rs.packages.x86_64-linux.deploy-rs
