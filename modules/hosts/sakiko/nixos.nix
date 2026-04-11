@@ -45,6 +45,8 @@
 
       programs.localsend.enable = true;
 
+      services.orca.enable = true;
+
       environment.variables.EDITOR = "micro";
     };
 }
