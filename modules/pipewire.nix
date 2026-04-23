@@ -13,6 +13,7 @@
         pulse.enable = true;
 
         lowLatency.enable = true;
+        lowLatency.quantum = 128;
       };
     };
 
