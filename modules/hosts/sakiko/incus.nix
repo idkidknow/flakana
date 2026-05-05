@@ -5,6 +5,7 @@
       virtualisation.incus = {
         enable = true;
         package = pkgs.incus;
+        bucketSupport = false;
       };
 
       networking.firewall.trustedInterfaces = [ "incusbr0" ];
@@ -24,8 +25,5 @@
           mode = "0444";
         };
       };
-
-      # track: https://github.com/lxc/incus/issues/2956
-      nixpkgs.config.permittedInsecurePackages = [ "minio-2025-10-15T17-29-55Z" ];
     };
 }
