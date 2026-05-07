@@ -62,6 +62,7 @@ in
         thunderbird
         elan
         android-tools
+        ffmpeg
       ];
 
       systemd.user.sessionVariables = {
