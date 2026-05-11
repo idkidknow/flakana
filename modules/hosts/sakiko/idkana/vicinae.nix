@@ -81,7 +81,7 @@
           repeat = false;
           action.spawn = [
             "vicinae"
-            "vicinae://extensions/vicinae/clipboard/history"
+            "vicinae://launch/clipboard/history"
           ];
         };
 
@@ -89,7 +89,7 @@
           repeat = false;
           action.spawn = [
             "vicinae"
-            "vicinae://extensions/vicinae/wm/switch-windows"
+            "vicinae://launch/wm/switch-windows"
           ];
         };
       };
