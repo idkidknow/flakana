@@ -11,7 +11,8 @@
 
       nix.named-substituters = {
         nix-community.enable = true;
-        sjtu.enable = true;
+        # sjtu.enable = true;
+        ustc.enable = true;
         garnix.enable = true;
         nix-on-droid.enable = true;
       };
