@@ -23,6 +23,9 @@
           };
         };
 
+      # track: https://github.com/NixOS/nixpkgs/issues/520642
+      services.accounts-daemon.enable = true;
+
       users.users.greeter = {
         description = "greeter";
         group = "greeter";
