@@ -110,6 +110,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
+    };
+
     # follow
     crane = {
       url = "github:ipetkov/crane";

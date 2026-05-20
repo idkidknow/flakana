@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   self,
   ...
@@ -65,6 +66,7 @@ in
         ffmpeg
         python3
         nodejs
+        inputs.llm-agents.packages.x86_64-linux.pi
       ];
 
       systemd.user.sessionVariables = {
