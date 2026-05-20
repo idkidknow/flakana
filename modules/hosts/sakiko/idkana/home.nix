@@ -63,6 +63,8 @@ in
         elan
         android-tools
         ffmpeg
+        python3
+        nodejs
       ];
 
       systemd.user.sessionVariables = {
