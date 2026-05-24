@@ -8,6 +8,12 @@
           mode.height = 1080;
           mode.refresh = 165.004;
           variable-refresh-rate = "on-demand";
+          hot-corners = {
+            top-left = false;
+            top-right = true;
+            bottom-left = false;
+            bottom-right = false;
+          };
         };
 
         "DP-1" = {
@@ -20,6 +26,12 @@
             y = 0;
           };
           variable-refresh-rate = "on-demand";
+          hot-corners = {
+            top-left = true;
+            top-right = false;
+            bottom-left = false;
+            bottom-right = false;
+          };
         };
       };
     };
