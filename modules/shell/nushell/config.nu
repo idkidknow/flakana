@@ -1,6 +1,6 @@
 source "./options.nu"
 
-$env.config.buffer_editor = "micro"
+$env.config.buffer_editor = "emacsclient"
 $env.config.show_banner = false
 $env.config.use_kitty_protocol = true
 
@@ -56,6 +56,8 @@ $env.EDITOR = $env.config.buffer_editor
 
 alias l = eza -Hgh --time-style=iso --icons always
 alias ll = l -la
+
+alias ec = emacsclient
 
 use std/dirs
 

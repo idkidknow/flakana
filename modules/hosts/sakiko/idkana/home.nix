@@ -21,7 +21,6 @@ in
       home.homeDirectory = "/home/idkana";
 
       home.packages = with pkgs; [
-        emacs
         fastfetch
         gitui
         git-lfs
