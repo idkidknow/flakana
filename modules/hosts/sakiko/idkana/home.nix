@@ -42,7 +42,6 @@ in
         zed-editor
         kdePackages.dolphin
         kdePackages.dolphin-plugins
-        maa-cli
         obsidian
         vesktop
         (self.lib.electronFixIME vscode)
@@ -52,7 +51,6 @@ in
         kdePackages.okular
         krita
         xournalpp
-        splayer
         (element-desktop |> self.lib.electronFixIME |> self.lib.electronUseGnomeLibsecret)
         obs-studio
         kdePackages.kdenlive
@@ -63,7 +61,7 @@ in
         elan
         android-tools
         ffmpeg
-        python3
+        python314
         nodejs
         inputs.llm-agents.packages.x86_64-linux.pi
       ];
