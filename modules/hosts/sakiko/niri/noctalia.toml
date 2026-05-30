@@ -1,0 +1,75 @@
+[bar.default]
+center = [ "audio_visualizer" ]
+end = [ "media", "tray", "notifications", "network", "volume", "battery", "clock" ]
+margin_edge = 8.0
+margin_ends = 10.0
+position = "left"
+start = [ "session", "s2", "control-center", "cpu", "ram", "s1", "workspaces" ]
+
+[dock]
+auto_hide = true
+enabled = true
+icon_size = 36
+launcher_position = "start"
+radius = 24
+
+[notification]
+offset_y = 20.0
+
+[shell]
+clipboard_enabled = false
+font_family = "Open Sans"
+settings_show_advanced = true
+telemetry_enabled = false
+
+[shell.animation]
+speed = 2.0
+
+[shell.panel]
+open_near_click_control_center = true
+open_near_click_launcher = true
+open_near_click_session = true
+
+[theme]
+builtin = "Nord"
+
+[widget.battery]
+hide_when_full = true
+show_label = false
+
+[widget.clock]
+font_weight = 600
+vertical_format = "%H\\n%M\\n-\\n%m\\n%d"
+
+[widget.cpu]
+show_label = false
+
+[widget.media]
+hide_when_no_media = true
+
+[widget.network]
+show_label = false
+
+[widget.ram]
+show_label = false
+
+[widget.s1]
+length = 10.0
+type = "spacer"
+
+[widget.s2]
+length = 10.0
+type = "spacer"
+
+[widget.tray]
+capsule = true
+capsule_padding = 10.0
+capsule_radius = 12.0
+
+[widget.volume]
+capsule = true
+capsule_padding = 4.0
+capsule_radius = 12.0
+
+[widget.workspaces]
+hide_when_empty = true
