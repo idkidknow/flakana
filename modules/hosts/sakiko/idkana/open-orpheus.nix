@@ -21,10 +21,10 @@
     {
       packages.open-orpheus = stdenv.mkDerivation rec {
         pname = "open-orpheus";
-        version = "0.13.0";
+        version = "0.14.0";
         src = fetchurl {
           url = "https://github.com/YUCLing/open-orpheus/releases/download/v${version}/open-orpheus_${version}_amd64.deb";
-          hash = "sha256-dMuX44VViBMw2DjOumSusBxkmoL3Bc+y5z360FkYsR4=";
+          hash = "sha256-ffQRAE0XttkqtPXcw6cP5EABSAgT8jZRmDFs+kLlXHg=";
         };
 
         nativeBuildInputs = [
