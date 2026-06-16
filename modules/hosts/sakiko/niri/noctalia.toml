@@ -8,6 +8,7 @@ start = [ "session", "s2", "control-center", "cpu", "ram", "s1", "workspaces" ]
 
 [dock]
 auto_hide = true
+reserve_space = false
 enabled = true
 icon_size = 36
 launcher_position = "start"
