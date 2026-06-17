@@ -17,6 +17,9 @@ radius = 24
 [notification]
 offset_y = 20.0
 
+[osd.kinds]
+media = false
+
 [shell]
 clipboard_enabled = false
 font_family = "Open Sans"
