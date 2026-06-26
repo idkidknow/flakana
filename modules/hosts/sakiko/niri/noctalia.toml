@@ -42,6 +42,7 @@ hide_when_full = true
 show_label = false
 
 [widget.clock]
+font_family = "JetBrains Mono"
 font_weight = 600
 vertical_format = "%H\\n%M\\n-\\n%m\\n%d"
 
@@ -77,3 +78,6 @@ capsule_radius = 12.0
 
 [widget.workspaces]
 hide_when_empty = true
+
+[widget.audio_visualizer]
+bands = 10
