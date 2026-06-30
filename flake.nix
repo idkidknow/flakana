@@ -108,6 +108,10 @@
       url = "github:numtide/llm-agents.nix";
     };
 
+    nix-cachyos-kernel = {
+      url = "github:xddxdd/nix-cachyos-kernel/release";
+    };
+
     # follow
     crane = {
       url = "github:ipetkov/crane";

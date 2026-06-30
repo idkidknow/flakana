@@ -44,6 +44,11 @@
           url = [ "https://cache.numtide.com" ];
           key = [ "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=" ];
         };
+
+        nix-cachyos-kernel = {
+          url = [ "https://attic.xuyh0120.win/lantian" ];
+          key = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
+        };
       };
 
       substituters =

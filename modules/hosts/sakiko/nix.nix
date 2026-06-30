@@ -16,6 +16,7 @@
         garnix.enable = true;
         nix-on-droid.enable = true;
         numtide.enable = true;
+        nix-cachyos-kernel.enable = true;
       };
 
       nix.settings = {
