@@ -35,7 +35,6 @@
     vaultix = {
       url = "github:milieuim/vaultix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.rust-overlay.follows = "rust-overlay";
       inputs.crane.follows = "crane";
     };
 
