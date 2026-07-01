@@ -47,6 +47,8 @@
 
       services.orca.enable = true;
 
+      services.input-remapper.enable = true;
+
       environment.variables.EDITOR = "micro";
     };
 }
