@@ -1,4 +1,12 @@
 {
+  flake.modules.nixos.common = { pkgs, lib, ... }: {
+    environment.systemPackages = [ pkgs.nushell ];
+    environment.shells = [
+      "/run/current-system/sw/bin/nu"
+      (lib.getExe pkgs.nushell)
+    ];
+  };
+
   flake.modules.homeManager.common =
     {
       lib,
