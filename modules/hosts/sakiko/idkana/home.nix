@@ -43,7 +43,7 @@ in
         kdePackages.dolphin
         kdePackages.dolphin-plugins
         obsidian
-        pkgs-master.vesktop
+        vesktop
         (self.lib.electronFixIME vscode)
         pkgs-master.jetbrains.idea
         isd
