@@ -112,6 +112,11 @@
       url = "github:xddxdd/nix-cachyos-kernel/release";
     };
 
+    selector4nix = {
+      url = "github:StarryReverie/selector4nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # follow
     crane = {
       url = "github:ipetkov/crane";

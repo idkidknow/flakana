@@ -53,7 +53,7 @@
 
       substituters =
         named-substituters
-        |> lib.mapAttrsToList (name: value: lib.mkIf cfg.${name}.enable value.url)
+        |> lib.mapAttrsToList (name: value: lib.mkIf (cfg.${name}.enable && !cfg.${name}.keyOnly) value.url)
         |> lib.mkMerge;
 
       trusted-public-keys =
@@ -69,6 +69,11 @@
             name: value: {
               enable = lib.mkOption {
                 type = lib.types.bool;
+                default = false;
+              };
+              keyOnly = lib.mkOption {
+                type = lib.types.bool;
+                description = "add public keys only";
                 default = false;
               };
             }
