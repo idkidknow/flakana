@@ -47,7 +47,11 @@
 
       services.orca.enable = true;
 
-      services.input-remapper.enable = true;
+      services.input-remapper = {
+        enable = true;
+        # track: https://github.com/NixOS/nixpkgs/issues/540703
+        package = inputs.nixpkgs-f205b557.legacyPackages.x86_64-linux.input-remapper;
+      };
 
       environment.variables.EDITOR = "micro";
     };
