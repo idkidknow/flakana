@@ -66,6 +66,8 @@ in
         inputs.llm-agents.packages.x86_64-linux.pi
       ];
 
+      programs.dbeaver.enable = true;
+
       systemd.user.sessionVariables = {
         NIXOS_OZONE_WL = "1";
       };
