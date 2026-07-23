@@ -7,6 +7,24 @@
     ];
   };
 
+  flake.modules.systemManager.common = { pkgs, lib, ... }: {
+    environment.systemPackages = [ pkgs.nushell ];
+    environment.etc."shells" = {
+      text = ''
+        /run/system-manager/sw/bin/nu
+        ${lib.getExe pkgs.nushell}
+        /bin/sh
+        /usr/bin/sh
+        /bin/bash
+        /usr/bin/bash
+        /bin/rbash
+        /usr/bin/rbash
+        /usr/bin/dash
+      '';
+      replaceExisting = true;
+    };
+  };
+
   flake.modules.homeManager.common =
     {
       lib,
