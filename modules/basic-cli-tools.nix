@@ -26,4 +26,10 @@ in
     {
       home.packages = packages pkgs;
     };
+
+  flake.modules.systemManager.common =
+    { pkgs, ... }:
+    {
+      environment.systemPackages = packages pkgs;
+    };
 }
