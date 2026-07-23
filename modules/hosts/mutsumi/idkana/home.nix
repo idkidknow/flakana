@@ -43,7 +43,6 @@
         zellij
         fzf
         dua
-        just
         tealdeer
         nix-output-monitor
         nh

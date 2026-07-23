@@ -28,7 +28,6 @@ in
         fzf
         dua
         duf
-        just
         tealdeer
         nix-output-monitor
         nh

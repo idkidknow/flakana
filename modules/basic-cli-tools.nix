@@ -11,6 +11,7 @@ let
       bat
       bottom
       home-manager
+      just
     ];
 in
 {

@@ -59,7 +59,6 @@
 
       home.packages = with pkgs; [
         emacs
-        just
       ];
     };
 }
