@@ -1,6 +1,6 @@
 { inputs, self, ... }:
-{
-  flake.modules.nixos.common =
+let
+  module =
     { lib, config, ... }:
     {
       options = {
@@ -11,11 +11,6 @@
       };
 
       config = {
-        nix.nixPath = [
-          "nixpkgs=${inputs.nixpkgs}"
-          "flakana=${self}"
-        ];
-
         nix.settings = {
           experimental-features = [
             "nix-command"
@@ -29,4 +24,20 @@
         ) "!include ${config.nix.access-tokens-file}";
       };
     };
+in
+{
+  flake.modules.nixos.common =
+    { ... }:
+    {
+      imports = [ module ];
+      nix.nixPath = [
+        "nixpkgs=${inputs.nixpkgs}"
+        "flakana=${self}"
+      ];
+    };
+
+  flake.modules.systemManager.common = { ... }: {
+    imports = [ module ];
+    nix.enable = true;
+  };
 }
