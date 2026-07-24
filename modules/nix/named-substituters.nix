@@ -20,6 +20,11 @@ let
       key = [ ];
     };
 
+    cernet = {
+      url = [ "https://mirrors.cernet.edu.cn/nix-channels/store" ];
+      key = [ ];
+    };
+
     garnix = {
       url = [ "https://cache.garnix.io" ];
       key = [ "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=" ];
