@@ -9,6 +9,7 @@ let
       fd
       ripgrep
       bat
+      less
       bottom
       home-manager
       just
