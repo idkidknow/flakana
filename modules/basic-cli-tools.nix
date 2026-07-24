@@ -13,6 +13,7 @@ let
       bottom
       home-manager
       just
+      nh
     ];
 in
 {
