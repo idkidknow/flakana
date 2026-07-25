@@ -42,6 +42,8 @@
                 shape = "Beam";
                 blinking = "On";
               };
+
+              terminal.shell = lib.mkIf (config ? nushell.package) "${lib.getExe config.nushell.package}";
             };
           };
         }

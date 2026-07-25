@@ -1,11 +1,12 @@
 {
   flake.modules.homeManager."idkana@sakiko" =
-    { ... }:
+    { lib, config, ... }:
     {
       programs.foot = {
         enable = true;
         settings = {
           main = {
+            shell = lib.mkIf (config ? nushell.package) "${lib.getExe config.nushell.package}";
             font = "JetBrainsMono Nerd Font:size=12";
             dpi-aware = "yes";
           };

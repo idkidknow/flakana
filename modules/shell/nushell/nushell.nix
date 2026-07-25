@@ -1,16 +1,4 @@
 {
-  flake.modules.nixos.common = { pkgs, lib, ... }: {
-    environment.systemPackages = [ pkgs.nushell ];
-    environment.shells = [
-      "/run/current-system/sw/bin/nu"
-      (lib.getExe pkgs.nushell)
-    ];
-  };
-
-  flake.modules.systemManager.common = { pkgs, ... }: {
-    environment.systemPackages = [ pkgs.nushell ];
-  };
-
   flake.modules.homeManager.common =
     {
       lib,
@@ -23,6 +11,8 @@
     in
     {
       options.nushell = {
+        package = lib.mkPackageOption pkgs "nushell" { };
+
         isArch = lib.mkOption {
           description = "Arch Linux?";
           type = lib.types.bool;
@@ -53,7 +43,7 @@
           options-nu-dir = "${cfg.configDir}/options.nu";
         in
         {
-          home.packages = [ pkgs.nushell ];
+          home.packages = [ cfg.package ];
           home.file.${options-nu-dir}.text = ''
             let $options = {
               is_arch: ${builtins.toJSON cfg.isArch},
