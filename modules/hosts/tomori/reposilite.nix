@@ -30,7 +30,7 @@ in
         sslCertificate = "${cert-path}/fullchain.pem";
         sslCertificateKey = "${cert-path}/key.pem";
         locations."/" = {
-          proxyPass = "http://127.0.0.1:${builtins.toString port}";
+          proxyPass = "http://127.0.0.1:${toString port}";
           extraConfig = ''
             proxy_set_header Host              $host;
             proxy_set_header X-Real-IP         $remote_addr;

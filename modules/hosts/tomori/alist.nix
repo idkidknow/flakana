@@ -27,7 +27,7 @@ in
       };
       users.groups.alist = { };
 
-      systemd.tmpfiles.settings."10-alist"."${wd}/storage".d = {
+      systemd.tmpfiles.settings."10-alist"."${wd}".d = {
         user = "alist";
         group = "alist";
         mode = "700";

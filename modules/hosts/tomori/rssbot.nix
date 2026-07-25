@@ -24,6 +24,7 @@
           fetchSubmodules = true;
         };
         cargoHash = "sha256-wU4kGSDCZl6nBWJa+5VuOle4L9d5wMD8J3e9s00hLIg=";
+        meta.mainProgram = "rssbot";
       };
     };
 

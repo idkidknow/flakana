@@ -10,5 +10,4 @@
     static = "domain.static";
     kavita = "domain.kavita";
   };
-  tomori-ipv6 = "tomori-ipv6";
 }
