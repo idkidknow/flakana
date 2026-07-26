@@ -1,0 +1,34 @@
+name: Nix
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build:
+   strategy:
+     matrix:
+       target:
+         - ".#nixosConfigurations.sakiko.config.system.build.toplevel"
+         - ".#nixosConfigurations.tomori.config.system.build.toplevel"
+         - ".#homeConfigurations.\"idkana@sakiko\".activationPackage"
+   runs-on: ubuntu-latest
+   steps:
+     - uses: actions/checkout@v7
+     - uses: NixOS/nix-installer-action@main
+       with:
+         extra-conf: |
+           experimental-features = nix-command flakes pipe-operators
+           substituters = https://cache.nixos.org/ https://nix-community.cachix.org/ https://cache.numtide.com/ https://attic.xuyh0120.win/lantian/
+           trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g= lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=
+     - uses: Mic92/niks3-action@v1
+       with:
+         server-url: https://niks3.idkidknow.com
+     - name: nix build
+       shell: bash
+       env:
+         target: ${{ matrix.target }}
+       run: nix build --no-link --log-format raw -L --show-trace --option log-lines 0 --keep-going --max-jobs auto "$target"
