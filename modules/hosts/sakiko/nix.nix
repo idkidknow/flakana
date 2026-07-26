@@ -11,6 +11,8 @@
       nix.access-tokens-file = config.vaultix.secrets.nix-access-tokens.path;
 
       nix.named-substituters = {
+        idkidknow.enable = true;
+        idkidknow.keyOnly = true;
         nix-community.enable = true;
         nix-community.keyOnly = true;
         nix-on-droid.enable = true;
@@ -57,6 +59,9 @@
             }
             {
               url = "https://attic.xuyh0120.win/lantian";
+            }
+            {
+              url = "https://cache.idkidknow.com";
             }
           ];
         };

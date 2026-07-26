@@ -1,5 +1,10 @@
 let
   named-substituters = {
+    idkidknow = {
+      url = [ "https://cache.idkidknow.com" ];
+      key = [ "idkana:DDvSQjhB+W8jB0DnR+4jEwAh5E4OOcoVhDnwBDe0COo=" ];
+    };
+
     nix-community = {
       url = [ "https://nix-community.cachix.org" ];
       key = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];

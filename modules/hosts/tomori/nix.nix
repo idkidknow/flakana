@@ -8,5 +8,10 @@
       };
 
       nix.access-tokens-file = config.vaultix.secrets.nix-access-tokens.path;
+
+      nix.named-substituters = {
+        idkidknow.enable = true;
+        nix-community.enable = true;
+      };
     };
 }
