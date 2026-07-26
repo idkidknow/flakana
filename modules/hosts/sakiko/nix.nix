@@ -13,8 +13,6 @@
       nix.named-substituters = {
         nix-community.enable = true;
         nix-community.keyOnly = true;
-        garnix.enable = true;
-        garnix.keyOnly = true;
         nix-on-droid.enable = true;
         nix-on-droid.keyOnly = true;
         numtide.enable = true;
@@ -50,10 +48,6 @@
             }
             {
               url = "https://nix-community.cachix.org";
-            }
-            {
-              url = "https://cache.garnix.io";
-              storage_url = "https://garnix-cache.com";
             }
             {
               url = "https://nix-on-droid.cachix.org";

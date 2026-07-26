@@ -22,11 +22,9 @@
       nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
       nix.substituters = [
         "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-        "https://cache.garnix.io"
         "https://nix-on-droid.cachix.org"
       ];
       nix.trustedPublicKeys = [
-        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
         "nix-on-droid.cachix.org-1:56snoMJTXmDRC1Ei24CmKoUqvHJ9XCp+nidK7qkMQrU="
       ];
 

@@ -12,7 +12,6 @@
       nix.named-substituters = {
         nix-community.enable = true;
         cernet.enable = true;
-        garnix.enable = true;
       };
 
       nix.settings = {

@@ -25,11 +25,6 @@ let
       key = [ ];
     };
 
-    garnix = {
-      url = [ "https://cache.garnix.io" ];
-      key = [ "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=" ];
-    };
-
     nix-on-droid = {
       url = [ "https://nix-on-droid.cachix.org" ];
       key = [ "nix-on-droid.cachix.org-1:56snoMJTXmDRC1Ei24CmKoUqvHJ9XCp+nidK7qkMQrU=" ];

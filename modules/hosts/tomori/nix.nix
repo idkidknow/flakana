@@ -8,7 +8,5 @@
       };
 
       nix.access-tokens-file = config.vaultix.secrets.nix-access-tokens.path;
-
-      nix.named-substituters.garnix.enable = true;
     };
 }
