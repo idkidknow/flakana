@@ -15,6 +15,7 @@ jobs:
          - ".#nixosConfigurations.sakiko.config.system.build.toplevel"
          - ".#nixosConfigurations.tomori.config.system.build.toplevel"
          - ".#homeConfigurations.\"idkana@sakiko\".activationPackage"
+         - ".#homeConfigurations.\"idkana@emilia\".activationPackage"
    runs-on: ubuntu-latest
    steps:
      - uses: actions/checkout@v7
