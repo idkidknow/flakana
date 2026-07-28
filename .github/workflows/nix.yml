@@ -10,13 +10,18 @@ permissions:
 jobs:
   build:
    strategy:
+     fail-fast: false
      matrix:
-       target:
-         - ".#nixosConfigurations.sakiko.config.system.build.toplevel"
-         - ".#nixosConfigurations.tomori.config.system.build.toplevel"
-         - ".#homeConfigurations.\"idkana@sakiko\".activationPackage"
-         - ".#homeConfigurations.\"idkana@emilia\".activationPackage"
-   runs-on: ubuntu-latest
+       include:
+         - target: ".#nixosConfigurations.sakiko.config.system.build.toplevel"
+           os: ubuntu-24.04
+         - target: ".#nixosConfigurations.tomori.config.system.build.toplevel"
+           os: ubuntu-24.04
+         - target: ".#homeConfigurations.\"idkana@sakiko\".activationPackage"
+           os: ubuntu-24.04
+         - target: ".#homeConfigurations.\"idkana@emilia\".activationPackage"
+           os: ubuntu-24.04-arm
+   runs-on: ${{ matrix.os }}
    steps:
      - uses: actions/checkout@v7
      - uses: NixOS/nix-installer-action@main
