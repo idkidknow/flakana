@@ -1,4 +1,4 @@
-{ config, ... }:
+{ inputs, config, ... }:
 {
   flake.modules.homeManager."idkana@emilia" =
     { pkgs, ... }:
@@ -12,6 +12,9 @@
       home.packages = with pkgs; [
         emacs
         fastfetch
+        python3
+        nodejs
+        inputs.llm-agents.packages.aarch64-linux.pi
       ];
     };
 }
