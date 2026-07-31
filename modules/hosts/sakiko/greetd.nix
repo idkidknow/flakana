@@ -3,7 +3,7 @@
   flake.modules.nixos."hosts/sakiko" =
     { pkgs, ... }:
     {
-      programs.regreet = {
+      services.displayManager.regreet = {
         enable = true;
         cageArgs = [
           "-s"
