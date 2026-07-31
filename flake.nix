@@ -10,7 +10,7 @@
 
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
 
-    # nixpkgs-f205b557.url = "github:NixOS/nixpkgs?rev=f205b5574fd0cb7da5b702a2da51507b7f4fdd1b";
+    nixpkgs-335f0738.url = "github:NixOS/nixpkgs?rev=335f0738cb2fa9708f3f428e39d2eae975d1338d";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";

@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   flake.modules.nixos."hosts/sakiko" =
     { pkgs, ... }:
@@ -11,12 +12,12 @@
           "last"
         ];
         theme = {
-          name = "Canta-dark";
-          package = pkgs.canta-theme;
+          name = "Materia-dark";
+          package = inputs.nixpkgs-335f0738.legacyPackages.x86_64-linux.materia-theme;
         };
         cursorTheme = {
-          name = "Adwaita";
-          package = pkgs.adwaita-icon-theme;
+          name = "macOS";
+          package = pkgs.apple-cursor;
         };
         font = {
           name = "JetBrainsMono Nerd Font";
