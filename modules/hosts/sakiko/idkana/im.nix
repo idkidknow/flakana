@@ -4,11 +4,18 @@
     { pkgs, ... }:
     {
       nixpkgs.config.allowUnfree = true;
-      home.packages = with pkgs; [
-        (self.lib.electronFixIME qq)
-        telegram-desktop
-        wechat
-      ];
+      home.packages =
+        let
+          # track: ?
+          qq-wl = (self.lib.electronFixIME pkgs.qq).override (prev: {
+            commandLineArgs = "${prev.commandLineArgs or ""} --ozone-platform=wayland";
+          });
+        in
+        with pkgs; [
+          qq-wl
+          telegram-desktop
+          wechat
+        ];
 
       programs.niri.settings.window-rules = [
         {
