@@ -63,6 +63,7 @@ in
         python314
         nodejs
         inputs.llm-agents.packages.x86_64-linux.pi
+        inputs.llm-agents.packages.x86_64-linux.codex
       ];
 
       programs.dbeaver.enable = true;
