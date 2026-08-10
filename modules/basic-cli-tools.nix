@@ -14,6 +14,7 @@ let
       home-manager
       just
       nh
+      gh
     ];
 in
 {
