@@ -10,11 +10,13 @@
       home.homeDirectory = "/home/idkana";
 
       home.packages = with pkgs; [
-        emacs
         fastfetch
         python3
         nodejs
         inputs.llm-agents.packages.aarch64-linux.pi
       ];
+
+      programs.emacs.enable = true;
+      services.emacs.enable = true;
     };
 }
