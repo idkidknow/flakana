@@ -16,3 +16,6 @@ tomori: update-stale
 
 uika: update-stale
     deploy ../flakana-priv\#uika -- --impure
+
+sm: update-stale
+    sudo system-manager switch --flake ../flakana-priv
