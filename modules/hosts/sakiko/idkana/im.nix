@@ -11,7 +11,8 @@
             commandLineArgs = "${prev.commandLineArgs or ""} --ozone-platform=wayland";
           });
         in
-        with pkgs; [
+        with pkgs;
+        [
           qq-wl
           telegram-desktop
           wechat

@@ -13,26 +13,25 @@
 
       sock = "/tmp/supervisor.sock";
 
-      conf =
-        {
-          unix_http_server.file = sock;
-          supervisord = {
-            logfile = "/tmp/supervisord.log";
-            pidfile = "/tmp/supervisord.pid";
-          };
-          "rpcinterface:supervisor"."supervisor.rpcinterface_factory" =
-            "supervisor.rpcinterface:make_main_rpcinterface";
-          supervisorctl.serverurl = "unix://${sock}";
-        }
-        // (
-          cfg.programs
-          |> lib.mapAttrs' (
-            name: value: {
-              name = "program:${name}";
-              value = value;
-            }
-          )
-        );
+      conf = {
+        unix_http_server.file = sock;
+        supervisord = {
+          logfile = "/tmp/supervisord.log";
+          pidfile = "/tmp/supervisord.pid";
+        };
+        "rpcinterface:supervisor"."supervisor.rpcinterface_factory" =
+          "supervisor.rpcinterface:make_main_rpcinterface";
+        supervisorctl.serverurl = "unix://${sock}";
+      }
+      // (
+        cfg.programs
+        |> lib.mapAttrs' (
+          name: value: {
+            name = "program:${name}";
+            value = value;
+          }
+        )
+      );
     in
     {
       options.supervisord = {
