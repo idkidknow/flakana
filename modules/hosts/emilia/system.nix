@@ -1,6 +1,7 @@
 {
   inputs,
   config,
+  self,
   ...
 }:
 let
@@ -61,5 +62,10 @@ in
       ];
 
       systemd.services = { };
+
+      environment.sessionVariables.NIX_PATH = [
+        "nixpkgs=${inputs.nixpkgs}"
+        "flakana=${self}"
+      ];
     };
 }
