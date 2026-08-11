@@ -6,23 +6,26 @@
       starship-jj = self.packages.${pkgs.stdenv.hostPlatform.system}.starship-jj;
     in
     {
-      home.packages = [ pkgs.starship ];
-      xdg.dataFile."nushell/vendor/autoload/starship.nu".source = "${pkgs.runCommand "starship.nu" { } ''
-        ${lib.getExe pkgs.starship} init nu > "$out"
-      ''}";
+      programs.starship = {
+        enable = true;
+        enableNushellIntegration = true;
+        enableFishIntegration = true;
+        settings = (fromTOML (builtins.readFile ./starship.toml)) // {
+          custom.jj = {
+            command = "prompt";
+            shell = [
+              (lib.getExe starship-jj)
+              "--ignore-working-copy"
+              "starship"
+            ];
+            ignore_timeout = true;
+            format = "$output";
+            use_stdin = false;
+            when = true;
+          };
+        };
+      };
 
-      xdg.configFile."starship.toml".source = pkgs.concatText "starship.toml" [
-        ./starship.toml
-        (pkgs.writeText "starship-custom-jj.toml" ''
-          [custom.jj]
-          command = "prompt"
-          shell = ["${lib.getExe starship-jj}", "--ignore-working-copy", "starship"]
-          ignore_timeout = true
-          format = "$output"
-          use_stdin = false
-          when = true
-        '')
-      ];
       xdg.configFile."starship-jj/starship-jj.toml".source = ./starship-jj.toml;
     };
 
