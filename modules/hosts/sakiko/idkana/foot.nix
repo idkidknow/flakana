@@ -6,7 +6,7 @@
         enable = true;
         settings = {
           main = {
-            shell = lib.mkIf (config ? nushell.package) "${lib.getExe config.nushell.package}";
+            shell = lib.mkIf (config.programs.nushell.enable) "${lib.getExe config.programs.nushell.package}";
             font = "JetBrainsMono Nerd Font:size=12";
             dpi-aware = "yes";
           };

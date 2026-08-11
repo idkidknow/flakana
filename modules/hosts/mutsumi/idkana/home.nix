@@ -16,7 +16,6 @@
         fastfetch
         carapace
         nurl
-        direnv
         clang
         (rust-bin.selectLatestNightlyWith (
           toolchain:
@@ -36,7 +35,6 @@
         python313
         python313Packages.ipython
         uv
-        nix-direnv
         gitui
         git-lfs
         jujutsu
@@ -49,8 +47,6 @@
         nvfetcher
         taplo
       ];
-
-      nushell.isWSL = true;
 
     };
 }

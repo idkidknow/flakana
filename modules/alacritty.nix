@@ -43,7 +43,7 @@
                 blinking = "On";
               };
 
-              terminal.shell = lib.mkIf (config ? nushell.package) "${lib.getExe config.nushell.package}";
+              terminal.shell = lib.mkIf (config.programs.nushell.enable) "${lib.getExe config.programs.nushell.package}";
             };
           };
         }

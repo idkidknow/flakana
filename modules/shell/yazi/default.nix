@@ -8,6 +8,8 @@
         plugins = {
           inherit (pkgs.yaziPlugins) git toggle-pane;
         };
+        enableNushellIntegration = true;
+        enableFishIntegration = true;
       };
       xdg.configFile = {
         "yazi/yazi.toml".source = ./yazi.toml;
