@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm'
 local config = {}
 
-config.default_prog = { 'nu' }
+config.default_prog = { 'fish' }
 
 config.font = wezterm.font_with_fallback {
     'JetBrains Mono',
