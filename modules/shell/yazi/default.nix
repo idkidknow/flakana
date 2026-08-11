@@ -8,6 +8,7 @@
         plugins = {
           inherit (pkgs.yaziPlugins) git toggle-pane;
         };
+        shellWrapperName = "y";
         enableNushellIntegration = true;
         enableFishIntegration = true;
       };
