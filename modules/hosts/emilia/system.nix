@@ -1,7 +1,6 @@
 {
   inputs,
   config,
-  lib,
   ...
 }:
 let
@@ -46,7 +45,7 @@ let
 in
 {
   flake.modules.systemManager."hosts/emilia" =
-    { ... }:
+    { pkgs, ... }:
     {
       nixpkgs.hostPlatform = "aarch64-linux";
 
@@ -55,8 +54,10 @@ in
         system-manager-nix-nix-patched
       ];
 
-      environment.systemPackages = [
+      environment.systemPackages = with pkgs; [
         inputs.system-manager.packages.aarch64-linux.default
+        nixfmt
+        nixd
       ];
 
       systemd.services = { };
