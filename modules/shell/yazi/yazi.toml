@@ -1,32 +1,30 @@
-"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
-
 [mgr]
 show_hidden = true
 show_symlink = true
 
 [[opener.edit]]
-run = 'micro "$@"'
+run = 'micro %s'
 desc = "micro"
 block = true
 for = "unix"
 
 [[opener.edit]]
-run = 'code "$@"'
+run = 'code %s'
 desc = "Visual Studio Code"
 block = false
 
 [[opener.edit]]
-run = '${EDITOR:-micro} "$@"'
+run = '${EDITOR:-micro} %s'
 desc = "$EDITOR"
 block = true
 for = "unix"
 
 [[plugin.prepend_fetchers]]
-id   = "git"
-name = "*"
+group = "git"
+url   = "*"
 run  = "git"
 
 [[plugin.prepend_fetchers]]
-id   = "git"
-name = "*/"
+group = "git"
+url   = "*/"
 run  = "git"
