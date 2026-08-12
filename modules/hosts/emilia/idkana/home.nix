@@ -1,4 +1,4 @@
-{ inputs, config, ... }:
+{ config, ... }:
 {
   flake.modules.homeManager."idkana@emilia" =
     { pkgs, ... }:
@@ -14,7 +14,6 @@
         python3
         nodejs
         pnpm
-        inputs.llm-agents.packages.aarch64-linux.pi
       ];
 
       programs.emacs.enable = true;
