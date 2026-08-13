@@ -7,8 +7,7 @@
         ./nu
         |> lib.fileset.toList
         |> lib.map (
-          script:
-          "install -Dm755 ${script} $out/bin/${script |> builtins.baseNameOf |> lib.removeSuffix ".nu"}"
+          script: "install -Dm755 ${script} $out/bin/${script |> baseNameOf |> lib.removeSuffix ".nu"}"
         )
         |> lib.join "\n";
     in
