@@ -64,6 +64,7 @@ in
         nodejs
         inputs.llm-agents.packages.x86_64-linux.pi
         inputs.llm-agents.packages.x86_64-linux.codex
+        glow
       ];
 
       programs.dbeaver.enable = true;
