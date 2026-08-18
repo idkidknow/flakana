@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 {
   flake.modules.homeManager."idkana@emilia" =
     { pkgs, ... }:
@@ -23,6 +23,7 @@
       home.packages = [
         codex
         pi
+        self.packages.aarch64-linux.pi-web
       ];
     };
 }

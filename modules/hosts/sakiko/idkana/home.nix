@@ -63,6 +63,7 @@ in
         python314
         nodejs
         inputs.llm-agents.packages.x86_64-linux.pi
+        self.packages.x86_64-linux.pi-web
         inputs.llm-agents.packages.x86_64-linux.codex
         glow
       ];
