@@ -3,7 +3,6 @@
     { ... }:
     {
       nix.access-tokens-file = "/home/idkana/nix-access-tokens";
-      nix.settings.sandbox = false;
       nix.nrBuildUsers = 32;
       nix.named-substituters = {
         idkidknow.enable = true;
