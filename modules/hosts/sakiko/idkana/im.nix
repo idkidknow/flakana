@@ -1,14 +1,11 @@
 { config, ... }:
-let
-  pkgs-master = config.nixpkgsInstances.master-x86_64-linux;
-in
 {
   flake.modules.homeManager."idkana@sakiko" =
     { pkgs, ... }:
     {
       nixpkgs.config.allowUnfree = true;
       home.packages = with pkgs; [
-        pkgs-master.qq # track: PR #548395
+        qq
         telegram-desktop
         wechat
       ];
