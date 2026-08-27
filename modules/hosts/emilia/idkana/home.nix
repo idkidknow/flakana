@@ -14,6 +14,7 @@
         python3
         nodejs
         pnpm
+        glow
       ];
 
       programs.emacs.enable = true;
