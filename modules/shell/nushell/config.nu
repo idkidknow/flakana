@@ -1,4 +1,4 @@
-$env.config.buffer_editor = "emacsclient"
+$env.config.buffer_editor = "e"
 $env.config.show_banner = false
 $env.config.use_kitty_protocol = true
 
