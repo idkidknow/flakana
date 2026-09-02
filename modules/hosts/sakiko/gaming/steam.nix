@@ -12,6 +12,7 @@
         ];
       };
       programs.gamemode.enable = true;
+      programs.gamescope.enable = true;
     };
 
   flake.modules.homeManager."idkana@sakiko" =
