@@ -8,16 +8,16 @@
 
 buildNpmPackage {
   pname = "pi-web";
-  version = "0.8.9";
+  version = "0.9.0";
 
   src = fetchFromGitHub {
     owner = "agegr";
     repo = "pi-web";
-    rev = "2a6e53710f6409e0cceb3de839a62f8cdf3ca3ca";
-    hash = "sha256-WcWxsqywG29G+o5/Kth2B/P+BQuGbRLUaG2Q5qrCHrE=";
+    rev = "v0.9.0";
+    hash = "sha256-g7lcJ0cqJ31Kk+QctNl4B6C4vRQj9jjS+qp3QnpMtqQ=";
   };
 
-  npmDepsHash = "sha256-zws063zZjZRVPhV/ug2ZTNda/OwQ+RxnkZCtD1MJ7Vo=";
+  npmDepsHash = "sha256-vt6/DqS39P3sNrKyHXWRdXYWvm+z8l4R1dzo7h2Givw=";
   npmDepsFetcherVersion = 2;
   npmFlags = [ "--legacy-peer-deps" ];
   nodejs = nodejs_24;
