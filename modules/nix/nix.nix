@@ -26,18 +26,22 @@ let
     };
 in
 {
-  flake.modules.nixos.common =
-    { ... }:
-    {
-      imports = [ module ];
-      nix.nixPath = [
-        "nixpkgs=${inputs.nixpkgs}"
-        "flakana=${self}"
-      ];
-    };
+  flake.modules.nixos.common = { ... }: {
+    imports = [
+      module
+      inputs.nix-index-database.nixosModules.nix-index
+    ];
+    nix.nixPath = [
+      "nixpkgs=${inputs.nixpkgs}"
+      "flakana=${self}"
+    ];
+  };
 
   flake.modules.systemManager.common = { ... }: {
-    imports = [ module ];
+    imports = [
+      module
+      inputs.nix-index-database.nixosModules.nix-index
+    ];
     nix.enable = true;
   };
 }
