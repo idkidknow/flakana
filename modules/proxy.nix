@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos."hosts/sakiko" =
+  flake.modules.nixos.common =
     {
       pkgs,
       lib,
@@ -7,18 +7,19 @@
       ...
     }:
     let
-      cfg = config.daeLanInterfaces;
+      cfg = config.flakana.proxy;
       tailscaleSocksPort = 1055;
     in
     {
       options = {
-        daeLanInterfaces = lib.mkOption {
+        flakana.proxy.enable = lib.mkEnableOption "proxy";
+        flakana.proxy.daeLanInterfaces = lib.mkOption {
           type = lib.types.listOf lib.types.str;
           default = [ ];
         };
       };
 
-      config = {
+      config = lib.mkIf cfg.enable {
         services.tailscale = {
           enable = true;
           interfaceName = "userspace-networking";
@@ -42,7 +43,12 @@
           # world-readable in the nix store
           config = ''
             global {
-              ${if builtins.length cfg == 0 then "" else "lan_interface: ${lib.join "," cfg}"}
+              ${
+                if builtins.length cfg.daeLanInterfaces == 0 then
+                  ""
+                else
+                  "lan_interface: ${lib.join "," cfg.daeLanInterfaces}"
+              }
               wan_interface: auto
 
               log_level: info

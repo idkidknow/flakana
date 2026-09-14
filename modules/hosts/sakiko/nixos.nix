@@ -19,6 +19,10 @@
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFBCz34hfUy6AiB79MP0GJC2+ef61kjXqHvvHmFd62Gz";
       };
 
+      flakana = {
+        proxy.enable = true;
+      };
+
       environment.systemPackages = with pkgs; [
         nushell
         nixfmt
