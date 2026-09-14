@@ -1,7 +1,7 @@
 {
-  flake.modules.nixos."hosts/sakiko" =
-    { ... }:
-    {
+  flake.modules.nixos.common-desktop =
+    { config, lib, ... }:
+    lib.mkIf (config.flakana.niri.enable && lib.elem "nvidia" config.services.xserver.videoDrivers) {
       # https://github.com/YaLTeR/niri/issues/1962 & https://github.com/YaLTeR/niri/wiki/Nvidia
       environment.etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-niri.json".text =
         ''

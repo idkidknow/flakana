@@ -1,8 +1,13 @@
 { inputs, ... }:
 {
-  flake.modules.nixos."hosts/sakiko" =
-    { pkgs, ... }:
+  flake.modules.nixos.common-desktop =
     {
+      pkgs,
+      config,
+      lib,
+      ...
+    }:
+    lib.mkIf config.flakana.niri.enable {
       services.displayManager.regreet = {
         enable = true;
         cageArgs = [

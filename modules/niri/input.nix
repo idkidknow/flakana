@@ -1,7 +1,7 @@
 {
-  flake.modules.homeManager."idkana@sakiko" =
-    { ... }:
-    {
+  flake.modules.homeManager.common-desktop =
+    { config, lib, ... }:
+    lib.mkIf config.flakana.niri.enable {
       wayland.windowManager.niri.settings.input = {
         keyboard = {
           xkb.layout = "us";

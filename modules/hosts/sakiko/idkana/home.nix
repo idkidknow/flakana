@@ -20,6 +20,8 @@ in
       home.username = "idkana";
       home.homeDirectory = "/home/idkana";
 
+      flakana.niri.enable = true;
+
       home.packages = with pkgs; [
         fastfetch
         gitui
