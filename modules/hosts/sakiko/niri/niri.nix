@@ -12,9 +12,8 @@
   flake.modules.homeManager."idkana@sakiko" =
     { pkgs, ... }:
     {
-      home.packages = with pkgs; [
-        rofi
-        nautilus # https://github.com/YaLTeR/niri/issues/702
+      home.packages = [
+        pkgs.nautilus # https://github.com/YaLTeR/niri/issues/702
       ];
 
       services.gnome-keyring.enable = true;
@@ -44,17 +43,6 @@
 
       wayland.windowManager.niri.settings = {
         hotkey-overlay.skip-at-startup = true;
-
-        binds = {
-          "Mod+D" = {
-            spawn = [
-              "rofi"
-              "-show"
-              "drun"
-            ];
-            _props.hotkey-overlay-title = "rofi drun";
-          };
-        };
 
         debug.honor-xdg-activation-with-invalid-serial = { };
 
@@ -140,13 +128,6 @@
               { draw-border-with-background = false; }
               { opacity = 0.95; }
             ];
-          }
-
-          {
-            layer-rule = {
-              match._props.namespace = "^rofi$";
-              shadow.on = { };
-            };
           }
         ];
       };
