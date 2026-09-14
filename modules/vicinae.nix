@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.modules.homeManager."idkana@sakiko" =
+  flake.modules.homeManager.common-desktop =
     { pkgs, config, ... }:
     {
       imports = [ inputs.vicinae.homeManagerModules.default ];
