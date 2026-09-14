@@ -26,13 +26,11 @@ in
         fastfetch
         gitui
         git-lfs
-        jujutsu
         fzf
         dua
         duf
         tealdeer
         nix-output-monitor
-        nh
         google-chrome
         wev
         pwvucontrol
@@ -62,14 +60,16 @@ in
         elan
         android-tools
         ffmpeg
-        python314
+        python3
         nodejs
+        pnpm
         inputs.llm-agents.packages.x86_64-linux.pi
         self.packages.x86_64-linux.pi-web
         inputs.llm-agents.packages.x86_64-linux.codex
         glow
       ];
 
+      programs.alacritty.enable = true;
       programs.dbeaver.enable = true;
 
       systemd.user.sessionVariables = {
