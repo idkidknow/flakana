@@ -1,4 +1,4 @@
-{ inputs, config, ... }:
+{ config, ... }:
 {
   flake.modules.homeManager."idkana@mizuki" =
     { pkgs, ... }:
@@ -6,7 +6,6 @@
       imports = [
         config.flake.modules.homeManager.common
         config.flake.modules.homeManager.common-desktop
-        inputs.niri-flake.homeModules.niri
       ];
 
       home.stateVersion = "26.11";

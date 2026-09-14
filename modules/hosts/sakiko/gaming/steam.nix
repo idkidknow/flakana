@@ -18,21 +18,21 @@
   flake.modules.homeManager."idkana@sakiko" =
     { ... }:
     {
-      programs.niri.settings.window-rules = [
+      wayland.windowManager.niri.settings._children = [
         # do not center notification toasts
         {
-          matches = [
-            {
+          window-rule = {
+            match._props = {
               app-id = "^steam$";
               title = "^notificationtoast";
-            }
-          ];
-          default-floating-position = {
-            relative-to = "top-right";
-            x = 0;
-            y = 0;
+            };
+            default-floating-position._props = {
+              relative-to = "top-right";
+              x = 0;
+              y = 0;
+            };
+            open-focused = false;
           };
-          open-focused = false;
         }
       ];
     };

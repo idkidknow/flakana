@@ -13,14 +13,13 @@
         settings = ./noctalia.toml;
       };
 
-      programs.niri.settings.spawn-at-startup = [ { argv = [ "noctalia" ]; } ];
-
-      programs.niri.settings.layer-rules = [
+      wayland.windowManager.niri.settings._children = [
+        { spawn-at-startup = [ "noctalia" ]; }
         {
-          matches = [
-            { namespace = "^noctalia-wallpaper"; }
-          ];
-          place-within-backdrop = true;
+          layer-rule = {
+            match._props.namespace = "^noctalia-wallpaper";
+            place-within-backdrop = true;
+          };
         }
       ];
 

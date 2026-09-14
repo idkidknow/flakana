@@ -6,63 +6,40 @@
       config,
       ...
     }:
-    let
-      cfg = config.programs.alacritty;
-    in
     {
-      options = {
-        programs.alacritty.niri-flake-settings = {
-          enable = lib.mkOption {
-            type = lib.types.bool;
-            default = false;
+      home.packages = [ pkgs.nerd-fonts.jetbrains-mono ];
+
+      programs.alacritty = {
+        settings = {
+          window.decorations = "None";
+          window.opacity = 0.9;
+
+          font.normal = {
+            family = "JetBrainsMono Nerd Font";
+            style = "Regular";
           };
 
-          bind = lib.mkOption {
-            type = lib.types.str;
-            default = "Mod+T";
+          cursor.style = {
+            shape = "Beam";
+            blinking = "On";
           };
+
+          terminal.shell = lib.mkIf (config.programs.fish.enable) "${lib.getExe config.programs.fish.package}";
         };
       };
 
-      config = lib.mkMerge [
+      wayland.windowManager.niri.settings.binds."Mod+Shift+T" = {
+        spawn = [ "alacritty" ];
+        _props.hotkey-overlay-title = "Open a Terminal: alacritty";
+      };
+
+      wayland.windowManager.niri.settings._children = [
         {
-          home.packages = [ pkgs.nerd-fonts.jetbrains-mono ];
-
-          programs.alacritty = {
-            settings = {
-              window.decorations = "None";
-              window.opacity = 0.9;
-
-              font.normal = {
-                family = "JetBrainsMono Nerd Font";
-                style = "Regular";
-              };
-
-              cursor.style = {
-                shape = "Beam";
-                blinking = "On";
-              };
-
-              terminal.shell = lib.mkIf (config.programs.fish.enable) "${lib.getExe config.programs.fish.package}";
-            };
+          window-rule = {
+            match._props.app-id = "^Alacritty$";
+            draw-border-with-background = false;
           };
         }
-
-        (lib.mkIf cfg.niri-flake-settings.enable {
-          programs.niri.settings.binds.${cfg.niri-flake-settings.bind} = {
-            action.spawn = "alacritty";
-            hotkey-overlay.title = "Open a Terminal: alacritty";
-          };
-
-          programs.niri.settings.window-rules = [
-            {
-              matches = [
-                { app-id = "^Alacritty$"; }
-              ];
-              draw-border-with-background = false;
-            }
-          ];
-        })
       ];
     };
 }

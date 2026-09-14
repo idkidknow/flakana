@@ -41,6 +41,7 @@
               layer_shell.keyboard_interactivity = "on_demand";
             };
           };
+
       systemd.user.services.vicinae.Service.ExecStartPre =
         let
           cfgDir = "${config.xdg.configHome}/vicinae";
@@ -52,42 +53,35 @@
           fi
         ''}";
 
-      programs.niri.settings.window-rules = [
+      wayland.windowManager.niri.settings._children = [
         {
-          matches = [
-            { title = "^Vicinae Settings$"; }
-          ];
-          draw-border-with-background = false;
+          window-rule = {
+            match._props.title = "^Vicinae Settings$";
+            draw-border-with-background = false;
+          };
         }
       ];
 
-      # programs.niri.settings.layer-rules = [
-      #   {
-      #     matches = [ { namespace = "^vicinae$"; } ];
-      #     shadow.enable = true;
-      #   }
-      # ];
-
-      programs.niri.settings.binds = {
+      wayland.windowManager.niri.settings.binds = {
         "Alt+Space" = {
-          repeat = false;
-          action.spawn = [
+          _props.repeat = false;
+          spawn = [
             "vicinae"
             "toggle"
           ];
         };
 
         "Mod+S" = {
-          repeat = false;
-          action.spawn = [
+          _props.repeat = false;
+          spawn = [
             "vicinae"
             "vicinae://launch/clipboard/history"
           ];
         };
 
         "Mod+E" = {
-          repeat = false;
-          action.spawn = [
+          _props.repeat = false;
+          spawn = [
             "vicinae"
             "vicinae://launch/wm/switch-windows"
           ];

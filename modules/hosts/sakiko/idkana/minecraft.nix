@@ -19,11 +19,13 @@ in
         prismlauncher
       ];
 
-      programs.niri.settings.window-rules = [
+      wayland.windowManager.niri.settings._children = [
         {
-          matches = [ { app-id = "^Minecraft"; } ];
-          open-maximized = true;
-          variable-refresh-rate = true;
+          window-rule = {
+            match._props.app-id = "^Minecraft";
+            open-maximized = true;
+            variable-refresh-rate = true;
+          };
         }
       ];
     };

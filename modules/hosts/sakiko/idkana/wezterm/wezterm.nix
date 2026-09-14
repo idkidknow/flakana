@@ -8,17 +8,17 @@
 
       xdg.configFile."wezterm/wezterm.lua".source = ./wezterm.lua;
 
-      programs.niri.settings.binds."Mod+T" = {
-        action.spawn = "wezterm";
-        hotkey-overlay.title = "Open a Terminal: wezterm";
+      wayland.windowManager.niri.settings.binds."Mod+T" = {
+        spawn = [ "wezterm" ];
+        _props.hotkey-overlay-title = "Open a Terminal: wezterm";
       };
 
-      programs.niri.settings.window-rules = [
+      wayland.windowManager.niri.settings._children = [
         {
-          matches = [
-            { app-id = "^org.wezfurlong.wezterm$"; }
-          ];
-          draw-border-with-background = false;
+          window-rule = {
+            match._props.app-id = "^org.wezfurlong.wezterm$";
+            draw-border-with-background = false;
+          };
         }
       ];
     };

@@ -10,39 +10,43 @@
         wechat
       ];
 
-      programs.niri.settings.window-rules = [
+      wayland.windowManager.niri.settings._children = [
         {
-          matches = [
-            {
+          window-rule = {
+            match._props = {
               app-id = "^org\.telegram\.desktop$";
               title = "媒体查看器";
-            }
-          ];
-          open-floating = true;
+            };
+            open-floating = true;
+          };
         }
         {
-          matches = [
+          window-rule._children = [
             {
-              app-id = "^QQ$";
-              title = "^图片查看器$";
+              match._props = {
+                app-id = "^QQ$";
+                title = "^图片查看器$";
+              };
             }
             {
-              app-id = "^QQ$";
-              title = "的聊天记录$";
+              match._props = {
+                app-id = "^QQ$";
+                title = "的聊天记录$";
+              };
             }
+            { open-floating = true; }
+            { default-column-width.fixed = 600; }
+            { default-window-height.fixed = 900; }
           ];
-          open-floating = true;
-          default-column-width.fixed = 600;
-          default-window-height.fixed = 900;
         }
         {
-          matches = [
-            {
+          window-rule = {
+            match._props = {
               app-id = "^QQ$";
               title = "视频播放器";
-            }
-          ];
-          open-floating = true;
+            };
+            open-floating = true;
+          };
         }
       ];
     };

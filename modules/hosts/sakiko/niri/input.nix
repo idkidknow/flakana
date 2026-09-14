@@ -2,16 +2,16 @@
   flake.modules.homeManager."idkana@sakiko" =
     { ... }:
     {
-      programs.niri.settings.input = {
+      wayland.windowManager.niri.settings.input = {
         keyboard = {
           xkb.layout = "us";
           numlock = true;
         };
 
         touchpad = {
-          tap = true;
-          dwt = true;
-          natural-scroll = true;
+          tap = { };
+          dwt = { };
+          natural-scroll = { };
           scroll-method = "two-finger";
           scroll-factor = 0.6;
         };

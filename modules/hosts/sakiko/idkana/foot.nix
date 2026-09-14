@@ -19,10 +19,10 @@
         };
       };
 
-      programs.niri.settings.binds = {
+      wayland.windowManager.niri.settings.binds = {
         "Mod+0" = {
-          repeat = false;
-          action.spawn = "foot";
+          _props.repeat = false;
+          spawn = [ "foot" ];
         };
       };
     };
