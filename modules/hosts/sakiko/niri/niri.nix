@@ -3,7 +3,7 @@
     flakana.niri.enable = true;
   };
 
-  flake.modules.homeManager.common-desktop = { ... }: {
+  flake.modules.homeManager."idkana@sakiko" = { ... }: {
     flakana.niri.enable = true;
   };
 }
