@@ -8,6 +8,9 @@
         config.flake.modules.nixos.common
         config.flake.modules.nixos.common-desktop
       ];
+
+      nixpkgs.config.allowUnfree = true;
+
       system.stateVersion = "26.05";
       time.timeZone = "Asia/Shanghai";
       i18n.defaultLocale = "zh_CN.UTF-8";
@@ -19,9 +22,9 @@
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGlYqrK+cCt/jG4xhHaP6zK/kBnB2bbDxd0ZFJbQtW+Y";
       };
 
-      services.xserver.enable = true;
-      services.displayManager.plasma-login-manager.enable = true;
-      services.desktopManager.plasma6.enable = true;
+      flakana = {
+        proxy.enable = true;
+      };
 
       services.xserver.videoDrivers = [ "vmware" ];
       virtualisation.vmware.guest.enable = true;
