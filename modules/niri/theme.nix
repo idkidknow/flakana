@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos."hosts/sakiko" =
+  flake.modules.nixos.common-desktop =
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
@@ -14,7 +14,7 @@
       };
     };
 
-  flake.modules.homeManager."idkana@sakiko" =
+  flake.modules.homeManager.common-desktop =
     { ... }:
     {
       qt = {
