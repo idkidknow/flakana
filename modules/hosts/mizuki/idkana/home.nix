@@ -1,4 +1,4 @@
-{ config, ... }:
+{ inputs, config, ... }:
 {
   flake.modules.homeManager."idkana@mizuki" =
     { pkgs, ... }:
@@ -18,6 +18,8 @@
         nodejs
         pnpm
         glow
+        inputs.llm-agents.packages.x86_64-linux.codex
+        inputs.llm-agents.packages.x86_64-linux.pi
       ];
 
       programs.emacs.enable = true;
