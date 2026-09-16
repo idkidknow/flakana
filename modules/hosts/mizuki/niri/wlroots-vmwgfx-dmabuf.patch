@@ -1,0 +1,43 @@
+--- a/types/wlr_linux_dmabuf_v1.c
++++ b/types/wlr_linux_dmabuf_v1.c
+@@ -205,6 +205,30 @@
+ 	wlr_buffer_drop(&buffer->base);
+ }
+ 
++#define DRM_VMW_UNREF_SURFACE 10
++
++struct drmVmwSurfaceArg {
++	int32_t sid;
++	uint32_t handleType;
++};
++
++/* vmwgfx prime-imports surface-backed dmabufs as TTM handles, not GEM, so
++ * GEM_CLOSE fails with EINVAL; close them via DRM_VMW_UNREF_SURFACE instead. */
++static int closeVmwGFXHandle(int fd, uint32_t handle) {
++	bool isVmwgfx;
++	drmVersionPtr version;
++
++	version = drmGetVersion(fd);
++	isVmwgfx = version && version->name && strncmp(version->name, "vmwgfx", version->name_len) == 0;
++	if (version)
++		drmFreeVersion(version);
++	if (!isVmwgfx)
++		return -1;
++
++	struct drmVmwSurfaceArg arg = {(int32_t)handle, 0};
++	return drmCommandWrite(fd, DRM_VMW_UNREF_SURFACE, &arg, sizeof(arg));
++}
++
+ static bool check_import_dmabuf(struct wlr_dmabuf_attributes *attribs, void *data) {
+ 	struct wlr_linux_dmabuf_v1 *linux_dmabuf = data;
+ 
+@@ -219,7 +243,8 @@
+ 			wlr_log_errno(WLR_ERROR, "Failed to import DMA-BUF FD for plane %d", i);
+ 			return false;
+ 		}
+-		if (drmCloseBufferHandle(linux_dmabuf->main_device_fd, handle) != 0) {
++		if (drmCloseBufferHandle(linux_dmabuf->main_device_fd, handle) != 0 &&
++				closeVmwGFXHandle(linux_dmabuf->main_device_fd, handle) != 0) {
+ 			wlr_log_errno(WLR_ERROR, "Failed to close buffer handle for plane %d", i);
+ 			return false;
+ 		}
