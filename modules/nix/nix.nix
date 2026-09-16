@@ -40,7 +40,6 @@ in
   flake.modules.systemManager.common = { ... }: {
     imports = [
       module
-      inputs.nix-index-database.nixosModules.nix-index
     ];
     nix.enable = true;
   };
