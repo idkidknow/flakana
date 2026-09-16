@@ -17,7 +17,11 @@ jobs:
            os: ubuntu-24.04
          - target: ".#nixosConfigurations.tomori.config.system.build.toplevel"
            os: ubuntu-24.04
+         - target: ".#nixosConfigurations.mizuki.config.system.build.toplevel"
+           os: ubuntu-24.04
          - target: ".#homeConfigurations.\"idkana@sakiko\".activationPackage"
+           os: ubuntu-24.04
+         - target: ".#homeConfigurations.\"idkana@mizuki\".activationPackage"
            os: ubuntu-24.04
          - target: ".#homeConfigurations.\"idkana@emilia\".activationPackage"
            os: ubuntu-24.04-arm
