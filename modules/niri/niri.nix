@@ -91,7 +91,7 @@
 
           layout.background-color = "transparent";
 
-          screenshot-path = "~/screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
+          screenshot-path = "~/Pictures/screenshots/screenshot-%Y-%m-%d-%H-%M-%S.png";
 
           animations = {
             workspace-switch.spring._props = {
