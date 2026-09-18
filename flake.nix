@@ -123,6 +123,11 @@
       inputs.treefmt-nix.follows = "treefmt-nix";
     };
 
+    mark-shot = {
+      url = "github:jswysnemc/mark-shot";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # follow
     crane = {
       url = "github:ipetkov/crane";
