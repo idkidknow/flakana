@@ -616,22 +616,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-335f0738": {
-      "locked": {
-        "lastModified": 1784872115,
-        "narHash": "sha256-THPEF2po0fsoH8gNtp+Ae0XFDJH3N/ol7xO3v6VMTJU=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "335f0738cb2fa9708f3f428e39d2eae975d1338d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "335f0738cb2fa9708f3f428e39d2eae975d1338d",
-        "type": "github"
-      }
-    },
     "nixpkgs-docs": {
       "locked": {
         "lastModified": 1705957679,
@@ -982,7 +966,6 @@
         "nix-on-droid": "nix-on-droid",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-335f0738": "nixpkgs-335f0738",
         "nixpkgs-master": "nixpkgs-master",
         "noctalia": "noctalia",
         "pyproject-build-systems": "pyproject-build-systems",
