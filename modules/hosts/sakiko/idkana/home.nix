@@ -67,7 +67,6 @@ in
         self.packages.x86_64-linux.pi-web
         inputs.llm-agents.packages.x86_64-linux.codex
         glow
-        inputs.mark-shot.packages.x86_64-linux.default
       ];
 
       programs.alacritty.enable = true;
