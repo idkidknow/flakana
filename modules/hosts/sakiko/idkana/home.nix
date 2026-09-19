@@ -66,6 +66,12 @@ in
         inputs.llm-agents.packages.x86_64-linux.pi
         self.packages.x86_64-linux.pi-web
         inputs.llm-agents.packages.x86_64-linux.codex
+        (inputs.llm-agents.packages.x86_64-linux.chatgpt.overrideAttrs (prev: {
+          postFixup = (prev.postFixup or "") + ''
+            wrapProgram "$out/bin/chatgpt" \
+              --prefix PATH : ${lib.makeBinPath [ bubblewrap ]}
+          '';
+        }))
         glow
       ];
 
