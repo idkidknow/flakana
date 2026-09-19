@@ -9,5 +9,6 @@
     vaultwarden = "domain.vaultwarden";
     static = "domain.static";
     kavita = "domain.kavita";
+    forgejo = "domain.forgejo";
   };
 }
