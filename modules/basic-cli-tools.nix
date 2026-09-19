@@ -1,7 +1,6 @@
 let
   packages =
     pkgs: with pkgs; [
-      git
       vim
       wget
       micro

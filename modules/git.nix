@@ -31,4 +31,11 @@
         };
       };
     };
+
+  flake.modules.homeManager.common-desktop = { pkgs, ... }: {
+    programs.git = {
+      package = pkgs.gitFull;
+      settings.credential.helper = "libsecret";
+    };
+  };
 }
