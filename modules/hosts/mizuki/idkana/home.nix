@@ -20,6 +20,12 @@
         glow
         inputs.llm-agents.packages.x86_64-linux.codex
         inputs.llm-agents.packages.x86_64-linux.pi
+        (inputs.llm-agents.packages.x86_64-linux.chatgpt.overrideAttrs (prev: {
+          postFixup = (prev.postFixup or "") + ''
+            wrapProgram "$out/bin/chatgpt" \
+              --prefix PATH : ${lib.makeBinPath [ bubblewrap ]}
+          '';
+        }))
       ];
 
       programs.emacs.enable = true;
