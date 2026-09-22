@@ -49,6 +49,8 @@
 
       programs.nix-ld.enable = true;
 
+      virtualisation.docker.enable = true;
+
       environment.variables.EDITOR = "micro";
     };
 }
