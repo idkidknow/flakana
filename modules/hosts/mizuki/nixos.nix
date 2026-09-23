@@ -51,6 +51,8 @@
 
       virtualisation.docker.enable = true;
 
+      programs.localsend.enable = true;
+
       environment.variables.EDITOR = "micro";
     };
 }
