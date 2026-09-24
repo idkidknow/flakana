@@ -82,13 +82,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    steamux = {
-      url = "github:idkidknow/steamux";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.rust-overlay.follows = "rust-overlay";
-      inputs.crane.follows = "crane";
-    };
-
     vicinae = {
       url = "github:vicinaehq/vicinae";
       inputs.nixpkgs.follows = "nixpkgs";

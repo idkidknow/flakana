@@ -268,24 +268,6 @@
     },
     "flake-parts_6": {
       "inputs": {
-        "nixpkgs-lib": "nixpkgs-lib_3"
-      },
-      "locked": {
-        "lastModified": 1762980239,
-        "narHash": "sha256-8oNVE8TrD19ulHinjaqONf9QWCKK+w4url56cdStMpM=",
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "rev": "52a2caecc898d0b46b2b905f058ccc5081f842da",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "type": "github"
-      }
-    },
-    "flake-parts_7": {
-      "inputs": {
         "nixpkgs-lib": [
           "system-manager",
           "userborn",
@@ -306,7 +288,7 @@
         "type": "github"
       }
     },
-    "flake-parts_8": {
+    "flake-parts_7": {
       "inputs": {
         "nixpkgs-lib": [
           "vaultix",
@@ -733,21 +715,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-lib_3": {
-      "locked": {
-        "lastModified": 1761765539,
-        "narHash": "sha256-b0yj6kfvO8ApcSE+QmA6mUfu8IYG6/uU28OFn4PaC8M=",
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "rev": "719359f4562934ae99f5443f20aa06c2ffff91fc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "type": "github"
-      }
-    },
     "nixpkgs-libxml2": {
       "locked": {
         "lastModified": 1751274312,
@@ -1029,7 +996,6 @@
         "pyproject-nix": "pyproject-nix",
         "rust-overlay": "rust-overlay",
         "selector4nix": "selector4nix",
-        "steamux": "steamux",
         "system-manager": "system-manager",
         "treefmt-nix": "treefmt-nix_2",
         "uv2nix": "uv2nix",
@@ -1114,33 +1080,6 @@
       "original": {
         "owner": "vicinaehq",
         "repo": "soulver-cpp",
-        "type": "github"
-      }
-    },
-    "steamux": {
-      "inputs": {
-        "crane": [
-          "crane"
-        ],
-        "flake-parts": "flake-parts_6",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "rust-overlay": [
-          "rust-overlay"
-        ]
-      },
-      "locked": {
-        "lastModified": 1763110823,
-        "narHash": "sha256-zXpEyHhczsPqbm2qG4frIpn++fjc1HVr9HKNx4dAUeE=",
-        "owner": "idkidknow",
-        "repo": "steamux",
-        "rev": "2f5e7d0bdcff290f72d5055b6abe5dcd6489362b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "idkidknow",
-        "repo": "steamux",
         "type": "github"
       }
     },
@@ -1286,7 +1225,7 @@
           "system-manager",
           "flake-compat"
         ],
-        "flake-parts": "flake-parts_7",
+        "flake-parts": "flake-parts_6",
         "nixpkgs": [
           "system-manager",
           "nixpkgs"
@@ -1355,7 +1294,7 @@
         "crane": [
           "crane"
         ],
-        "flake-parts": "flake-parts_8",
+        "flake-parts": "flake-parts_7",
         "nixpkgs": [
           "nixpkgs"
         ],
