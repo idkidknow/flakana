@@ -139,19 +139,23 @@
 
   outputs =
     inputs:
-    inputs.flake-parts.lib.mkFlake
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } (
+      { lib, ... }:
+      let
+        moduleFileList =
+          dir:
+          dir
+          |> lib.fileset.fileFilter (file: file.hasExt "nix" && !lib.hasPrefix "_" file.name)
+          |> lib.fileset.toList;
+      in
       {
-        inputs = inputs // {
-          priv = import ./priv.nix;
-        };
-      }
-      (
-        { lib, ... }:
-        {
-          imports =
+        imports =
+          [
             ./modules
-            |> lib.fileset.fileFilter (file: file.hasExt "nix" && !lib.hasPrefix "_" file.name)
-            |> lib.fileset.toList;
-        }
-      );
+            ./private-modules
+          ]
+          |> lib.filter builtins.pathExists
+          |> lib.concatMap moduleFileList;
+      }
+    );
 }

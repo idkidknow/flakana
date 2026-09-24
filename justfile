@@ -1,21 +1,20 @@
-update-stale:
-    jj st --no-pager
-    jj workspace update-stale --repository ../flakana-priv
+sync-priv:
+    rsync -a --delete --delete-excluded --exclude '.git/' --exclude '.jj/' --filter 'P /private-modules/***' --filter '- /private-modules/***' ./ ../flakana-priv/
 
-os: update-stale
+os: sync-priv
     nh os switch ../flakana-priv
 
-home: update-stale
+home: sync-priv
     nh home switch ../flakana-priv -b bak
 
 gc:
     nh clean all -k 2
 
-tomori: update-stale
+tomori: sync-priv
     deploy ../flakana-priv\#tomori
 
-uika: update-stale
+uika: sync-priv
     deploy ../flakana-priv\#uika -- --impure
 
-sm: update-stale
+sm: sync-priv
     sudo system-manager switch --flake ../flakana-priv

@@ -1,7 +1,6 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 let
-  priv = inputs.priv;
-  inherit (priv) domain;
+  inherit (config.priv) domain;
 in
 {
   perSystem =

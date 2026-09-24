@@ -1,4 +1,7 @@
-{ inputs, ... }:
+{ config, ... }:
+let
+  priv = config.priv;
+in
 {
   flake.modules.homeManager.common =
     { pkgs, lib, ... }:
@@ -8,7 +11,7 @@
         settings = {
           user = {
             name = "idkana";
-            email = inputs.priv.email;
+            email = priv.email;
           };
           signing = {
             behavior = "own";

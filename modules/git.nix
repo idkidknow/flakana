@@ -1,4 +1,7 @@
-{ inputs, ... }:
+{ config, ... }:
+let
+  priv = config.priv;
+in
 {
   flake.modules.homeManager.common =
     {
@@ -19,7 +22,7 @@
             d = "-c diff.external=${lib.getExe pkgs.difftastic} diff";
           };
 
-          user.email = inputs.priv.email;
+          user.email = priv.email;
           user.name = "idkana";
 
           init.defaultBranch = "main";

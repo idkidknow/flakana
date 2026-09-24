@@ -1,7 +1,6 @@
-{ inputs, ... }:
+{ config, ... }:
 let
-  priv = inputs.priv;
-  inherit (priv) domain;
+  inherit (config.priv) domain;
 in
 {
   flake.modules.nixos."hosts/tomori" =

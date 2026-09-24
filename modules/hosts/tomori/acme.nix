@@ -1,6 +1,6 @@
-{ inputs, ... }:
+{ config, ... }:
 let
-  priv = inputs.priv;
+  priv = config.priv;
   domain = priv.domain.root;
 in
 {
