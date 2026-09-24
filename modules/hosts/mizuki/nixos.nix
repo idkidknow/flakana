@@ -28,6 +28,7 @@
 
       services.xserver.videoDrivers = [ "vmware" ];
       virtualisation.vmware.guest.enable = true;
+      virtualisation.vmware.guest.headless = false;
 
       services.userborn.enable = true;
 
