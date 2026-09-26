@@ -2,7 +2,6 @@
   flake.modules.homeManager."idkana@sakiko" =
     { pkgs, ... }:
     let
-      scala-cli = pkgs.scala-cli;
       # scala-cli = pkgs.scala-cli.overrideAttrs (
       #   prev:
       #   let
@@ -23,8 +22,9 @@
       # );
     in
     {
-      home.packages = [
+      home.packages = with pkgs; [
         scala-cli
+        mill
       ];
     };
 }
