@@ -2,53 +2,49 @@
   buildNpmPackage,
   fetchFromGitHub,
   lib,
+  jq,
   nodejs_24,
   noto-fonts,
 }:
 
 buildNpmPackage {
   pname = "pi-web";
-  version = "0.9.0";
+  version = "0.9.3";
 
   src = fetchFromGitHub {
     owner = "agegr";
     repo = "pi-web";
-    rev = "v0.9.0";
-    hash = "sha256-g7lcJ0cqJ31Kk+QctNl4B6C4vRQj9jjS+qp3QnpMtqQ=";
+    rev = "v0.9.3";
+    hash = "sha256-EhoxOwmEIsN3G6MQImZbCSJM4QBnnzKzNV+gmuIUkN0=";
   };
 
-  npmDepsHash = "sha256-vt6/DqS39P3sNrKyHXWRdXYWvm+z8l4R1dzo7h2Givw=";
+  npmDepsHash = "sha256-ioz3ploxZo+2vsVHAbcxw3T/LkpXIwaBjfEib8fgeSY=";
   npmDepsFetcherVersion = 2;
   npmFlags = [ "--legacy-peer-deps" ];
   nodejs = nodejs_24;
 
-  # Fill integrity hashes omitted from nested pi packages, then remove entries
-  # bundled into the optional wasm32 Tailwind tarball. prefetch-npm-deps cannot
-  # handle registry dependencies without an integrity hash.
+  # Reuse integrity hashes from entries with the same tarball URL. Upstream
+  # omits them from some nested pi packages. Drop dependencies bundled in the
+  # optional Tailwind wasm tarball, which have no resolved URL of their own.
   postPatch = ''
-    sed -i \
-      '/"node_modules\/@earendil-works\/pi-coding-agent\/node_modules\/@earendil-works\/pi-agent-core": {/,/^    },$/ s|      "resolved": "https://registry.npmjs.org/@earendil-works/pi-agent-core/-/pi-agent-core-0.84.2.tgz",|&\n      "integrity": "sha512-8Pn3wSCxj0cfo5I6jxQYVB/3uuQRmHhAlEclyjqpOuMEdQMIODHizRogv56FLdbU+dTiGnybeHQ2N+sV1/L2YA==",|' \
-      package-lock.json
-    sed -i \
-      '/"node_modules\/@earendil-works\/pi-coding-agent\/node_modules\/@earendil-works\/pi-ai": {/,/^    },$/ s|      "resolved": "https://registry.npmjs.org/@earendil-works/pi-ai/-/pi-ai-0.84.2.tgz",|&\n      "integrity": "sha512-6MzsrYIYNVlE7SfpbL2yYb67Qo58p/7Q+xWG1RZvoX1P80aRCHSod2/13aFpxkow1lPO2LEh3c495J0Gwmyjig==",|' \
-      package-lock.json
-    sed -i \
-      '/"node_modules\/@earendil-works\/pi-coding-agent\/node_modules\/@earendil-works\/pi-client": {/,/^    },$/ s|      "resolved": "https://registry.npmjs.org/@earendil-works/pi-client/-/pi-client-0.84.2.tgz",|&\n      "integrity": "sha512-/RFSPhD/bZbpOp1oJj+UneSUFSgZhWxzcSENUY+8+8xhoBrWXMYI2t77XNx4Yf+c8YK2qTHquForhNcelYpXvg==",|' \
-      package-lock.json
-    sed -i \
-      '/"node_modules\/@earendil-works\/pi-coding-agent\/node_modules\/@earendil-works\/pi-protocol": {/,/^    },$/ s|      "resolved": "https://registry.npmjs.org/@earendil-works/pi-protocol/-/pi-protocol-0.84.2.tgz",|&\n      "integrity": "sha512-jbBh03fkeckWEroHpcZBr4w5/Ibat8WwdXFlXHivYQImrQNFtLpDeL0t1cku4hmK0q3pceIRQHkw4fwbM4YILQ==",|' \
-      package-lock.json
-    sed -i \
-      '/"node_modules\/@earendil-works\/pi-coding-agent\/node_modules\/@earendil-works\/pi-telemetry": {/,/^    },$/ s|      "resolved": "https://registry.npmjs.org/@earendil-works/pi-telemetry/-/pi-telemetry-0.84.2.tgz",|&\n      "integrity": "sha512-wg5caea7uIv1BHRBm2Y116RvFG4oSAiP5qk9tA2463PDGIr4K8M1Ceyyg5DOpF/shUUl0gk826yQJAeAcHYB9g==",|' \
-      package-lock.json
-    sed -i \
-      '/"node_modules\/@earendil-works\/pi-coding-agent\/node_modules\/@earendil-works\/pi-tui": {/,/^    },$/ s|      "resolved": "https://registry.npmjs.org/@earendil-works/pi-tui/-/pi-tui-0.84.2.tgz",|&\n      "integrity": "sha512-ds2TLihOnM5sLJB3VpXV6y0uR5efVuHf4MN7yDpsty6hA2DUO/EDVzjp/0od0G2JslzVLMjT8T8zavtxVb+qbg==",|' \
-      package-lock.json
-    sed -i \
-      '/"node_modules\/@tailwindcss\/oxide-wasm32-wasi\/node_modules\/@emnapi\/core": {/,/"node_modules\/@tailwindcss\/oxide-win32-arm64-msvc": {/ {
-        /"node_modules\/@tailwindcss\/oxide-win32-arm64-msvc": {/!d
-      }' \
-      package-lock.json
+    ${lib.getExe jq} '
+      (.packages | [.[] | select(.resolved and .integrity)]
+        | map({key: .resolved, value: .integrity}) | from_entries) as $integrities
+      | .packages |= with_entries(
+          select(.key | startswith("node_modules/@tailwindcss/oxide-wasm32-wasi/node_modules/") | not)
+          | if .value.resolved and (.value.integrity | not) then
+              .value.integrity = ($integrities[.value.resolved] // error("Missing integrity for " + .key))
+            else . end
+        )
+    ' package-lock.json > package-lock.json.tmp
+    mv package-lock.json.tmp package-lock.json
+  '';
+
+  # npm 11 crashes while pruning the reconstructed nested pi dependency tree.
+  # Let prune use npm ci's hidden lockfile, refreshed after shebang patching.
+  preInstall = ''
+    unset NIX_NODEJS_BUILDNPMPACKAGE
+    touch node_modules/.package-lock.json
   '';
 
   preBuild = ''
