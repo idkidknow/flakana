@@ -84,7 +84,8 @@
 
     vicinae = {
       url = "github:vicinaehq/vicinae";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # track: GCC 16
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     noctalia = {
