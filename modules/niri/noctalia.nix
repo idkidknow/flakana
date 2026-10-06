@@ -5,10 +5,6 @@
     {
       imports = [
         inputs.noctalia.homeModules.default
-        {
-          # track: https://github.com/noctalia-dev/noctalia/pull/4656
-          disabledModules = [ "programs/noctalia" ];
-        }
       ];
 
       config = lib.mkIf config.flakana.niri.enable {
