@@ -3,6 +3,7 @@
 
   nixConfig = {
     extra-experimental-features = [ "pipe-operators" ];
+    allow-import-from-derivation = false;
   };
 
   inputs = {
