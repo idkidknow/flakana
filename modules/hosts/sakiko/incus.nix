@@ -5,6 +5,7 @@
       virtualisation.incus = {
         enable = true;
         package = pkgs.incus;
+        socketActivation = true;
       };
 
       networking.firewall.trustedInterfaces = [ "incusbr0" ];
