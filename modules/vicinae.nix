@@ -8,6 +8,9 @@
       programs.vicinae = {
         enable = true;
 
+        # track: https://github.com/vicinaehq/vicinae/issues/2040
+        package = pkgs.vicinae;
+
         systemd = {
           enable = true;
           autoStart = true;
