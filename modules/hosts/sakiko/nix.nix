@@ -19,8 +19,6 @@
         nix-on-droid.keyOnly = true;
         numtide.enable = true;
         numtide.keyOnly = true;
-        nix-cachyos-kernel.enable = true;
-        nix-cachyos-kernel.keyOnly = true;
       };
 
       nix.settings = {
@@ -56,9 +54,6 @@
             }
             {
               url = "https://cache.numtide.com";
-            }
-            {
-              url = "https://attic.xuyh0120.win/lantian";
             }
             {
               url = "https://cache.idkidknow.com";
