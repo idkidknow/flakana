@@ -12,10 +12,16 @@
     in
     {
       options = {
-        flakana.proxy.enable = lib.mkEnableOption "proxy";
-        flakana.proxy.daeLanInterfaces = lib.mkOption {
-          type = lib.types.listOf lib.types.str;
-          default = [ ];
+        flakana.proxy = {
+          enable = lib.mkEnableOption "proxy";
+          daeLanInterfaces = lib.mkOption {
+            type = lib.types.listOf lib.types.str;
+            default = [ ];
+          };
+          daeWanInterfaces = lib.mkOption {
+            type = lib.types.listOf lib.types.str;
+            default = [ ];
+          };
         };
       };
 
@@ -49,7 +55,9 @@
                 else
                   "lan_interface: ${lib.join "," cfg.daeLanInterfaces}"
               }
-              wan_interface: auto
+              wan_interface: ${
+                if builtins.length cfg.daeWanInterfaces == 0 then "auto" else (lib.join "," cfg.daeWanInterfaces)
+              }
 
               log_level: info
               allow_insecure: false

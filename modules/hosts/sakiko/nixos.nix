@@ -20,7 +20,13 @@
       };
 
       flakana = {
-        proxy.enable = true;
+        proxy = {
+          enable = true;
+          daeWanInterfaces = [
+            "eno1"
+            "wlp4s0"
+          ];
+        };
       };
 
       environment.systemPackages = with pkgs; [
