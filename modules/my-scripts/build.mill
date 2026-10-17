@@ -1,0 +1,48 @@
+//| mill-jvm-version: system
+//| mvnDeps:
+//| - com.goyeau::mill-scalafix::0.6.2
+
+package build
+
+import mill.*, scalalib.*
+import mill.javalib.NativeImageModule
+import com.goyeau.mill.scalafix.ScalafixModule
+
+object `package`
+    extends ScalaModule
+    with NativeImageModule
+    with ScalafixModule {
+  def scalaVersion = "3.9.0"
+
+  def scalacOptions = Seq(
+    "-Wunused:imports",
+    "-deprecation",
+  )
+
+  def mainClass = Some("main")
+
+  def reachabilityMetadataEnv = Task.Input {
+    Task.env.get("GRAALVM_REACHABILITY_METADATA")
+  }
+
+  def nativeGraalVMReachabilityMetadata = Task {
+    reachabilityMetadataEnv() match {
+      case Some(path) => PathRef(os.Path(path))
+      case None => super.nativeGraalVMReachabilityMetadata()
+    }
+  }
+
+  def nativeImageOptions = Seq("-J--sun-misc-unsafe-memory-access=allow")
+
+  def mvnDeps = Seq(
+    mvn"org.typelevel::cats-core:2.13.0",
+    mvn"org.typelevel::cats-effect:3.7.1",
+    mvn"co.fs2::fs2-core:3.14.0",
+    mvn"co.fs2::fs2-io:3.14.0",
+    mvn"io.circe::circe-core:0.14.17",
+    mvn"io.circe::circe-generic:0.14.17",
+    mvn"io.circe::circe-parser:0.14.17",
+    mvn"io.github.dotty-cps-async::cps-async-connect-cats-effect:1.4.0",
+    mvn"com.monovore::decline:2.6.2",
+  )
+}
