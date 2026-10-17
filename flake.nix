@@ -122,6 +122,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    mvn-trace-forge = {
+      url = "github:Avimitin/mvn-trace-forge";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # follow
     crane = {
       url = "github:ipetkov/crane";
