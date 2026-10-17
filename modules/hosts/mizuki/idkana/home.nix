@@ -26,6 +26,7 @@
               --prefix PATH : ${lib.makeBinPath [ bubblewrap ]}
           '';
         }))
+        zed-editor
       ];
 
       programs.emacs.enable = true;
