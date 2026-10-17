@@ -43,14 +43,14 @@ in
         kdePackages.dolphin-plugins
         obsidian
         vesktop
-        (self.lib.electronFixIME vscode)
+        vscode
         pkgs-master.jetbrains.idea
         isd
         peazip
         kdePackages.okular
         krita
         xournalpp
-        (element-desktop |> self.lib.electronFixIME |> self.lib.electronUseGnomeLibsecret)
+        (element-desktop |> self.lib.electronUseGnomeLibsecret)
         obs-studio
         kdePackages.kdenlive
         wl-clipboard
