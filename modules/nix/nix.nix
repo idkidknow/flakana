@@ -11,6 +11,8 @@ let
       };
 
       config = {
+        nix.registry.flakana.flake = self;
+
         nix.settings = {
           experimental-features = [
             "nix-command"
