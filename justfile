@@ -1,5 +1,5 @@
 sync-priv:
-    rsync -a --delete --delete-excluded --exclude '.git/' --exclude '.jj/' --filter 'P /private-modules/***' --filter '- /private-modules/***' ./ ../flakana-priv/
+    my flakana sync-priv ..
 
 os: sync-priv
     nh os switch ../flakana-priv

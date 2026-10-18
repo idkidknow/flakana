@@ -135,6 +135,8 @@ object Flakana {
       "P /private-modules/***",
       "--filter",
       "- /private-modules/***",
+      "--info",
+      "progress2",
       s"${path / "flakana"}/",
       s"${path / "flakana-priv"}/",
     ).inheritStdio.spawn[IO].use(_.exitValue).void.await
