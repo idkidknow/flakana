@@ -55,6 +55,28 @@ object main extends IOApp {
       ) {
         path.map(Flakana.syncPriv)
       }
+    } orElse Opts.subcommand(
+      name = "niri-mark",
+      help = "Mark and focus niri windows.",
+    ) {
+      val name = Opts.argument[String](metavar = "name")
+
+      Opts.subcommand(
+        name = "daemon",
+        help = "Run the niri mark daemon.",
+      ) {
+        Opts.unit.as(NiriMark.daemon)
+      } orElse Opts.subcommand(
+        name = "mark",
+        help = "Toggle a mark on the focused window.",
+      ) {
+        name.map(NiriMark.Client.mark)
+      } orElse Opts.subcommand(
+        name = "focus",
+        help = "Focus the window with the given mark.",
+      ) {
+        name.map(NiriMark.Client.focus)
+      }
     }
   }
 
