@@ -19,7 +19,7 @@ object `package`
     "-deprecation",
   )
 
-  def mainClass = Some("main")
+  def mainClass = Some("myscripts.main")
 
   def reachabilityMetadataEnv = Task.Input {
     Task.env.get("GRAALVM_REACHABILITY_METADATA")

@@ -10,11 +10,29 @@
         hash = "sha256-gLNDZ8VOLm+JbUNmgI3Ji7jWTMoh9FQ1c6MHnbH4bps=";
         stripRoot = false;
       };
-    in
-    {
-      packages.my-scripts = pkgs.callPackage ./_package.nix {
+      my-scripts-unwrapped = pkgs.callPackage ./_package.nix {
         inherit mill reachabilityMetadata;
       };
+    in
+    {
+      packages.my-scripts =
+        pkgs.runCommand "my-scripts-${my-scripts-unwrapped.version}"
+          {
+            inherit (my-scripts-unwrapped) version meta;
+            nativeBuildInputs = [ pkgs.makeWrapper ];
+            passthru.unwrapped = my-scripts-unwrapped;
+          }
+          ''
+            makeWrapper ${my-scripts-unwrapped}/bin/my "$out/bin/my" \
+              --prefix PATH : ${
+                pkgs.lib.makeBinPath [
+                  pkgs.jujutsu
+                  pkgs.gitMinimal
+                  pkgs.openssh
+                  pkgs.rsync
+                ]
+              }
+          '';
 
       devShells.my-scripts = pkgs.mkShell {
         packages = [
