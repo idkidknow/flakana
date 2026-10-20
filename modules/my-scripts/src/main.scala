@@ -74,6 +74,11 @@ object main extends IOApp {
         help = "Focus the window with the given mark.",
       ) {
         name.map(NiriMark.Client.focus)
+      } orElse Opts.subcommand(
+        name = "show",
+        help = "Show all marks.",
+      ) {
+        Opts.unit.as(NiriMark.Client.show)
       }
     }
   }

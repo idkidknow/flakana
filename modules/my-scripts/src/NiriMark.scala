@@ -1,10 +1,10 @@
 package myscripts
 
 import cats.effect.IO
+import cats.effect.Ref
 import cats.effect.Resource
 import cats.effect.std.Console
 import cats.effect.std.Env
-import cats.effect.std.MapRef
 import cats.syntax.all.*
 import com.comcast.ip4s.UnixSocketAddress
 import cps.*
@@ -28,6 +28,7 @@ object NiriMark {
   enum Op {
     case Mark(name: String)
     case Focus(name: String)
+    case Show
   }
 
   private def getNiriMarkSocketPath: IO[Path] = async[IO] {
@@ -67,7 +68,7 @@ object NiriMark {
     }
 
   private def mark(
-      marks: MapRef[IO, String, Option[BigInt]],
+      marks: Ref[IO, Map[String, BigInt]],
       niriSocketPath: Path,
       name: String,
   ): IO[Unit] = async[IO] {
@@ -78,19 +79,21 @@ object NiriMark {
       .rethrow
       .await
     window.foreach { curr =>
-      marks(name).update {
-        case Some(prevId) if prevId == curr.id => None
-        case _ => Some(curr.id)
-      }.await
+      marks
+        .update(_.updatedWith(name) {
+          case Some(prevId) if prevId == curr.id => None
+          case _ => Some(curr.id)
+        })
+        .await
     }
   }
 
   private def focus(
-      marks: MapRef[IO, String, Option[BigInt]],
+      marks: Ref[IO, Map[String, BigInt]],
       niriSocketPath: Path,
       name: String,
   ): IO[Unit] = async[IO] {
-    marks(name).get.await.foreach { id =>
+    marks.get.await.get(name).foreach { id =>
       val action = (Action = (FocusWindow = (id = id))).asJson
       callNiri(niriSocketPath, action).void.await
     }
@@ -100,7 +103,7 @@ object NiriMark {
     val niriSocketPath = Path(ensureEnv("NIRI_SOCKET").await)
     val niriMarkSocketPath = getNiriMarkSocketPath.await
 
-    val marks = MapRef.ofConcurrentHashMap[IO, String, BigInt]().await
+    val marks = Ref.of[IO, Map[String, BigInt]](Map.empty).await
 
     val server = Network[IO]
       .bind(
@@ -123,8 +126,10 @@ object NiriMark {
         val handle = async[IO] {
           val op = decode[Op](readLine(socket).await).pure[IO].rethrow.await
           op match {
-            case Op.Mark(name) => mark(marks, niriSocketPath, name).await
-            case Op.Focus(name) => focus(marks, niriSocketPath, name).await
+            case Op.Mark(name) => mark(marks, niriSocketPath, name).await.asJson
+            case Op.Focus(name) =>
+              focus(marks, niriSocketPath, name).await.asJson
+            case Op.Show => marks.get.await.asJson
           }
         }.timeout(5.seconds)
         handle.attempt
@@ -144,19 +149,20 @@ object NiriMark {
   }
 
   object Client {
-    private def request(op: Op): IO[Unit] = asyncScope[IO] {
+    private def request(op: Op): IO[Json] = asyncScope[IO] {
       val socketPath = getNiriMarkSocketPath.await
       val socket =
         Network[IO].connect(UnixSocketAddress(socketPath.toString)).await
       writeLine(socket, op.asJson.noSpaces).await
-      val response = decode[Either[String, Unit]](readLine(socket).await)
+      val response = decode[Either[String, Json]](readLine(socket).await)
         .pure[IO]
         .rethrow
         .await
       response.leftMap(RuntimeException(_)).pure[IO].rethrow.await
     }.timeout(10.seconds)
 
-    def mark(name: String): IO[Unit] = request(Op.Mark(name))
-    def focus(name: String): IO[Unit] = request(Op.Focus(name))
+    def mark(name: String): IO[Unit] = request(Op.Mark(name)).void
+    def focus(name: String): IO[Unit] = request(Op.Focus(name)).void
+    def show: IO[Unit] = request(Op.Show).flatMap(IO.println)
   }
 }
