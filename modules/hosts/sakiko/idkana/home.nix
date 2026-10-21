@@ -2,14 +2,17 @@
   inputs,
   config,
   self,
+  withSystem,
   ...
 }:
-let
-  pkgs-master = config.nixpkgsInstances.master-x86_64-linux;
-in
 {
   flake.modules.homeManager."idkana@sakiko" =
     { pkgs, ... }:
+    let
+      pkgs-master = withSystem pkgs.stdenv.hostPlatform.system (
+        { config, ... }: config.nixpkgsInstances.master
+      );
+    in
     {
       imports = [
         config.flake.modules.homeManager.common

@@ -1,10 +1,12 @@
-{ config, ... }:
-let
-  pkgs-master = config.nixpkgsInstances.master-x86_64-linux;
-in
+{ withSystem, ... }:
 {
   flake.modules.homeManager."idkana@sakiko" =
     { pkgs, ... }:
+    let
+      pkgs-master = withSystem pkgs.stdenv.hostPlatform.system (
+        { config, ... }: config.nixpkgsInstances.master
+      );
+    in
     {
       home.packages = with pkgs; [
         (pkgs-master.hmcl.override {
