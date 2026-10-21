@@ -7,6 +7,6 @@
       boot.loader.efi.canTouchEfiVariables = true;
 
       nixpkgs.overlays = [ inputs.nix-cachyos-kernel.overlays.default ];
-      boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
+      boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v3;
     };
 }
