@@ -1,12 +1,25 @@
-{ inputs, config, ... }:
+{
+  inputs,
+  config,
+  withSystem,
+  ...
+}:
+let
+  inherit (config.flake.modules.nixos) common common-desktop;
+in
 {
   flake.modules.nixos."hosts/sakiko" =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
+    let
+      pkgs-master = withSystem pkgs.stdenv.hostPlatform.system (
+        { config, ... }: config.nixpkgsInstances.master
+      );
+    in
     {
       imports = [
         ./_hardware-configuration.nix
-        config.flake.modules.nixos.common
-        config.flake.modules.nixos.common-desktop
+        common
+        common-desktop
       ];
       system.stateVersion = "25.05";
       networking.hostName = "sakiko";
@@ -44,6 +57,8 @@
       hardware.openrazer = {
         enable = true;
         users = [ "idkana" ];
+        # track: https://github.com/NixOS/nixpkgs/pull/576293
+        packages.kernel = (pkgs-master.linuxPackagesFor config.boot.kernelPackages.kernel).openrazer;
       };
 
       hardware.bluetooth.enable = true;
