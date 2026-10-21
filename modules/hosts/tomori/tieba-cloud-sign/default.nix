@@ -1,4 +1,9 @@
-{ inputs, config, ... }:
+{
+  inputs,
+  config,
+  withSystem,
+  ...
+}:
 let
   inherit (config.priv) domain;
 in
@@ -16,6 +21,10 @@ in
       ...
     }:
     let
+      pkgs-master = withSystem pkgs.stdenv.hostPlatform.system (
+        { config, ... }: config.nixpkgsInstances.master
+      );
+      php = pkgs-master.php84;
       package = inputs.self.packages.x86_64-linux.tieba-cloud-sign;
       user = "tbsign";
       group = "tbsign";
@@ -44,7 +53,7 @@ in
       };
     in
     {
-      environment.systemPackages = [ pkgs.php ];
+      environment.systemPackages = [ php ];
 
       users.users.${user} = {
         description = "tieba-cloud-sign daemon user";
@@ -61,6 +70,7 @@ in
 
       services.phpfpm.pools.tieba-cloud-sign = {
         inherit user group;
+        phpPackage = php;
         phpOptions = ''
           max_execution_time = 3600
           upload_max_filesize=128M
@@ -119,7 +129,7 @@ in
         serviceConfig = {
           User = user;
           Group = group;
-          ExecStart = "${pkgs.php}/bin/php ${pkg}/do.php";
+          ExecStart = "${php}/bin/php ${pkg}/do.php";
         };
       };
       systemd.timers."tieba-cloud-sign" = {
