@@ -49,7 +49,6 @@
         vscode
         pkgs-master.jetbrains.idea
         isd
-        peazip
         kdePackages.okular
         krita
         xournalpp

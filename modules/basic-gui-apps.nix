@@ -6,6 +6,7 @@
         firefox
         telegram-desktop
         libreoffice-qt
+        peazip
       ];
     };
 }
