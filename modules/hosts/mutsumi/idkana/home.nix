@@ -1,4 +1,4 @@
-{ inputs, config, ... }:
+{ config, ... }:
 {
   flake.modules.homeManager."idkana@mutsumi" =
     { pkgs, ... }:
@@ -8,8 +8,6 @@
       home.stateVersion = "24.11";
       home.username = "idkana";
       home.homeDirectory = "/home/idkana";
-
-      nixpkgs.overlays = [ (import inputs.rust-overlay) ];
 
       home.packages = with pkgs; [
         emacs

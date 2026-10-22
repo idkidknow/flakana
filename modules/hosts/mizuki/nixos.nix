@@ -9,8 +9,6 @@
         config.flake.modules.nixos.common-desktop
       ];
 
-      nixpkgs.config.allowUnfree = true;
-
       system.stateVersion = "26.05";
       time.timeZone = "Asia/Shanghai";
       i18n.defaultLocale = "zh_CN.UTF-8";

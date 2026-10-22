@@ -1,16 +1,23 @@
 {
   inputs,
   config,
+  withSystem,
   ...
 }:
 let
   hostname = "mizuki";
   module = config.flake.modules.nixos."hosts/${hostname}";
+  system = "x86_64-linux";
 in
 {
   flake.nixosConfigurations.${hostname} = inputs.nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    modules = [ module ];
+    inherit system;
+    modules = [
+      module
+      {
+        nixpkgs.pkgs = withSystem system ({ config, ... }: config.nixpkgsInstances.default);
+      }
+    ];
     specialArgs = { inherit inputs; }; # for vaultix
   };
 }

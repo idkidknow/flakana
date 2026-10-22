@@ -2,7 +2,6 @@
   flake.modules.nixos."hosts/sakiko" =
     { pkgs, ... }:
     {
-      nixpkgs.config.allowUnfree = true;
       programs.steam = {
         enable = true;
         remotePlay.openFirewall = true;
