@@ -37,8 +37,18 @@ jobs:
      - uses: Mic92/niks3-action@v1
        with:
          server-url: https://niks3.idkidknow.com
-     - name: nix build
+     - name: Nix build
        shell: bash
        env:
          target: ${{ matrix.target }}
-       run: nix build --no-link --log-format raw -L --show-trace --option log-lines 0 --keep-going --max-jobs auto "$target"
+       run: |
+         nix run --inputs-from . "nixpkgs#nix-fast-build" -- \
+           --flake "$target" \
+           --result-file "$RUNNER_TEMP/result.json"
+     - name: Upload result
+       if: always()
+       uses: actions/upload-artifact@v7
+       with:
+         name: result-${{ matrix.target }}
+         path: ${{ runner.temp }}/result.json
+         retention-days: 1
