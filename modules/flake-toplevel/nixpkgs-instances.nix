@@ -22,7 +22,7 @@
           overlays = [
             inputs.mvn-trace-forge.overlays.default
             (import inputs.rust-overlay)
-            inputs.nix-cachyos-kernel.overlays.default
+            inputs.nix-cachyos-kernel.overlays.pinned
           ];
         };
 
