@@ -8,8 +8,81 @@ import fs2.Stream
 import fs2.io.file.Path
 import fs2.io.process.ProcessBuilder
 import fs2.io.process.Redirect
+import io.circe.generic.auto.*
 
 object Flakana {
+  def track(pathOpt: Option[Path]): IO[Unit] = async[IO] {
+    val path = pathOpt.getOrElse(home.await) / "flakana"
+    val marker = """\btrack(?: \(([A-Za-z0-9._-]+)\))?:[ \t]*(.*)""".r
+    val githubUrl =
+      """https://github\.com/([\w.-]+)/([\w.-]+)/(pull|issues)/(\d+)\b""".r
+
+    def report(content: String): IO[Unit] = async[IO] {
+      marker.findFirstMatchIn(content).foreach { entry =>
+        githubUrl.findPrefixMatchOf(entry.group(2).stripPrefix("[")).foreach {
+          url =>
+            val owner = url.group(1)
+            val repo = url.group(2)
+            val kind = url.group(3)
+            val number = url.group(4)
+            val tag = Option(entry.group(1))
+            val unstable = tag.contains("nixos-unstable")
+            val nixpkgs = owner.equalsIgnoreCase("NixOS") && repo
+              .equalsIgnoreCase("nixpkgs")
+            if (kind == "pull" && (tag.isEmpty || (unstable && nixpkgs))) {
+              val pr = githubApi[
+                (
+                    title: String,
+                    state: String,
+                    merged: Boolean,
+                    merge_commit_sha: Option[String],
+                )
+              ](s"repos/$owner/$repo/pulls/$number").await
+              val label = if (unstable) "nixpkgs" else s"$owner/$repo"
+              val state = if (pr.merged) "merged" else pr.state
+              IO.println(s"$label PR: $number, ${pr.title}").await
+              val commit = pr.merge_commit_sha
+                .filter(_ => pr.merged) // don't show commit if not merged
+              if (unstable) commit.foreach { sha =>
+                IO.println(s"commit: $sha").await
+              }
+              IO.println(s"state: $state").await
+              if (unstable) {
+                val included = commit
+                  .traverse { sha =>
+                    githubApi[(status: String)](
+                      s"repos/NixOS/nixpkgs/compare/$sha...nixos-unstable?per_page=1"
+                    ).map(result =>
+                      Set("ahead", "identical").contains(result.status)
+                    )
+                  }
+                  .await
+                  .getOrElse(false)
+                IO.println(s"nixos-unstable: ${if (included) "✔" else "✘"}")
+                  .await
+              }
+            } else if (kind == "issues" && tag.isEmpty) {
+              val issue = githubApi[(title: String, state: String)](
+                s"repos/$owner/$repo/issues/$number"
+              ).await
+              IO.println(s"$owner/$repo issue: $number, ${issue.title}").await
+              IO.println(s"state: ${issue.state}").await
+            }
+        }
+      }
+    }
+
+    rg(marker.regex, path)
+      .evalMap { result =>
+        IO.println(s"${result.path}:${result.lineNumber}")
+          *> IO.println(result.line)
+          *> report(result.line)
+      }
+      .compile
+      .drain
+      .await
+  }
+
   def setup(pathOpt: Option[Path]): IO[Unit] = async[IO] {
     val path = pathOpt.getOrElse(home.await)
     ProcessBuilder(

@@ -4,7 +4,6 @@ import cats.effect.ExitCode
 import cats.effect.IO
 import cats.effect.IOApp
 import cats.effect.std.Console
-import cats.effect.std.Env
 import cats.syntax.all.*
 import com.monovore.decline.Command
 import com.monovore.decline.Opts
@@ -52,6 +51,11 @@ object main extends IOApp {
         help = "Sync flakana into flakana-priv (default path: $HOME).",
       ) {
         path.map(Flakana.syncPriv)
+      } orElse Opts.subcommand(
+        name = "track",
+        help = """Track "# track" comments in flakana (default path: $HOME).""",
+      ) {
+        path.map(Flakana.track)
       }
     } orElse Opts.subcommand(
       name = "niri-mark",
@@ -93,11 +97,6 @@ object main extends IOApp {
         action.as(ExitCode.Success)
     }
 }
-
-def ensureEnv(name: String): IO[String] =
-  Env[IO].get(name).map(_.toRight(Exception(s"missing ${"$"}$name"))).rethrow
-
-def home: IO[Path] = ensureEnv("HOME").map(Path(_))
 
 def instantiateSymlink(path: Path): IO[Unit] = async[IO] {
   val realPath = Files[IO].realPath(path).await

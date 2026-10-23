@@ -30,6 +30,8 @@
                   pkgs.gitMinimal
                   pkgs.openssh
                   pkgs.rsync
+                  pkgs.ripgrep
+                  pkgs.gh
                 ]
               }
           '';

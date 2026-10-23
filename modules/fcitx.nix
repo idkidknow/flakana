@@ -17,7 +17,7 @@
           fcitx5-rime
           fcitx5-gtk
           kdePackages.fcitx5-qt
-          # track: https://github.com/NixOS/nixpkgs/pull/531687
+          # track (nixos-unstable): https://github.com/NixOS/nixpkgs/pull/531687
           pkgs-master.fcitx5-mozc
           fcitx5-mellow-themes
         ];

@@ -57,7 +57,7 @@ in
       hardware.openrazer = {
         enable = true;
         users = [ "idkana" ];
-        # track: https://github.com/NixOS/nixpkgs/pull/576293
+        # track (nixos-unstable): https://github.com/NixOS/nixpkgs/pull/576293
         packages.kernel = (pkgs-master.linuxPackagesFor config.boot.kernelPackages.kernel).openrazer;
       };
 
