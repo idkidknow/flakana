@@ -1,4 +1,3 @@
-{ inputs, ... }:
 {
   flake.modules.nixos."hosts/mizuki" =
     { pkgs, ... }:
@@ -10,6 +9,6 @@
       boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
 
-      boot.kernelPackages = pkgs.linuxPackages_latest;
+      boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v3;
     };
 }
