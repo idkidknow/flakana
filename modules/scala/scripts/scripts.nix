@@ -1,70 +1,86 @@
 { self, ... }:
-{
-  flake.lib.mkWriteScalaScript =
-    pkgs:
+let
+  mkScalaWriter =
+    pkgs: writeScript:
     let
       jdk = pkgs.jdk25;
       mill = self.packages.${pkgs.stdenv.hostPlatform.system}.mill-unwrapped;
       m2 = pkgs.mkMavenRepository {
         lockFile = ./mtf.lock.json;
       };
-    in
-    name: text:
-    let
-      compiled = pkgs.stdenvNoCC.mkDerivation {
-        name = "${name}-scala";
+      writeScala =
+        name:
+        {
+          main ? false,
+        }:
+        text:
+        let
+          source =
+            if main then
+              let
+                body = pkgs.lib.concatMapStringsSep "\n" (line: "    ${line}") (pkgs.lib.splitString "\n" text);
+              in
+              ''
+                object Main {
+                  def main(args: Array[String]): Unit = {
+                ${body}
+                  }
+                }
+              ''
+            else
+              text;
+          compiled = pkgs.stdenvNoCC.mkDerivation {
+            name = "${name}-scala";
 
-        dontUnpack = true;
-        dontConfigure = true;
-        strictDeps = true;
+            dontUnpack = true;
+            dontConfigure = true;
+            strictDeps = true;
 
-        nativeBuildInputs = [
-          jdk
-          mill
-          m2
-        ];
+            nativeBuildInputs = [
+              jdk
+              mill
+              m2
+            ];
 
-        env.JAVA_HOME = jdk.home;
+            env.JAVA_HOME = jdk.home;
 
-        buildPhase = ''
-          runHook preBuild
+            buildPhase = ''
+              runHook preBuild
 
-          mkdir -p src
-          cp ${./build.mill} build.mill
-          cp ${./prelude.scala} src/prelude.scala
-          cp ${pkgs.writeText "main.scala" text} src/main.scala
+              mkdir -p src
+              cp ${./build.mill} build.mill
+              cp ${./prelude.scala} src/prelude.scala
+              cp ${pkgs.writeText "main.scala" source} src/main.scala
 
-          mill --no-daemon scriptBundle
+              mill --no-daemon scriptBundle
 
-          runHook postBuild
+              runHook postBuild
+            '';
+
+            installPhase = ''
+              runHook preInstall
+
+              cp -r out/scriptBundle.dest "$out"
+
+              runHook postInstall
+            '';
+          };
+        in
+        writeScript name ''
+          exec ${jdk}/bin/java \
+            --sun-misc-unsafe-memory-access=allow \
+            -cp "$(< ${compiled}/classpath):${compiled}/script.jar" \
+            "$(< ${compiled}/main-class)" "$@"
         '';
 
-        installPhase = ''
-          runHook preInstall
-
-          cp -r out/scriptBundle.dest "$out"
-
-          runHook postInstall
-        '';
-      };
     in
-    pkgs.writeShellScript name ''
-      exec ${jdk}/bin/java \
-        --sun-misc-unsafe-memory-access=allow \
-        -cp "$(< ${compiled}/classpath):${compiled}/script.jar" \
-        "$(< ${compiled}/main-class)" "$@"
-    '';
-
-  flake.lib.mkWriteScalaScriptMain =
-    pkgs: name: text:
-    let
-      body = pkgs.lib.concatMapStringsSep "\n" (line: "    ${line}") (pkgs.lib.splitString "\n" text);
-    in
-    self.lib.mkWriteScalaScript pkgs name ''
-      object Main {
-        def main(args: Array[String]): Unit = {
-      ${body}
-        }
-      }
-    '';
+    name: argsOrText:
+    if pkgs.lib.isAttrs argsOrText && !pkgs.lib.isDerivation argsOrText then
+      writeScala name argsOrText
+    else
+      writeScala name { } argsOrText;
+in
+{
+  flake.lib.mkWriteScala = pkgs: mkScalaWriter pkgs pkgs.writeShellScript;
+  flake.lib.mkWriteScalaBin = pkgs: mkScalaWriter pkgs pkgs.writeShellScriptBin;
 }
