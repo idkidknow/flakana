@@ -1,12 +1,6 @@
-{ withSystem, ... }:
 {
   flake.modules.nixos.common-desktop =
     { pkgs, ... }:
-    let
-      pkgs-master = withSystem pkgs.stdenv.hostPlatform.system (
-        { config, ... }: config.nixpkgsInstances.master
-      );
-    in
     {
       i18n.inputMethod = {
         enable = true;
@@ -17,8 +11,7 @@
           fcitx5-rime
           fcitx5-gtk
           kdePackages.fcitx5-qt
-          # track (nixos-unstable): https://github.com/NixOS/nixpkgs/pull/531687
-          pkgs-master.fcitx5-mozc
+          fcitx5-mozc
           fcitx5-mellow-themes
         ];
       };

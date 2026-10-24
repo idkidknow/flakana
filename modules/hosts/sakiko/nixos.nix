@@ -1,20 +1,10 @@
-{
-  inputs,
-  config,
-  withSystem,
-  ...
-}:
+{ inputs, config, ... }:
 let
   inherit (config.flake.modules.nixos) common common-desktop;
 in
 {
   flake.modules.nixos."hosts/sakiko" =
-    { config, pkgs, ... }:
-    let
-      pkgs-master = withSystem pkgs.stdenv.hostPlatform.system (
-        { config, ... }: config.nixpkgsInstances.master
-      );
-    in
+    { pkgs, ... }:
     {
       imports = [
         ./_hardware-configuration.nix
@@ -57,8 +47,6 @@ in
       hardware.openrazer = {
         enable = true;
         users = [ "idkana" ];
-        # track (nixos-unstable): https://github.com/NixOS/nixpkgs/pull/576293
-        packages.kernel = (pkgs-master.linuxPackagesFor config.boot.kernelPackages.kernel).openrazer;
       };
 
       hardware.bluetooth.enable = true;
