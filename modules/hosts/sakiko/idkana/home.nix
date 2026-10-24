@@ -32,8 +32,6 @@
         fzf
         dua
         duf
-        tealdeer
-        nix-output-monitor
         google-chrome
         wev
         pwvucontrol

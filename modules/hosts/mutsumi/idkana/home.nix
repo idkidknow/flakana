@@ -39,8 +39,6 @@
         zellij
         fzf
         dua
-        tealdeer
-        nix-output-monitor
         nh
         nvfetcher
         taplo
