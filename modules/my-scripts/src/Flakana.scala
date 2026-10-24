@@ -5,6 +5,7 @@ import cats.syntax.all.*
 import cps.*
 import cps.monads.catsEffect.{*, given}
 import fs2.Stream
+import fs2.io.file.Files
 import fs2.io.file.Path
 import fs2.io.process.ProcessBuilder
 import fs2.io.process.Redirect
@@ -184,5 +185,22 @@ object Flakana {
         IO.println(s"rsync: exit $exitValue")
       }
       .await
+  }
+
+  def osBuild(path: Path): IO[Path] = asyncScope[IO] {
+    val tempDir = Files[IO].tempDirectory.await
+    val host = hostname.await
+    val pathPriv = path / "flakana-priv"
+    val outLink = tempDir / "result"
+    ProcessBuilder(
+      "nom",
+      "build",
+      s"""$pathPriv#nixosConfigurations."$host".config.system.build.toplevel""",
+      "--out-link",
+      outLink.toString,
+    ).run.await
+    val out = Files[IO].realPath(outLink).await
+    ProcessBuilder("dix", "/run/current-system", out.toString).run.await
+    out
   }
 }
