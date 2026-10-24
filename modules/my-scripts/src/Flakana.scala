@@ -11,8 +11,7 @@ import fs2.io.process.Redirect
 import io.circe.generic.auto.*
 
 object Flakana {
-  def track(pathOpt: Option[Path]): IO[Unit] = async[IO] {
-    val path = pathOpt.getOrElse(home.await) / "flakana"
+  def track(path: Path): IO[Unit] = async[IO] {
     val marker = """\btrack(?: \(([A-Za-z0-9._-]+)\))?:[ \t]*(.*)""".r
     val githubUrl =
       """https://github\.com/([\w.-]+)/([\w.-]+)/(pull|issues)/(\d+)\b""".r
@@ -72,7 +71,7 @@ object Flakana {
       }
     }
 
-    rg(marker.regex, path)
+    rg(marker.regex, path / "flakana")
       .evalMap { result =>
         IO.println(s"${result.path}:${result.lineNumber}")
           *> IO.println(result.line)
@@ -83,8 +82,7 @@ object Flakana {
       .await
   }
 
-  def setup(pathOpt: Option[Path]): IO[Unit] = async[IO] {
-    val path = pathOpt.getOrElse(home.await)
+  def setup(path: Path): IO[Unit] = async[IO] {
     ProcessBuilder(
       "jj",
       "git",
@@ -99,11 +97,10 @@ object Flakana {
       "https://github.com/idkidknow/flakana-priv.git",
       (path / "flakana-priv/private-modules").toString,
     ).inheritStdio.spawn[IO].use(_.exitValue).void.await
-    syncPriv(pathOpt).await
+    syncPriv(path).await
   }
 
-  def syncPriv(pathOpt: Option[Path]): IO[Unit] = async[IO] {
-    val path = pathOpt.getOrElse(home.await)
+  def syncPriv(path: Path): IO[Unit] = async[IO] {
     val src = path / "flakana"
     val dst = path / "flakana-priv"
     val files = ProcessBuilder("jj", "file", "list", "-T", "path ++ \"\\0\"")

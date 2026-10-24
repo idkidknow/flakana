@@ -37,25 +37,32 @@ object main extends IOApp {
       help = "Manage flakana repositories.",
     ) {
       val path = Opts
-        .argument[java.nio.file.Path](metavar = "path")
+        .option[java.nio.file.Path](
+          long = "path",
+          help = "The parent path of flakana. (default: $HOME)",
+        )
         .map(Path.fromNioPath)
         .orNone
+        .map {
+          case Some(path) => path.pure[IO]
+          case None => home
+        }
 
       Opts.subcommand(
         name = "setup",
-        help = "Set up flakana (default path: $HOME).",
+        help = "Set up flakana.",
       ) {
-        path.map(Flakana.setup)
+        path.map(_.flatMap(Flakana.setup))
       } orElse Opts.subcommand(
         name = "sync-priv",
-        help = "Sync flakana into flakana-priv (default path: $HOME).",
+        help = "Sync flakana into flakana-priv.",
       ) {
-        path.map(Flakana.syncPriv)
+        path.map(_.flatMap(Flakana.syncPriv))
       } orElse Opts.subcommand(
         name = "track",
-        help = """Track "# track" comments in flakana (default path: $HOME).""",
+        help = """Track "# track" comments in flakana.""",
       ) {
-        path.map(Flakana.track)
+        path.map(_.flatMap(Flakana.track))
       }
     } orElse Opts.subcommand(
       name = "niri-mark",
