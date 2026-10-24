@@ -1,11 +1,11 @@
 sync-priv:
     my flakana sync-priv --path ..
 
-os: sync-priv
-    nh os switch ../flakana-priv
+os:
+    my flakana os switch --path ..
 
-home: sync-priv
-    nh home switch ../flakana-priv -b bak
+home:
+    my flakana home switch --path .. -b bak
 
 gc:
     nh clean all -k 2

@@ -32,6 +32,10 @@
                   pkgs.rsync
                   pkgs.ripgrep
                   pkgs.gh
+                  pkgs.inetutils # hostname
+                  pkgs.nix
+                  pkgs.nix-output-monitor
+                  pkgs.dix
                 ]
               }
           '';

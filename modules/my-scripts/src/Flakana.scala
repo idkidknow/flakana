@@ -5,10 +5,13 @@ import cats.syntax.all.*
 import cps.*
 import cps.monads.catsEffect.{*, given}
 import fs2.Stream
+import fs2.io.file.Files
 import fs2.io.file.Path
 import fs2.io.process.ProcessBuilder
 import fs2.io.process.Redirect
 import io.circe.generic.auto.*
+
+import scala.util.chaining.*
 
 object Flakana {
   def track(path: Path): IO[Unit] = async[IO] {
@@ -183,6 +186,92 @@ object Flakana {
         val (_, exitValue) = (stdin, proc.exitValue).parTupled.await
         IO.println(s"rsync: exit $exitValue")
       }
+      .await
+  }
+
+  def osBuild(path: Path): IO[Path] = asyncScope[IO] {
+    syncPriv(path).await
+    val tempDir = Files[IO].tempDirectory.await
+    val host = hostname.await
+    val pathPriv = path / "flakana-priv"
+    val outLink = tempDir / "result"
+    ProcessBuilder(
+      "nom",
+      "build",
+      s"""$pathPriv#nixosConfigurations."$host".config.system.build.toplevel""",
+      "--out-link",
+      outLink.toString,
+    ).run.await
+    val out = Files[IO].realPath(outLink).await
+    ProcessBuilder("dix", "/run/current-system", out.toString).run.await
+    out
+  }
+
+  def osTest(path: Path): IO[Unit] = osActivate(path, "test")
+
+  def osSwitch(path: Path): IO[Unit] = osActivate(path, "switch")
+
+  def osBoot(path: Path): IO[Unit] = osActivate(path, "boot")
+
+  private def osActivate(path: Path, action: String): IO[Unit] = async[IO] {
+    val out = osBuild(path).await
+    if (action != "test") {
+      ProcessBuilder(
+        "sudo",
+        "nix-env",
+        "--profile",
+        "/nix/var/nix/profiles/system",
+        "--set",
+        out.toString,
+      ).run.await
+    }
+    ProcessBuilder(
+      "sudo",
+      (out / "bin/switch-to-configuration").toString,
+      action,
+    ).run.await
+  }
+
+  def homeBuild(path: Path): IO[Path] = asyncScope[IO] {
+    syncPriv(path).await
+    val tempDir = Files[IO].tempDirectory.await
+    val host = hostname.await
+    val username = ensureEnv("USER").await
+    val pathPriv = path / "flakana-priv"
+    val outLink = tempDir / "result"
+    ProcessBuilder(
+      "nom",
+      "build",
+      s"""$pathPriv#homeConfigurations."$username@$host".activationPackage""",
+      "--out-link",
+      outLink.toString,
+    ).run.await
+    val out = Files[IO].realPath(outLink).await
+    val profile = home.await / ".local/state/nix/profiles/home-manager"
+    ProcessBuilder("dix", profile.toString, out.toString).run.await
+    out
+  }
+
+  def homeSwitch(path: Path, backupExt: Option[String]): IO[Unit] = async[IO] {
+    val out = homeBuild(path).await
+    val profile = home.await / ".local/state/nix/profiles/home-manager"
+    ProcessBuilder(
+      "nix-env",
+      "--profile",
+      profile.toString,
+      "--set",
+      out.toString,
+    ).run.await
+    ProcessBuilder(
+      (out / "activate").toString,
+      "--driver-version",
+      "1",
+    ).pipe { pb =>
+      backupExt match {
+        case Some(ext) => pb.withExtraEnv(Map("HOME_MANAGER_BACKUP_EXT" -> ext))
+        case None => pb
+      }
+    }.run
       .await
   }
 }

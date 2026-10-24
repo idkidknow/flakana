@@ -63,6 +63,55 @@ object main extends IOApp {
         help = """Track "# track" comments in flakana.""",
       ) {
         path.map(_.flatMap(Flakana.track))
+      } orElse Opts.subcommand(
+        name = "os",
+        help = "Build and activate the NixOS configuration.",
+      ) {
+        Opts.subcommand(
+          name = "build",
+          help = "Build the NixOS configuration.",
+        ) {
+          path.map(_.flatMap(Flakana.osBuild).void)
+        } orElse Opts.subcommand(
+          name = "test",
+          help = "Build and activate NixOS.",
+        ) {
+          path.map(_.flatMap(Flakana.osTest))
+        } orElse Opts.subcommand(
+          name = "switch",
+          help = "Build, activate NixOS, and make it the boot default.",
+        ) {
+          path.map(_.flatMap(Flakana.osSwitch))
+        } orElse Opts.subcommand(
+          name = "boot",
+          help = "Build NixOS and make it the boot default.",
+        ) {
+          path.map(_.flatMap(Flakana.osBoot))
+        }
+      } orElse Opts.subcommand(
+        name = "home",
+        help = "Build and activate the home-manager configuration.",
+      ) {
+        Opts.subcommand(
+          name = "build",
+          help = "Build the home-manager configuration.",
+        ) {
+          path.map(_.flatMap(Flakana.homeBuild).void)
+        } orElse Opts.subcommand(
+          name = "switch",
+          help = "Build and activate home-manager configuration.",
+        ) {
+          val backupExt = Opts
+            .option[String](
+              long = "backup-ext",
+              short = "b",
+              help = "The home-manager backup extension.",
+            )
+            .orNone
+          (path, backupExt).mapN { case (ioPath, ext) =>
+            ioPath.flatMap { path => Flakana.homeSwitch(path, ext) }
+          }
+        }
       }
     } orElse Opts.subcommand(
       name = "niri-mark",
