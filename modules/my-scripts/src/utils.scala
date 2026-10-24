@@ -12,22 +12,41 @@ import io.circe.derivation.Configuration
 import io.circe.derivation.ConfiguredDecoder
 import io.circe.parser.decode
 
+extension (pb: ProcessBuilder) {
+  def call: IO[String] =
+    pb.withStderr(Redirect.Inherit).withStdout(Redirect.Pipe).spawn[IO].use {
+      proc =>
+        val output = proc.stdout.through(fs2.text.utf8.decode).compile.string
+        (output, proc.exitValue).parTupled.flatMap { case (text, exitCode) =>
+          if (exitCode == 0) text.pure[IO]
+          else {
+            val commandLine = pb.command :: pb.args
+            IO.raiseError(RuntimeException(s"$commandLine: exit $exitCode"))
+          }
+        }
+    }
+
+  def run: IO[Unit] = pb.inheritStdio.spawn[IO].use { proc =>
+    proc.exitValue.flatMap {
+      case 0 => ().pure[IO]
+      case exitCode =>
+        val commandLine = pb.command :: pb.args
+        IO.raiseError(RuntimeException(s"$commandLine: exit $exitCode"))
+    }
+  }
+}
+
 def ensureEnv(name: String): IO[String] =
   Env[IO].get(name).map(_.toRight(Exception(s"missing ${"$"}$name"))).rethrow
 
 def home: IO[Path] = ensureEnv("HOME").map(Path(_))
 
+def hostname: IO[String] = ProcessBuilder("hostname").call.map(_.trim)
+
 def githubApi[A: Decoder](endpoint: String): IO[A] =
-  ProcessBuilder("gh", "api", "--hostname", "github.com", endpoint)
-    .withStderr(Redirect.Inherit)
-    .spawn[IO]
-    .use { proc =>
-      val output = proc.stdout.through(fs2.text.utf8.decode).compile.string
-      (output, proc.exitValue).parTupled.flatMap { (body, exitCode) =>
-        if (exitCode == 0) decode[A](body).pure[IO].rethrow
-        else
-          IO.raiseError(RuntimeException(s"gh api $endpoint: exit $exitCode"))
-      }
+  ProcessBuilder("gh", "api", "--hostname", "github.com", endpoint).call
+    .flatMap { result =>
+      decode[A](result).pure[IO].rethrow
     }
 
 final case class RgMatch(path: Path, lineNumber: Long, line: String)

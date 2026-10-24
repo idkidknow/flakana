@@ -89,14 +89,14 @@ object Flakana {
       "clone",
       "https://github.com/idkidknow/flakana.git",
       (path / "flakana").toString,
-    ).inheritStdio.spawn[IO].use(_.exitValue).void.await
+    ).run.await
     ProcessBuilder(
       "jj",
       "git",
       "clone",
       "https://github.com/idkidknow/flakana-priv.git",
       (path / "flakana-priv/private-modules").toString,
-    ).inheritStdio.spawn[IO].use(_.exitValue).void.await
+    ).run.await
     syncPriv(path).await
   }
 
