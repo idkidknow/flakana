@@ -1,5 +1,5 @@
 sync-priv:
-    my flakana sync-priv ..
+    my flakana sync-priv --path ..
 
 os: sync-priv
     nh os switch ../flakana-priv
