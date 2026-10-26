@@ -7,6 +7,7 @@
         telegram-desktop
         libreoffice-qt
         peazip
+        kdePackages.kate
       ];
     };
 }
