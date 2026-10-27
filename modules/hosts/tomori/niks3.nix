@@ -30,6 +30,18 @@
         group = "niks3";
       };
 
+      # OIDC discovery needs
+      systemd.services.niks3 = {
+        wants = [
+          "dhcpcd.service"
+          "nscd.service"
+        ];
+        after = [
+          "dhcpcd.service"
+          "nscd.service"
+        ];
+      };
+
       services.niks3 = {
         enable = true;
         httpAddr = "127.0.0.1:5751";
