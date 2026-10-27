@@ -71,13 +71,13 @@ in
       services.phpfpm.pools.tieba-cloud-sign = {
         inherit user group;
         phpPackage = php;
-        phpOptions = ''
-          max_execution_time = 3600
-          upload_max_filesize=128M
-          post_max_size=128M
-          memory_limit=512M
-          date.timezone=Asia/Shanghai
-        '';
+        phpOptions = {
+          max_execution_time = 3600;
+          upload_max_filesize = "128M";
+          post_max_size = "128M";
+          memory_limit = "512M";
+          "date.timezone" = "Asia/Shanghai";
+        };
         settings = {
           "pm" = "ondemand";
           "pm.max_children" = 75;
