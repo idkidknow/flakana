@@ -3,8 +3,7 @@
   perSystem =
     { pkgs, ... }:
     let
-      rust-overlay = import inputs.rust-overlay;
-      rust-bin = (pkgs.extend rust-overlay).rust-bin.selectLatestNightlyWith (
+      rust-bin = pkgs.rust-bin.selectLatestNightlyWith (
         toolchain: toolchain.default
       );
       rustPlatform = pkgs.makeRustPlatform {
