@@ -7,7 +7,7 @@
           output = {
             _args = [ "Virtual-1" ];
             transform = "normal";
-            mode = "1600x900@60.000";
+            mode = "1920x1080@60.000";
           };
         }
       ];
