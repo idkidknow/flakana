@@ -203,7 +203,7 @@ object Flakana {
       outLink.toString,
     ).run.await
     val out = Files[IO].realPath(outLink).await
-    ProcessBuilder("dix", "/run/current-system", out.toString).run.await
+    ProcessBuilder("dix", "diff", "/run/current-system", out.toString).run.await
     out
   }
 
@@ -248,7 +248,7 @@ object Flakana {
     ).run.await
     val out = Files[IO].realPath(outLink).await
     val profile = home.await / ".local/state/nix/profiles/home-manager"
-    ProcessBuilder("dix", profile.toString, out.toString).run.await
+    ProcessBuilder("dix", "diff", profile.toString, out.toString).run.await
     out
   }
 
