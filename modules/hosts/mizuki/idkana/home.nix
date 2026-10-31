@@ -37,6 +37,7 @@
             ];
           }
         ))
+        google-chrome
       ];
 
       programs.emacs.enable = true;
