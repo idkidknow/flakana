@@ -8,6 +8,8 @@
         libreoffice-qt
         peazip
         kdePackages.kate
+        kdePackages.dolphin
+        kdePackages.dolphin-plugins
       ];
     };
 }

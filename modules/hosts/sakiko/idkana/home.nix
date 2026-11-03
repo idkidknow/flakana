@@ -40,8 +40,6 @@
         libnotify
         qview
         zed-editor
-        kdePackages.dolphin
-        kdePackages.dolphin-plugins
         obsidian
         vesktop
         vscode
