@@ -38,6 +38,7 @@
           }
         ))
         google-chrome
+        self.packages.x86_64-linux.dbx
       ];
 
       programs.emacs.enable = true;

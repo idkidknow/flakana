@@ -71,10 +71,10 @@
           '';
         }))
         glow
+        self.packages.x86_64-linux.dbx
       ];
 
       programs.alacritty.enable = true;
-      programs.dbeaver.enable = true;
 
       systemd.user.sessionVariables = {
         NIXOS_OZONE_WL = "1";
