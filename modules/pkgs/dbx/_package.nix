@@ -20,11 +20,11 @@
 
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "dbx";
-  version = "0.6.66";
+  version = "0.6.67";
 
   src = fetchurl {
     url = "https://github.com/t8y2/dbx/releases/download/v${finalAttrs.version}/DBX_${finalAttrs.version}_amd64.deb";
-    hash = "sha256-RgwmCDV68T/lUkhNWpvuCVO0dxIke8Imbe4YCx5ieRI=";
+    hash = "sha256-+IoMaQIPKlMxXTpEMzQfCJAPaOF624FCYiawSEkqzyU=";
   };
 
   nativeBuildInputs = [
