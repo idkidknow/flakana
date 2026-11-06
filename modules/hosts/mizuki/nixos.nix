@@ -22,6 +22,7 @@
 
       flakana = {
         proxy.enable = true;
+        niks3.enable = true;
       };
 
       services.xserver.videoDrivers = [ "vmware" ];

@@ -23,6 +23,7 @@ in
       };
 
       flakana = {
+        niks3.enable = true;
         proxy = {
           enable = true;
           daeWanInterfaces = [
