@@ -17,13 +17,6 @@ let
       nix-output-monitor
       dix
       tealdeer
-      (writeShellScriptBin "e" ''
-        if command -v emacsclient >/dev/null 2>&1; then
-          exec emacsclient -nw "$@"
-        else
-          exec micro "$@"
-        fi
-      '')
     ];
 in
 {
