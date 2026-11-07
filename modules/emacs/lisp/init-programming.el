@@ -26,18 +26,19 @@
 
 
 (use-package apheleia ; 保存时格式化
-  :delight
+  :init (add-to-list 'mode-line-collapse-minor-modes 'apheleia-mode)
   :config (apheleia-global-mode t))
 
 (use-package eldoc-box
-  :delight eldoc-box-mouse-mode
-  :delight eldoc-box--mouse-support-mode
+  :init
+  (add-to-list 'mode-line-collapse-minor-modes 'eldoc-box-mouse-mode)
+  (add-to-list 'mode-line-collapse-minor-modes 'eldoc-box--mouse-support-mode)
   :hook (prog-mode . eldoc-box-mouse-mode)
   :config
   (setq eldoc-box-cleanup-interval 0))
 
 (use-package indent-bars ; 缩进引导线
-  :delight
+  :init (add-to-list 'mode-line-collapse-minor-modes 'indent-bars-mode)
   :hook (prog-mode . indent-bars-mode)
   :custom
   (indent-bars-treesit-support t)
@@ -45,7 +46,7 @@
   (indent-bars-treesit-wrap '((scala parameters))))
 
 (use-package highlight-parentheses ; 小括号高亮
-  :delight
+  :init (add-to-list 'mode-line-collapse-minor-modes 'highlight-parentheses-mode)
   :hook (prog-mode . highlight-parentheses-mode))
 
 (use-package flycheck

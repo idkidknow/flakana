@@ -6,7 +6,6 @@ epkgs: with epkgs; [
   counsel
   counsel-projectile
   dashboard
-  delight
   diff-hl
   doom-modeline
   doom-themes
@@ -29,7 +28,6 @@ epkgs: with epkgs; [
   nix-ts-mode
   nushell-ts-mode
   projectile
-  rust-mode
   scala-ts-mode
   smartparens
   solaire-mode
@@ -39,8 +37,6 @@ epkgs: with epkgs; [
   treemacs-magit
   treemacs-nerd-icons
   treemacs-projectile
-  treesit-auto
-  treesit-fold
   undo-fu
   vundo
   wakatime-mode

@@ -3,6 +3,9 @@
 
 ;;; Code:
 
+;; Cache library lookups across the Nix package directories.
+(setq load-path-filter-function #'load-path-filter-cache-directory-files)
+
 ;; gc
 (setq gc-cons-threshold most-positive-fixnum)
 (add-hook 'after-init-hook #'(lambda () (setq gc-cons-threshold 800000)))

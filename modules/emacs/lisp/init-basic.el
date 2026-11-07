@@ -51,8 +51,10 @@
   (scroll-conservatively 10)
   (show-trailing-whitespace t))
 
-(use-package which-key :delight)
-(use-package eldoc :delight)
+(use-package which-key
+  :init (add-to-list 'mode-line-collapse-minor-modes 'which-key-mode))
+(use-package eldoc
+  :init (add-to-list 'mode-line-collapse-minor-modes 'eldoc-mode))
 
 (use-package mwim ; C-a C-e 无视缩进和行尾注释
   :bind

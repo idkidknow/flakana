@@ -4,7 +4,13 @@
 ;;; Code:
 
 (use-package scala-ts-mode
-  :hook (scala-ts-mode . (lambda () (subword-mode t))))
+  :mode ("\\.scala\\'" "\\.sc\\'" "\\.sbt\\'")
+  :init
+  (add-to-list 'major-mode-remap-alist '(scala-mode . scala-ts-mode))
+  :hook
+  (scala-ts-mode . (lambda () (subword-mode t)))
+  ;; scala-ts-mode does not yet define the tree-sitter list things for Hideshow.
+  (scala-ts-mode . hs-indentation-mode))
 (use-package lsp-metals
   :hook
   (scala-ts-mode . lsp-deferred)

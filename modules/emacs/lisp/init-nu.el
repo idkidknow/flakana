@@ -4,6 +4,7 @@
 ;;; Code:
 
 (use-package nushell-ts-mode
+  :mode "\\.nu\\'"
   :hook (nushell-ts-mode . lsp))
 
 (provide 'init-nu)

@@ -3,19 +3,17 @@
 
 ;;; Code:
 
-(setq treesit-font-lock-level 4)
-
-(use-package treesit-auto
+(use-package treesit
   :custom
-  (treesit-auto-install nil) ; Grammars are provided by Nix.
-  :config
-  (global-treesit-auto-mode t))
+  (treesit-font-lock-level 4)
+  (treesit-enabled-modes t)
+  (treesit-auto-install-grammar 'never)) ; Grammars are provided by Nix.
 
-(use-package treesit-fold
-  :config
-  (global-treesit-fold-indicators-mode t)
+(use-package hideshow
+  :hook (prog-mode . hs-minor-mode)
   :custom
-  (treesit-fold-line-count-show t))
+  (hs-show-indicators t)
+  (hs-display-lines-hidden t))
 
 (provide 'init-treesitter)
 ;;; init-treesitter.el ends here

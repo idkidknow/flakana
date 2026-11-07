@@ -17,8 +17,6 @@
 (add-to-list
  `load-path (expand-file-name "lisp" user-emacs-directory))
 
-(use-package delight)
-
 (require 'init-basic)
 (require 'init-git)
 (require 'init-ivy)

@@ -4,18 +4,20 @@
 ;;; Code:
 
 (use-package company
-  :delight
-  :init (global-company-mode t)
+  :init
+  (add-to-list 'mode-line-collapse-minor-modes 'company-mode)
+  (global-company-mode t)
   :config
   (setq company-minimum-prefix-length 1)
   (setq company-idle-delay 0.0)
   (setq company-tooltip-align-annotations t)
   (setq company-selection-wrap-around t))
 (use-package company-posframe
-  :delight
   :if (display-graphic-p)
   :after (company)
-  :init (company-posframe-mode t))
+  :init
+  (add-to-list 'mode-line-collapse-minor-modes 'company-posframe-mode)
+  (company-posframe-mode t))
 
 (provide 'init-completion)
 ;;; init-completion.el ends here
