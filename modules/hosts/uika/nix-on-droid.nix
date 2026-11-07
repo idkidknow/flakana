@@ -55,8 +55,6 @@
       home.username = "idkana";
       home.homeDirectory = "/data/data/com.termux.nix/files/home";
 
-      home.packages = with pkgs; [
-        emacs
-      ];
+      flakana.emacs.enable = true;
     };
 }

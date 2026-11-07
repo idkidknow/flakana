@@ -40,7 +40,6 @@ in
         uutils-coreutils-noprefix
         inputs.deploy-rs.packages.x86_64-linux.deploy-rs
         gh
-        emacs
       ];
 
       programs.nix-ld.enable = true;

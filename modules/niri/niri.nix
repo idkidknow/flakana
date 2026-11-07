@@ -140,7 +140,7 @@
 
             {
               window-rule._children = [
-                { match._props.app-id = "^Emacs$"; }
+                { match._props.app-id = "^(E|e)macs$"; }
                 { match._props.app-id = "^dev.zed.Zed$"; }
                 { draw-border-with-background = false; }
                 { opacity = 0.95; }

@@ -41,7 +41,7 @@
         self.packages.x86_64-linux.dbx
       ];
 
-      programs.emacs.enable = true;
+      flakana.emacs.enable = true;
       services.emacs.enable = true;
 
       programs.alacritty.enable = true;

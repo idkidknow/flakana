@@ -37,7 +37,6 @@
         nixd
         uutils-coreutils-noprefix
         gh
-        emacs
         firefox
         fish
         jujutsu

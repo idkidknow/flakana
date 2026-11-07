@@ -9,8 +9,9 @@
       home.username = "idkana";
       home.homeDirectory = "/home/idkana";
 
+      flakana.emacs.enable = true;
+
       home.packages = with pkgs; [
-        emacs
         fastfetch
         carapace
         nurl
