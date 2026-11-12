@@ -27,14 +27,14 @@ jobs:
            os: ubuntu-24.04-arm
    runs-on: ${{ matrix.os }}
    steps:
-     - uses: actions/checkout@v7
+     - uses: actions/checkout@v7.0.1
      - uses: NixOS/nix-installer-action@main
        with:
          extra-conf: |
            experimental-features = nix-command flakes pipe-operators
            substituters = https://cache.nixos.org/ https://nix-community.cachix.org/ https://cache.numtide.com/
            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=
-     - uses: Mic92/niks3-action@v1
+     - uses: Mic92/niks3-action@v1.8.0
        with:
          server-url: https://niks3.idkidknow.com
      - name: Nix build
@@ -47,7 +47,7 @@ jobs:
            --result-file "$RUNNER_TEMP/result.json"
      - name: Upload result
        if: always()
-       uses: actions/upload-artifact@v7
+       uses: actions/upload-artifact@v7.0.2
        with:
          name: result-${{ strategy.job-index }}
          path: ${{ runner.temp }}/result.json
