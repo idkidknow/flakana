@@ -98,7 +98,7 @@
     };
 
     nix-cachyos-kernel = {
-      url = "github:xddxdd/nix-cachyos-kernel";
+      url = "github:xddxdd/nix-cachyos-kernel/f20c85dac2eef06564ebc27729264f4f75ae7e1c";
     };
 
     selector4nix = {
