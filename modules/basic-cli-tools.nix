@@ -14,7 +14,7 @@ let
       just
       nh
       gh
-      nix-output-monitor
+      rom
       dix
       tealdeer
     ];

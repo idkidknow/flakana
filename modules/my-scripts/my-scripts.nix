@@ -34,7 +34,7 @@
                   pkgs.gh
                   pkgs.inetutils # hostname
                   pkgs.nix
-                  pkgs.nix-output-monitor
+                  pkgs.rom
                   pkgs.dix
                 ]
               }

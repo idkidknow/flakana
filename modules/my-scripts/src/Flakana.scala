@@ -196,9 +196,10 @@ object Flakana {
     val pathPriv = path / "flakana-priv"
     val outLink = tempDir / "result"
     ProcessBuilder(
-      "nom",
+      "rom",
       "build",
       s"""$pathPriv#nixosConfigurations."$host".config.system.build.toplevel""",
+      "--",
       "--out-link",
       outLink.toString,
     ).run.await
@@ -240,9 +241,10 @@ object Flakana {
     val pathPriv = path / "flakana-priv"
     val outLink = tempDir / "result"
     ProcessBuilder(
-      "nom",
+      "rom",
       "build",
       s"""$pathPriv#homeConfigurations."$username@$host".activationPackage""",
+      "--",
       "--out-link",
       outLink.toString,
     ).run.await
