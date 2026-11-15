@@ -118,7 +118,7 @@
     };
 
     mark-shot = {
-      url = "github:jswysnemc/mark-shot";
+      url = "github:jswysnemc/mark-shot/v0.1.62";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
