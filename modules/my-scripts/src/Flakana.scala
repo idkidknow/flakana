@@ -11,6 +11,7 @@ import fs2.io.process.ProcessBuilder
 import fs2.io.process.Redirect
 import io.circe.generic.auto.*
 
+import java.nio.charset.StandardCharsets
 import scala.util.chaining.*
 
 object Flakana {
@@ -113,9 +114,7 @@ object Flakana {
         proc.stdout
           .split(_ == 0.toByte)
           .filter(_.nonEmpty)
-          .flatMap { chunk =>
-            Stream.chunk(chunk).covary[IO].through(fs2.text.utf8.decode)
-          }
+          .map(chunk => new String(chunk.toArray, StandardCharsets.UTF_8))
           .map(src.resolve)
           .compile
           .to(Set)
