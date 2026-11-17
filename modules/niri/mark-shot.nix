@@ -1,4 +1,4 @@
-{ self, ... }:
+{ inputs, ... }:
 {
   flake.modules.homeManager.common-desktop =
     {
@@ -10,7 +10,7 @@
     {
       config = lib.mkIf config.flakana.niri.enable {
         home.packages = [
-          self.packages.${pkgs.stdenv.hostPlatform.system}.mark-shot
+          inputs.mark-shot.packages.${pkgs.stdenv.hostPlatform.system}.default
         ];
 
         wayland.windowManager.niri.settings.binds = {

@@ -117,6 +117,12 @@
       inputs.treefmt-nix.follows = "treefmt-nix";
     };
 
+    mark-shot = {
+      url = "github:jswysnemc/mark-shot";
+      # inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.rust-overlay.follows = "rust-overlay";
+    };
+
     mvn-trace-forge = {
       url = "github:Avimitin/mvn-trace-forge";
       inputs.nixpkgs.follows = "nixpkgs";
