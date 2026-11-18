@@ -118,8 +118,8 @@ in
         locations."~ \\.php$" = {
           extraConfig = ''
             fastcgi_pass unix:${config.services.phpfpm.pools.tieba-cloud-sign.socket};
-            include ${pkgs.nginx}/conf/fastcgi_params;
-            include ${pkgs.nginx}/conf/fastcgi.conf;
+            include ${config.services.nginx.package}/conf/fastcgi_params;
+            include ${config.services.nginx.package}/conf/fastcgi.conf;
           '';
         };
       };
