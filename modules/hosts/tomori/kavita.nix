@@ -21,7 +21,7 @@ in
         settings = {
           Port = 5000;
         };
-        tokenKeyFile = config.vaultix.secrets.kavita.path;
+        credentials.token_key = config.vaultix.secrets.kavita.path;
       };
 
       services.nginx.virtualHosts."${domain.kavita}" = {
