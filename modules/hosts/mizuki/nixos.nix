@@ -29,6 +29,14 @@
       virtualisation.vmware.guest.enable = true;
       virtualisation.vmware.guest.headless = false;
 
+      # track (nixos-unstable): https://github.com/NixOS/nixpkgs/pull/581265
+      systemd.packages = [
+        (pkgs.writeTextDir "lib/systemd/system/run-vmblock\\x2dfuse.mount.d/fuse3.conf" ''
+          [Mount]
+          Type=fuse3
+        '')
+      ];
+
       services.userborn.enable = true;
 
       environment.systemPackages = with pkgs; [
