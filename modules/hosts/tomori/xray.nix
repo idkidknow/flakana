@@ -1,17 +1,16 @@
 {
+  flake.modules.nixos.nix-secrets-catalog = {
+    security.nix-secrets.secrets.xray-json.recipients = [ "tomori" ];
+  };
+
   flake.modules.nixos."hosts/tomori" =
     { config, ... }:
     {
-      vaultix.secrets.xray-json = {
-        file = ../../../secrets/xray-json.age;
-        mode = "400";
-        owner = "xray";
-        group = "xray";
-      };
+      security.nix-secrets.secrets.xray-json = { };
 
       services.xray = {
         enable = true;
-        settingsFile = config.vaultix.secrets.xray-json.path;
+        settingsFile = config.security.nix-secrets.secrets.xray-json.path;
       };
     };
 }

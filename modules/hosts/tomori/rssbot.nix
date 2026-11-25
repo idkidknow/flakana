@@ -27,8 +27,12 @@
       };
     };
 
+  flake.modules.nixos.nix-secrets-catalog = {
+    security.nix-secrets.secrets.rssbot-dot-env.recipients = [ "tomori" ];
+  };
+
   flake.modules.nixos."hosts/tomori" =
-    { lib, ... }:
+    { config, lib, ... }:
     let
       package = inputs.self.packages.x86_64-linux.rssbot;
       wd = "/var/lib/rssbot";
@@ -48,9 +52,7 @@
         mode = "700";
       };
 
-      vaultix.secrets.rssbot-dot-env = {
-        file = ../../../secrets/rssbot-env.age;
-        mode = "400";
+      security.nix-secrets.secrets.rssbot-dot-env = {
         owner = "rssbot";
         group = "rssbot";
         path = "${wd}/.env";
@@ -63,7 +65,7 @@
           User = "rssbot";
           Group = "rssbot";
           ExecStart = "${lib.getExe package} --admin $ADMIN $RSSBOT_TOKEN";
-          EnvironmentFile = "${wd}/.env";
+          EnvironmentFile = config.security.nix-secrets.secrets.rssbot-dot-env.path;
           WorkingDirectory = wd;
         };
       };

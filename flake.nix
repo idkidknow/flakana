@@ -33,10 +33,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    vaultix = {
-      url = "github:milieuim/vaultix";
+    nix-secrets = {
+      url = "github:unnamed-systems/nix-secrets";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.crane.follows = "crane";
     };
 
     home-manager = {
@@ -129,9 +128,6 @@
     };
 
     # follow
-    crane = {
-      url = "github:ipetkov/crane";
-    };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
     };

@@ -1,5 +1,9 @@
 { config, ... }:
 {
+  flake.modules.nixos.nix-secrets-catalog = {
+    security.nix-secrets.secrets."niks3/api-token".recipients = [ "mizuki" ];
+  };
+
   flake.modules.nixos."hosts/mizuki" =
     { pkgs, ... }:
     {
@@ -15,10 +19,6 @@
 
       networking.networkmanager.enable = true;
       networking.hostName = "mizuki";
-
-      vaultix.settings = {
-        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGlYqrK+cCt/jG4xhHaP6zK/kBnB2bbDxd0ZFJbQtW+Y";
-      };
 
       flakana = {
         proxy.enable = true;

@@ -1,13 +1,14 @@
 {
+  flake.modules.nixos.nix-secrets-catalog = {
+    security.nix-secrets.secrets.nix-access-tokens.recipients = [ "mizuki" ];
+  };
+
   flake.modules.nixos."hosts/mizuki" =
     { config, ... }:
     {
-      vaultix.secrets = {
-        nix-access-tokens.file = ../../../secrets/nix-access-tokens.age;
-        nix-access-tokens.owner = "idkana";
-      };
+      security.nix-secrets.secrets.nix-access-tokens.owner = "idkana";
 
-      nix.access-tokens-file = config.vaultix.secrets.nix-access-tokens.path;
+      nix.access-tokens-file = config.security.nix-secrets.secrets.nix-access-tokens.path;
 
       nix.named-substituters = {
         idkidknow.enable = true;

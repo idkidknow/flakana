@@ -3,6 +3,10 @@ let
   inherit (config.flake.modules.nixos) common common-desktop;
 in
 {
+  flake.modules.nixos.nix-secrets-catalog = {
+    security.nix-secrets.secrets."niks3/api-token".recipients = [ "sakiko" ];
+  };
+
   flake.modules.nixos."hosts/sakiko" =
     { pkgs, ... }:
     {
@@ -17,10 +21,6 @@ in
       i18n.defaultLocale = "zh_CN.UTF-8";
 
       services.userborn.enable = true;
-
-      vaultix.settings = {
-        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFBCz34hfUy6AiB79MP0GJC2+ef61kjXqHvvHmFd62Gz";
-      };
 
       flakana = {
         niks3.enable = true;

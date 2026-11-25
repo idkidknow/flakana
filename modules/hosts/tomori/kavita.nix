@@ -3,15 +3,17 @@ let
   inherit (config.priv) domain;
 in
 {
+  flake.modules.nixos.nix-secrets-catalog = {
+    security.nix-secrets.secrets.kavita.recipients = [ "tomori" ];
+  };
+
   flake.modules.nixos."hosts/tomori" =
     { config, ... }:
     let
       cert-path = config.security.acme.certs."${domain.root}".directory;
     in
     {
-      vaultix.secrets.kavita = {
-        file = ../../../secrets/kavita.age;
-        mode = "400";
+      security.nix-secrets.secrets.kavita = {
         owner = "kavita";
         group = "kavita";
       };
@@ -21,7 +23,7 @@ in
         settings = {
           Port = 5000;
         };
-        credentials.token_key = config.vaultix.secrets.kavita.path;
+        credentials.token_key = config.security.nix-secrets.secrets.kavita.path;
       };
 
       services.nginx.virtualHosts."${domain.kavita}" = {

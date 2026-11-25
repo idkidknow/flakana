@@ -18,6 +18,5 @@ in
         nixpkgs.pkgs = withSystem system ({ config, ... }: config.nixpkgsInstances.default);
       }
     ];
-    specialArgs = { inherit inputs; }; # for vaultix
   };
 }

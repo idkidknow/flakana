@@ -13,10 +13,6 @@
 
       services.userborn.enable = true;
 
-      vaultix.settings = {
-        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIID/DO+dFUjYAFXyHmaoJTmoAzcdLqt+9miWYeZ32WgD";
-      };
-
       programs.nix-ld.dev.enable = true;
 
       environment.systemPackages = with pkgs; [

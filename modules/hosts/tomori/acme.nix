@@ -4,12 +4,14 @@ let
   domain = priv.domain.root;
 in
 {
+  flake.modules.nixos.nix-secrets-catalog = {
+    security.nix-secrets.secrets.acme-env.recipients = [ "tomori" ];
+  };
+
   flake.modules.nixos."hosts/tomori" =
     { config, ... }:
     {
-      vaultix.secrets.acme-env = {
-        file = ../../../secrets/acme-env.age;
-        mode = "400";
+      security.nix-secrets.secrets.acme-env = {
         owner = "acme";
         group = "acme";
       };
@@ -19,7 +21,7 @@ in
         certs."${domain}" = {
           dnsProvider = "cloudflare";
           extraDomainNames = [ "*.${domain}" ];
-          environmentFile = "${config.vaultix.secrets.acme-env.path}";
+          environmentFile = config.security.nix-secrets.secrets.acme-env.path;
         };
       };
     };

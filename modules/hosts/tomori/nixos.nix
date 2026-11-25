@@ -13,10 +13,6 @@
 
       services.userborn.enable = true;
 
-      vaultix.settings = {
-        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGBA6rHseR7plJwOzuckTjA1srjbuu4xqec+hEiqayax";
-      };
-
       services.openssh = {
         enable = true;
         settings = {
