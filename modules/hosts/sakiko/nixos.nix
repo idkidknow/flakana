@@ -62,6 +62,8 @@ in
 
       services.input-remapper.enable = true;
 
+      services.bootvine.enable = true;
+
       environment.variables.EDITOR = "micro";
     };
 }
