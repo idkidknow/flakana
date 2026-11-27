@@ -13,18 +13,18 @@ let
     {
       aarch64-linux = {
         suffix = "native-linux-aarch64";
-        hash = "sha256-/p9tDYqbks1JJqWy1tAGcGoE98hWZH23cSvospb46oo=";
+        hash = "sha256-bx6fdIToVjXjf+TBEE62iPR4bXANCv+2yu6h2lTq00c=";
       };
       x86_64-linux = {
         suffix = "native-linux-amd64";
-        hash = "sha256-+5Sqk4mAPwMwyAq+ZDC6hCc0bLQdvAZmQY1S984focQ=";
+        hash = "sha256-QCLkY9aHkdtiu7gVUQ+RV15EUHiDupYqa9fAMFw2dGI=";
       };
     }
     .${stdenvNoCC.hostPlatform.system};
 
   unwrapped = stdenvNoCC.mkDerivation (finalAttrs: {
     pname = "mill-unwrapped";
-    version = "1.3.1";
+    version = "1.4.0";
 
     src = fetchurl {
       url = "https://repo1.maven.org/maven2/com/lihaoyi/mill-dist-${source.suffix}/${finalAttrs.version}/mill-dist-${source.suffix}-${finalAttrs.version}.exe";

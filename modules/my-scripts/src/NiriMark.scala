@@ -2,7 +2,6 @@ package myscripts
 
 import cats.effect.IO
 import cats.effect.Ref
-import cats.effect.Resource
 import cats.effect.std.Console
 import cats.effect.std.Env
 import cats.syntax.all.*
@@ -10,11 +9,9 @@ import com.comcast.ip4s.UnixSocketAddress
 import cps.*
 import cps.monads.catsEffect.{*, given}
 import fs2.Chunk
-import fs2.io.file.Files
 import fs2.io.file.Path
 import fs2.io.net.Network
 import fs2.io.net.Socket
-import fs2.io.net.SocketOption
 import io.circe.Json
 import io.circe.generic.auto.*
 import io.circe.parser.decode
@@ -106,17 +103,7 @@ object NiriMark {
     val marks = Ref.of[IO, Map[String, BigInt]](Map.empty).await
 
     val server = Network[IO]
-      .bind(
-        UnixSocketAddress(niriMarkSocketPath.toString),
-        List(
-          SocketOption.unixSocketDeleteOnClose(false)
-        ), // If true, FS2 will remove the socket file even when it fails to bind. Why ???
-      )
-      .flatMap { server =>
-        Resource.make(IO.pure(server)) { _ =>
-          Files[IO].deleteIfExists(niriMarkSocketPath).void
-        }
-      }
+      .bind(UnixSocketAddress(niriMarkSocketPath.toString))
       .await
 
     IO.println(niriMarkSocketPath).await

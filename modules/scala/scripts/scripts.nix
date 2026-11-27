@@ -47,7 +47,9 @@ let
             buildPhase = ''
               runHook preBuild
 
-              mkdir -p src
+              # Mill requires the workspace and JVM user.home to be distinct.
+              mkdir -p workspace/src
+              cd workspace
               cp ${./build.mill} build.mill
               cp ${./prelude.scala} src/prelude.scala
               cp ${pkgs.writeText "main.scala" source} src/main.scala
