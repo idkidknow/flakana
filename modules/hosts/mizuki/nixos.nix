@@ -60,6 +60,8 @@
 
       programs.localsend.enable = true;
 
+      services.bootvine.enable = true;
+
       environment.variables.EDITOR = "micro";
     };
 }
