@@ -3,7 +3,12 @@
 # Docs: https://gh.io/actions-lockfile
 version: 'v0.0.3'
 workflows:
-    '.github/workflows/nix.yml':
+    '.github/workflows/configurations.yml':
+        - 'actions/checkout@v7.0.1'
+        - 'actions/upload-artifact@v7.0.2'
+        - 'mic92/niks3-action@v1.8.0'
+        - 'nixos/nix-installer-action@main'
+    '.github/workflows/packages.yml':
         - 'actions/checkout@v7.0.1'
         - 'actions/upload-artifact@v7.0.2'
         - 'mic92/niks3-action@v1.8.0'

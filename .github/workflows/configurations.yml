@@ -1,4 +1,4 @@
-name: Nix
+name: Configurations
 on:
   push:
     branches: [main]
