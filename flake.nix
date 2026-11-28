@@ -113,7 +113,6 @@
     niks3 = {
       url = "github:Mic92/niks3";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.treefmt-nix.follows = "treefmt-nix";
     };
 
     mark-shot = {
@@ -125,11 +124,6 @@
     mvn-trace-forge = {
       url = "github:Avimitin/mvn-trace-forge";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # follow
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
     };
   };
 
